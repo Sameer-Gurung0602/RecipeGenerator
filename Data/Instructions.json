@@ -1,0 +1,114 @@
+{
+    "Instructions": [
+        {
+            "Id": 1,
+            "RecipeId": 1,
+            "Instruction": "Step 1: Season the chicken breasts with salt and pepper.\nStep 2: Heat olive oil in a pan over medium heat.\nStep 3: Add minced garlic and sauté until fragrant.\nStep 4: Add chicken to the pan and cook for 6–7 minutes per side until golden brown.\nStep 5: Remove chicken and serve hot."
+        },
+        {
+            "Id": 2,
+            "RecipeId": 2,
+            "Instruction": "Step 1: Bring a pot of salted water to a boil and cook pasta according to package instructions.\nStep 2: Heat olive oil in a saucepan and sauté garlic.\nStep 3: Add crushed tomatoes and simmer for 10 minutes.\nStep 4: Season with salt and basil.\nStep 5: Toss pasta with sauce and serve."
+        },
+        {
+            "Id": 3,
+            "RecipeId": 3,
+            "Instruction": "Step 1: Chop all vegetables into bite-sized pieces.\nStep 2: Heat oil in a wok over high heat.\nStep 3: Add garlic and stir for 30 seconds.\nStep 4: Add vegetables and stir-fry for 5–7 minutes.\nStep 5: Season and serve immediately."
+        },
+        {
+            "Id": 4,
+            "RecipeId": 4,
+            "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Place salmon on a baking tray.\nStep 3: Drizzle with olive oil and lemon juice.\nStep 4: Season with salt and pepper.\nStep 5: Bake for 25–30 minutes and serve."
+        },
+        {
+            "Id": 5,
+            "RecipeId": 5,
+            "Instruction": "Step 1: Cook rice according to package instructions.\nStep 2: Heat oil in a pan and brown the beef.\nStep 3: Season beef with salt and pepper.\nStep 4: Assemble bowl with rice and beef.\nStep 5: Serve warm."
+        },
+        {
+            "Id": 6,
+            "RecipeId": 6,
+            "Instruction": "Step 1: Heat oil in a pot over medium heat.\nStep 2: Add curry powder and toast for 30 seconds.\nStep 3: Add chickpeas and coconut milk.\nStep 4: Simmer for 15 minutes.\nStep 5: Serve with rice or bread."
+        },
+        {
+            "Id": 7,
+            "RecipeId": 7,
+            "Instruction": "Step 1: Whisk eggs in a bowl.\nStep 2: Chop vegetables.\nStep 3: Heat butter in a pan.\nStep 4: Add vegetables and sauté for 2 minutes.\nStep 5: Pour eggs over veggies and cook until set."
+        },
+        {
+            "Id": 8,
+            "RecipeId": 8,
+            "Instruction": "Step 1: Rinse quinoa under cold water.\nStep 2: Cook quinoa according to package directions.\nStep 3: Chop tomatoes and lettuce.\nStep 4: Mix quinoa with vegetables.\nStep 5: Drizzle with olive oil and serve."
+        },
+        {
+            "Id": 9,
+            "RecipeId": 9,
+            "Instruction": "Step 1: Toast bread slices until golden.\nStep 2: Mash avocado in a bowl.\nStep 3: Season avocado with salt and lemon juice.\nStep 4: Spread avocado on toast.\nStep 5: Serve immediately."
+        },
+        {
+            "Id": 10,
+            "RecipeId": 10,
+            "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Cook rice until tender.\nStep 3: Cut tops off bell peppers and remove seeds.\nStep 4: Stuff peppers with rice.\nStep 5: Bake for 40 minutes."
+        },
+        {
+            "Id": 11,
+            "RecipeId": 11,
+            "Instruction": "Step 1: Spiralize zucchini into noodles.\nStep 2: Heat olive oil in a pan.\nStep 3: Add garlic and sauté.\nStep 4: Add zucchini noodles and cook for 2–3 minutes.\nStep 5: Serve immediately."
+        },
+        {
+            "Id": 12,
+            "RecipeId": 12,
+            "Instruction": "Step 1: Heat oil in a skillet.\nStep 2: Add beef and cook until browned.\nStep 3: Add chopped vegetables.\nStep 4: Season with salt and pepper.\nStep 5: Cook until vegetables are tender."
+        },
+        {
+            "Id": 13,
+            "RecipeId": 13,
+            "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Peel and cube sweet potatoes.\nStep 3: Toss with olive oil and salt.\nStep 4: Roast for 25 minutes.\nStep 5: Serve in a bowl."
+        },
+        {
+            "Id": 14,
+            "RecipeId": 14,
+            "Instruction": "Step 1: Heat butter in a pan.\nStep 2: Add mushrooms and sauté.\nStep 3: Add rice and stir.\nStep 4: Slowly add broth while stirring.\nStep 5: Cook until creamy."
+        },
+        {
+            "Id": 15,
+            "RecipeId": 15,
+            "Instruction": "Step 1: Spoon yogurt into a bowl.\nStep 2: Add sliced fruit on top.\nStep 3: Drizzle with honey if desired.\nStep 4: Add granola.\nStep 5: Serve chilled."
+        },
+        {
+            "Id": 16,
+            "RecipeId": 16,
+            "Instruction": "Step 1: Cook and dice chicken.\nStep 2: Chop lettuce.\nStep 3: Add chicken to salad bowl.\nStep 4: Toss with dressing.\nStep 5: Serve cold."
+        },
+        {
+            "Id": 17,
+            "RecipeId": 17,
+            "Instruction": "Step 1: Heat black beans in a pan.\nStep 2: Warm taco shells.\nStep 3: Fill shells with beans.\nStep 4: Add toppings.\nStep 5: Serve immediately."
+        },
+        {
+            "Id": 18,
+            "RecipeId": 18,
+            "Instruction": "Step 1: Season steak with salt and pepper.\nStep 2: Heat grill or pan.\nStep 3: Cook steak to desired doneness.\nStep 4: Roast vegetables.\nStep 5: Serve together."
+        },
+        {
+            "Id": 19,
+            "RecipeId": 19,
+            "Instruction": "Step 1: Crack eggs into a bowl.\nStep 2: Whisk with salt and pepper.\nStep 3: Heat butter in pan.\nStep 4: Add spinach and cook briefly.\nStep 5: Add eggs and scramble."
+        },
+        {
+            "Id": 20,
+            "RecipeId": 20,
+            "Instruction": "Step 1: Rinse rice.\nStep 2: Add rice and coconut milk to pot.\nStep 3: Bring to boil.\nStep 4: Reduce heat and simmer 15 minutes.\nStep 5: Fluff and serve."
+        },
+        {
+            "Id": 21,
+            "RecipeId": 21,
+            "Instruction": "Step 1: Chop tomatoes.\nStep 2: Sauté garlic in pot.\nStep 3: Add tomatoes and simmer.\nStep 4: Add basil.\nStep 5: Blend until smooth."
+        },
+        {
+            "Id": 22,
+            "RecipeId": 22,
+            "Instruction": "Step 1: Season salmon with salt and pepper.\nStep 2: Grill salmon for 4–5 minutes per side.\nStep 3: Cook quinoa.\nStep 4: Assemble bowl with quinoa and salmon.\nStep 5: Serve warm."
+        }
+    ]
+}

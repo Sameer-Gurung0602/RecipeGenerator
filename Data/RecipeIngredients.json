@@ -1,0 +1,213 @@
+{
+    "RecipeIngredients": [
+        {
+            "RecipeId": 1,
+            "IngredientId": 1
+        },
+        {
+            "RecipeId": 1,
+            "IngredientId": 2
+        },
+        {
+            "RecipeId": 1,
+            "IngredientId": 3
+        },
+
+        {
+            "RecipeId": 2,
+            "IngredientId": 4
+        },
+        {
+            "RecipeId": 2,
+            "IngredientId": 7
+        },
+        {
+            "RecipeId": 2,
+            "IngredientId": 6
+        },
+
+        {
+            "RecipeId": 3,
+            "IngredientId": 9
+        },
+        {
+            "RecipeId": 3,
+            "IngredientId": 10
+        },
+        {
+            "RecipeId": 3,
+            "IngredientId": 11
+        },
+
+        {
+            "RecipeId": 4,
+            "IngredientId": 18
+        },
+        {
+            "RecipeId": 4,
+            "IngredientId": 17
+        },
+
+        {
+            "RecipeId": 5,
+            "IngredientId": 23
+        },
+        {
+            "RecipeId": 5,
+            "IngredientId": 12
+        },
+
+        {
+            "RecipeId": 6,
+            "IngredientId": 20
+        },
+        {
+            "RecipeId": 6,
+            "IngredientId": 21
+        },
+        {
+            "RecipeId": 6,
+            "IngredientId": 22
+        },
+
+        {
+            "RecipeId": 7,
+            "IngredientId": 13
+        },
+        {
+            "RecipeId": 7,
+            "IngredientId": 9
+        },
+        {
+            "RecipeId": 7,
+            "IngredientId": 5
+        },
+
+        {
+            "RecipeId": 8,
+            "IngredientId": 27
+        },
+        {
+            "RecipeId": 8,
+            "IngredientId": 4
+        },
+        {
+            "RecipeId": 8,
+            "IngredientId": 26
+        },
+
+        {
+            "RecipeId": 9,
+            "IngredientId": 25
+        },
+
+        {
+            "RecipeId": 10,
+            "IngredientId": 9
+        },
+        {
+            "RecipeId": 10,
+            "IngredientId": 12
+        },
+
+        {
+            "RecipeId": 11,
+            "IngredientId": 10
+        },
+        {
+            "RecipeId": 11,
+            "IngredientId": 3
+        },
+
+        {
+            "RecipeId": 12,
+            "IngredientId": 23
+        },
+        {
+            "RecipeId": 12,
+            "IngredientId": 11
+        },
+
+        {
+            "RecipeId": 13,
+            "IngredientId": 24
+        },
+        {
+            "RecipeId": 13,
+            "IngredientId": 27
+        },
+
+        {
+            "RecipeId": 14,
+            "IngredientId": 12
+        },
+        {
+            "RecipeId": 14,
+            "IngredientId": 11
+        },
+
+        {
+            "RecipeId": 15,
+            "IngredientId": 30
+        },
+
+        {
+            "RecipeId": 16,
+            "IngredientId": 1
+        },
+        {
+            "RecipeId": 16,
+            "IngredientId": 26
+        },
+
+        {
+            "RecipeId": 17,
+            "IngredientId": 28
+        },
+
+        {
+            "RecipeId": 18,
+            "IngredientId": 23
+        },
+        {
+            "RecipeId": 18,
+            "IngredientId": 10
+        },
+
+        {
+            "RecipeId": 19,
+            "IngredientId": 13
+        },
+        {
+            "RecipeId": 19,
+            "IngredientId": 19
+        },
+
+        {
+            "RecipeId": 20,
+            "IngredientId": 12
+        },
+        {
+            "RecipeId": 20,
+            "IngredientId": 21
+        },
+
+        {
+            "RecipeId": 21,
+            "IngredientId": 4
+        },
+        {
+            "RecipeId": 21,
+            "IngredientId": 6
+        },
+
+        {
+            "RecipeId": 22,
+            "IngredientId": 18
+        },
+        {
+            "RecipeId": 22,
+            "IngredientId": 27
+        }
+    ]
+}

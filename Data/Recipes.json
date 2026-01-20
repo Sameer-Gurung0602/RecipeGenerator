@@ -1,0 +1,202 @@
+{
+    "Recipes": [
+        {
+            "RecipeId": 1,
+            "Name": "Garlic Chicken",
+            "Description": "Pan-seared chicken with garlic sauce",
+            "CookTime": 30,
+            "InstructorId": 1,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-01T00:00:00"
+        },
+        {
+            "RecipeId": 2,
+            "Name": "Spaghetti Marinara",
+            "Description": "Classic tomato pasta",
+            "CookTime": 25,
+            "InstructorId": 2,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-02T00:00:00"
+        },
+        {
+            "RecipeId": 3,
+            "Name": "Vegetable Stir Fry",
+            "Description": "Mixed veggies in garlic sauce",
+            "CookTime": 20,
+            "InstructorId": 3,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-03T00:00:00"
+        },
+        {
+            "RecipeId": 4,
+            "Name": "Salmon Lemon Bake",
+            "Description": "Baked salmon with lemon",
+            "CookTime": 35,
+            "InstructorId": 4,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-04T00:00:00"
+        },
+        {
+            "RecipeId": 5,
+            "Name": "Beef Rice Bowl",
+            "Description": "Beef over seasoned rice",
+            "CookTime": 40,
+            "InstructorId": 5,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-05T00:00:00"
+        },
+        {
+            "RecipeId": 6,
+            "Name": "Chickpea Curry",
+            "Description": "Creamy coconut chickpea curry",
+            "CookTime": 30,
+            "InstructorId": 4,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-06T00:00:00"
+        },
+        {
+            "RecipeId": 7,
+            "Name": "Veggie Omelette",
+            "Description": "Egg omelette with veggies",
+            "CookTime": 15,
+            "InstructorId": 6,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-07T00:00:00"
+        },
+        {
+            "RecipeId": 8,
+            "Name": "Quinoa Salad",
+            "Description": "Fresh quinoa veggie salad",
+            "CookTime": 20,
+            "InstructorId": 2,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-08T00:00:00"
+        },
+        {
+            "RecipeId": 9,
+            "Name": "Avocado Toast",
+            "Description": "Toasted bread with avocado",
+            "CookTime": 10,
+            "InstructorId": 1,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-09T00:00:00"
+        },
+        {
+            "RecipeId": 10,
+            "Name": "Stuffed Peppers",
+            "Description": "Bell peppers stuffed with rice",
+            "CookTime": 45,
+            "InstructorId": 3,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-10T00:00:00"
+        },
+        {
+            "RecipeId": 11,
+            "Name": "Zucchini Noodles",
+            "Description": "Low-carb zucchini pasta",
+            "CookTime": 15,
+            "InstructorId": 5,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-11T00:00:00"
+        },
+        {
+            "RecipeId": 12,
+            "Name": "Keto Beef Skillet",
+            "Description": "Beef and veggie keto skillet",
+            "CookTime": 25,
+            "InstructorId": 5,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-12T00:00:00"
+        },
+        {
+            "RecipeId": 13,
+            "Name": "Sweet Potato Bowl",
+            "Description": "Roasted sweet potato bowl",
+            "CookTime": 30,
+            "InstructorId": 8,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-13T00:00:00"
+        },
+        {
+            "RecipeId": 14,
+            "Name": "Mushroom Risotto",
+            "Description": "Creamy mushroom rice",
+            "CookTime": 40,
+            "InstructorId": 2,
+            "Difficulty": "Hard",
+            "CreatedAt": "2025-01-14T00:00:00"
+        },
+        {
+            "RecipeId": 15,
+            "Name": "Greek Yogurt Parfait",
+            "Description": "Yogurt with fruit",
+            "CookTime": 5,
+            "InstructorId": 6,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-15T00:00:00"
+        },
+        {
+            "RecipeId": 16,
+            "Name": "Chicken Salad",
+            "Description": "Fresh chicken salad",
+            "CookTime": 20,
+            "InstructorId": 1,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-16T00:00:00"
+        },
+        {
+            "RecipeId": 17,
+            "Name": "Black Bean Tacos",
+            "Description": "Veggie black bean tacos",
+            "CookTime": 25,
+            "InstructorId": 4,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-17T00:00:00"
+        },
+        {
+            "RecipeId": 18,
+            "Name": "Paleo Steak Plate",
+            "Description": "Steak with veggies",
+            "CookTime": 35,
+            "InstructorId": 8,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-18T00:00:00"
+        },
+        {
+            "RecipeId": 19,
+            "Name": "Spinach Scramble",
+            "Description": "Eggs scrambled with spinach",
+            "CookTime": 10,
+            "InstructorId": 6,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-19T00:00:00"
+        },
+        {
+            "RecipeId": 20,
+            "Name": "Coconut Rice",
+            "Description": "Creamy coconut rice",
+            "CookTime": 25,
+            "InstructorId": 3,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-20T00:00:00"
+        },
+        {
+            "RecipeId": 21,
+            "Name": "Tomato Basil Soup",
+            "Description": "Creamy tomato basil soup",
+            "CookTime": 30,
+            "InstructorId": 2,
+            "Difficulty": "Easy",
+            "CreatedAt": "2025-01-21T00:00:00"
+        },
+        {
+            "RecipeId": 22,
+            "Name": "Grilled Salmon Bowl",
+            "Description": "Salmon with quinoa",
+            "CookTime": 30,
+            "InstructorId": 7,
+            "Difficulty": "Medium",
+            "CreatedAt": "2025-01-22T00:00:00"
+        }
+    ]
+}
