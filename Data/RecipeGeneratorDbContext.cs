@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecipeGenerator.Models;
 
 namespace RecipeGenerator.Data
@@ -10,7 +10,7 @@ namespace RecipeGenerator.Data
         {
         }
 
-        // DbSet properties for each table
+        // DbSet properties for each table  
         public DbSet<User> Users { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
@@ -24,30 +24,26 @@ namespace RecipeGenerator.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure primary key for Instructions
-            modelBuilder.Entity<Instructions>()
-                .HasKey(i => i.Id);
-
-            // Configure one-to-one: Recipe <-> Instructions
+            // Configure one-to-one: Recipe <-> Instructions (FK in Instructions table)
             modelBuilder.Entity<Recipe>()
-                .HasOne(r => r.Instructions)           // Recipe has ONE Instructions
-                .WithOne(i => i.Recipe)                // Instructions has ONE Recipe
-                .HasForeignKey<Recipe>(r => r.InstructionsId)  // Foreign key is in Recipe table
-                .OnDelete(DeleteBehavior.Cascade);     // If Instructions deleted, delete recipe too
+                .HasOne(r => r.Instructions)
+                .WithOne(i => i.Recipe)
+                .HasForeignKey<Instructions>(i => i.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Configure composite key for RecipeDietaryRestrictions (many-to-many join table)
             modelBuilder.Entity<RecipeDietaryRestrictions>()
-                .HasKey(rd => new { rd.RecipeID, rd.DietaryRestrictionID });
+                .HasKey(rd => new { rd.RecipeId, rd.DietaryRestrictionsId });
 
             modelBuilder.Entity<RecipeDietaryRestrictions>()
                 .HasOne(rd => rd.Recipe)
                 .WithMany(r => r.RecipeDietaryRestrictions)
-                .HasForeignKey(rd => rd.RecipeID);
+                .HasForeignKey(rd => rd.RecipeId);
             
             modelBuilder.Entity<RecipeDietaryRestrictions>()
                 .HasOne(rd => rd.DietaryRestrictions)
                 .WithMany(d => d.RecipeDietaryRestrictions)
-                .HasForeignKey(rd => rd.DietaryRestrictionID);
+                .HasForeignKey(rd => rd.DietaryRestrictionsId);  // ✅ Fixed: Id instead of ID
 
             // Configure composite key for RecipeIngredients (many-to-many join table)
             modelBuilder.Entity<RecipeIngredients>()

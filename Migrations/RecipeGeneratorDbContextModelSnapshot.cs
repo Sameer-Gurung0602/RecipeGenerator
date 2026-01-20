@@ -61,66 +61,66 @@ namespace RecipeGenerator.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InstructionsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RecipeId");
 
-                    b.HasIndex("InstructionsId")
-                        .IsUnique();
-
                     b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("RecipeGenerator.Models.DietaryRestrictions", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DietaryRestrictionsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DietaryRestrictionsId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("DietaryRestrictionsId");
 
                     b.ToTable("DietaryRestrictions");
                 });
 
             modelBuilder.Entity("RecipeGenerator.Models.Instructions", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("InstructionsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstructionsId"));
 
                     b.Property<string>("Instruction")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InstructionsId");
+
+                    b.HasIndex("RecipeId")
+                        .IsUnique();
 
                     b.ToTable("Instructions");
                 });
 
             modelBuilder.Entity("RecipeGenerator.Models.RecipeDietaryRestrictions", b =>
                 {
-                    b.Property<int>("RecipeID")
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DietaryRestrictionID")
+                    b.Property<int>("DietaryRestrictionsId")
                         .HasColumnType("int");
 
-                    b.HasKey("RecipeID", "DietaryRestrictionID");
+                    b.HasKey("RecipeId", "DietaryRestrictionsId");
 
-                    b.HasIndex("DietaryRestrictionID");
+                    b.HasIndex("DietaryRestrictionsId");
 
                     b.ToTable("RecipeDietaryRestrictions");
                 });
@@ -175,28 +175,28 @@ namespace RecipeGenerator.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Recipe", b =>
+            modelBuilder.Entity("RecipeGenerator.Models.Instructions", b =>
                 {
-                    b.HasOne("RecipeGenerator.Models.Instructions", "Instructions")
-                        .WithOne("Recipe")
-                        .HasForeignKey("Recipe", "InstructionsId")
+                    b.HasOne("Recipe", "Recipe")
+                        .WithOne("Instructions")
+                        .HasForeignKey("RecipeGenerator.Models.Instructions", "RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Instructions");
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("RecipeGenerator.Models.RecipeDietaryRestrictions", b =>
                 {
                     b.HasOne("RecipeGenerator.Models.DietaryRestrictions", "DietaryRestrictions")
                         .WithMany("RecipeDietaryRestrictions")
-                        .HasForeignKey("DietaryRestrictionID")
+                        .HasForeignKey("DietaryRestrictionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Recipe", "Recipe")
                         .WithMany("RecipeDietaryRestrictions")
-                        .HasForeignKey("RecipeID")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -250,6 +250,9 @@ namespace RecipeGenerator.Migrations
 
             modelBuilder.Entity("Recipe", b =>
                 {
+                    b.Navigation("Instructions")
+                        .IsRequired();
+
                     b.Navigation("RecipeDietaryRestrictions");
 
                     b.Navigation("RecipeIngredients");
@@ -260,12 +263,6 @@ namespace RecipeGenerator.Migrations
             modelBuilder.Entity("RecipeGenerator.Models.DietaryRestrictions", b =>
                 {
                     b.Navigation("RecipeDietaryRestrictions");
-                });
-
-            modelBuilder.Entity("RecipeGenerator.Models.Instructions", b =>
-                {
-                    b.Navigation("Recipe")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("User", b =>

@@ -2,9 +2,9 @@
 {
     public class RecipeDietaryRestrictions
     {
-        public int RecipeID { get; set; }
+        public int RecipeId { get; set; }
         public Recipe Recipe { get; set; }
-        public int DietaryRestrictionID { get; set; }
+        public int DietaryRestrictionsId { get; set; }
         public DietaryRestrictions DietaryRestrictions { get; set; }
     }
 }

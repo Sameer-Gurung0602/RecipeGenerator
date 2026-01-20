@@ -1,20 +1,26 @@
 [
     {
+        "DietaryRestrictionsId": 1,
         "Name": "Vegan"
     },
     {
+        "DietaryRestrictionsId": 2,
         "Name": "Vegetarian"
     },
     {
+        "DietaryRestrictionsId": 3,
         "Name": "Gluten-Free"
     },
     {
+        "DietaryRestrictionsId": 4,
         "Name": "Dairy-Free"
     },
     {
+        "DietaryRestrictionsId": 5,
         "Name": "Keto"
     },
     {
+        "DietaryRestrictionsId": 6,
         "Name": "Paleo"
     }
 ]

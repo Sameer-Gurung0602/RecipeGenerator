@@ -1,90 +1,90 @@
 [
   {
     "RecipeId": 1,
-    "DietaryRestrictionId": 3
+    "DietaryRestrictionsId": 3
   },
   {
     "RecipeId": 2,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 3,
-    "DietaryRestrictionId": 1
+    "DietaryRestrictionsId": 1
   },
   {
     "RecipeId": 4,
-    "DietaryRestrictionId": 3
+    "DietaryRestrictionsId": 3
   },
   {
     "RecipeId": 5,
-    "DietaryRestrictionId": 6
+    "DietaryRestrictionsId": 6
   },
   {
     "RecipeId": 6,
-    "DietaryRestrictionId": 1
+    "DietaryRestrictionsId": 1
   },
   {
     "RecipeId": 7,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 8,
-    "DietaryRestrictionId": 1
+    "DietaryRestrictionsId": 1
   },
   {
     "RecipeId": 9,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 10,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 11,
-    "DietaryRestrictionId": 5
+    "DietaryRestrictionsId": 5
   },
   {
     "RecipeId": 12,
-    "DietaryRestrictionId": 5
+    "DietaryRestrictionsId": 5
   },
   {
     "RecipeId": 13,
-    "DietaryRestrictionId": 1
+    "DietaryRestrictionsId": 1
   },
   {
     "RecipeId": 14,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 15,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 16,
-    "DietaryRestrictionId": 3
+    "DietaryRestrictionsId": 3
   },
   {
     "RecipeId": 17,
-    "DietaryRestrictionId": 1
+    "DietaryRestrictionsId": 1
   },
   {
     "RecipeId": 18,
-    "DietaryRestrictionId": 6
+    "DietaryRestrictionsId": 6
   },
   {
     "RecipeId": 19,
-    "DietaryRestrictionId": 3
+    "DietaryRestrictionsId": 3
   },
   {
     "RecipeId": 20,
-    "DietaryRestrictionId": 4
+    "DietaryRestrictionsId": 4
   },
   {
     "RecipeId": 21,
-    "DietaryRestrictionId": 2
+    "DietaryRestrictionsId": 2
   },
   {
     "RecipeId": 22,
-    "DietaryRestrictionId": 3
+    "DietaryRestrictionsId": 3
   }
 ]
