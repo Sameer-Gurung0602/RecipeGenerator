@@ -2,5 +2,9 @@
 {
     public class Instructions
     {
+        public int InstructionId { get; set; }
+        public string Instruction { get; set; }
+        public int RecipeId { get; set; }
+        public Recipe Recipe { get; set; }
     }
 }
