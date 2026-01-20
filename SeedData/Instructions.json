@@ -1,5 +1,4 @@
-{
-    "Instructions": [
+  [
         {
             "Id": 1,
             "RecipeId": 1,
@@ -111,4 +110,3 @@
             "Instruction": "Step 1: Season salmon with salt and pepper.\nStep 2: Grill salmon for 4–5 minutes per side.\nStep 3: Cook quinoa.\nStep 4: Assemble bowl with quinoa and salmon.\nStep 5: Serve warm."
         }
     ]
-}

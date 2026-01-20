@@ -24,6 +24,17 @@ namespace RecipeGenerator.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Configure primary key for Instructions
+            modelBuilder.Entity<Instructions>()
+                .HasKey(i => i.Id);
+
+            // Configure one-to-one: Recipe <-> Instructions
+            modelBuilder.Entity<Recipe>()
+                .HasOne(r => r.Instructions)           // Recipe has ONE Instructions
+                .WithOne(i => i.Recipe)                // Instructions has ONE Recipe
+                .HasForeignKey<Recipe>(r => r.InstructionsId)  // Foreign key is in Recipe table
+                .OnDelete(DeleteBehavior.Cascade);     // If Instructions deleted, delete recipe too
+
             // Configure composite key for RecipeDietaryRestrictions (many-to-many join table)
             modelBuilder.Entity<RecipeDietaryRestrictions>()
                 .HasKey(rd => new { rd.RecipeID, rd.DietaryRestrictionID });
@@ -32,7 +43,6 @@ namespace RecipeGenerator.Data
                 .HasOne(rd => rd.Recipe)
                 .WithMany(r => r.RecipeDietaryRestrictions)
                 .HasForeignKey(rd => rd.RecipeID);
-            //One Recipe can have many dietary restrictions
             
             modelBuilder.Entity<RecipeDietaryRestrictions>()
                 .HasOne(rd => rd.DietaryRestrictions)
@@ -66,13 +76,6 @@ namespace RecipeGenerator.Data
                 .HasOne(us => us.Recipe)
                 .WithMany(r => r.UserSavedRecipes)
                 .HasForeignKey(us => us.RecipeId);
-
-            // Configure one-to-one: Recipe <-> Instructions
-            modelBuilder.Entity<Recipe>()
-                .HasOne(r => r.Instructions)           // Recipe has ONE Instructions
-                .WithOne(i => i.Recipe)                // Instructions has ONE Recipe
-                .HasForeignKey<Instructions>(i => i.RecipeId)  // Foreign key is in Instructions table
-                .OnDelete(DeleteBehavior.Cascade);     // If recipe deleted, delete instructions too
         }
     }
 }

@@ -12,7 +12,7 @@ using RecipeGenerator.Data;
 namespace RecipeGenerator.Migrations
 {
     [DbContext(typeof(RecipeGeneratorDbContext))]
-    [Migration("20260120135729_InitialCreate")]
+    [Migration("20260120150600_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -64,7 +64,7 @@ namespace RecipeGenerator.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InstructorId")
+                    b.Property<int>("InstructionsId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -72,6 +72,9 @@ namespace RecipeGenerator.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RecipeId");
+
+                    b.HasIndex("InstructionsId")
+                        .IsUnique();
 
                     b.ToTable("Recipes");
                 });
@@ -105,13 +108,7 @@ namespace RecipeGenerator.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeId")
-                        .IsUnique();
 
                     b.ToTable("Instructions");
                 });
@@ -181,15 +178,15 @@ namespace RecipeGenerator.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RecipeGenerator.Models.Instructions", b =>
+            modelBuilder.Entity("Recipe", b =>
                 {
-                    b.HasOne("Recipe", "Recipe")
-                        .WithOne("Instructions")
-                        .HasForeignKey("RecipeGenerator.Models.Instructions", "RecipeId")
+                    b.HasOne("RecipeGenerator.Models.Instructions", "Instructions")
+                        .WithOne("Recipe")
+                        .HasForeignKey("Recipe", "InstructionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Recipe");
+                    b.Navigation("Instructions");
                 });
 
             modelBuilder.Entity("RecipeGenerator.Models.RecipeDietaryRestrictions", b =>
@@ -256,9 +253,6 @@ namespace RecipeGenerator.Migrations
 
             modelBuilder.Entity("Recipe", b =>
                 {
-                    b.Navigation("Instructions")
-                        .IsRequired();
-
                     b.Navigation("RecipeDietaryRestrictions");
 
                     b.Navigation("RecipeIngredients");
@@ -269,6 +263,12 @@ namespace RecipeGenerator.Migrations
             modelBuilder.Entity("RecipeGenerator.Models.DietaryRestrictions", b =>
                 {
                     b.Navigation("RecipeDietaryRestrictions");
+                });
+
+            modelBuilder.Entity("RecipeGenerator.Models.Instructions", b =>
+                {
+                    b.Navigation("Recipe")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("User", b =>

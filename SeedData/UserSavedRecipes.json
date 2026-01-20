@@ -1,0 +1,73 @@
+[
+    {
+        "UserId": 1,
+        "RecipeId": 2,
+        "SavedAt": "2025-01-10T00:00:00"
+    },
+    {
+        "UserId": 1,
+        "RecipeId": 4,
+        "SavedAt": "2025-01-12T00:00:00"
+    },
+    {
+        "UserId": 2,
+        "RecipeId": 6,
+        "SavedAt": "2025-01-13T00:00:00"
+    },
+    {
+        "UserId": 2,
+        "RecipeId": 8,
+        "SavedAt": "2025-01-14T00:00:00"
+    },
+    {
+        "UserId": 3,
+        "RecipeId": 10,
+        "SavedAt": "2025-01-15T00:00:00"
+    },
+    {
+        "UserId": 3,
+        "RecipeId": 14,
+        "SavedAt": "2025-01-16T00:00:00"
+    },
+    {
+        "UserId": 4,
+        "RecipeId": 6,
+        "SavedAt": "2025-01-17T00:00:00"
+    },
+    {
+        "UserId": 4,
+        "RecipeId": 17,
+        "SavedAt": "2025-01-18T00:00:00"
+    },
+    {
+        "UserId": 5,
+        "RecipeId": 11,
+        "SavedAt": "2025-01-19T00:00:00"
+    },
+    {
+        "UserId": 5,
+        "RecipeId": 12,
+        "SavedAt": "2025-01-20T00:00:00"
+    },
+    {
+        "UserId": 6,
+        "RecipeId": 7,
+        "SavedAt": "2025-01-21T00:00:00"
+    },
+    {
+        "UserId": 6,
+        "RecipeId": 19,
+        "SavedAt": "2025-01-22T00:00:00"
+    },
+    {
+        "UserId": 7,
+        "RecipeId": 22,
+        "SavedAt": "2025-01-23T00:00:00"
+    },
+    {
+        "UserId": 8,
+        "RecipeId": 18,
+        "SavedAt": "2025-01-24T00:00:00"
+    }
+]
+

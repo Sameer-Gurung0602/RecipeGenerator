@@ -1,36 +1,27 @@
-{
-    "Users": [
+ [
         {
-            "UserId": 1,
             "Username": "john_doe"
         },
         {
-            "UserId": 2,
             "Username": "jane_smith"
         },
         {
-            "UserId": 3,
             "Username": "chef_mario"
         },
         {
-            "UserId": 4,
             "Username": "vegan_vibes"
         },
         {
-            "UserId": 5,
             "Username": "keto_queen"
         },
         {
-            "UserId": 6,
             "Username": "homecook99"
         },
         {
-            "UserId": 7,
             "Username": "foodie_guy"
         },
         {
-            "UserId": 8,
             "Username": "paleo_pro"
         }
     ]
-}
+
