@@ -1,0 +1,58 @@
+[
+    {
+        "RecipeId": 23,
+        "IngredientId": 31
+    },
+    {
+        "RecipeId": 23,
+        "IngredientId": 36
+    },
+    {
+        "RecipeId": 23,
+        "IngredientId": 37
+    },
+    {
+        "RecipeId": 24,
+        "IngredientId": 39
+    },
+    {
+        "RecipeId": 24,
+        "IngredientId": 40
+    },
+    {
+        "RecipeId": 24,
+        "IngredientId": 35
+    },
+    {
+        "RecipeId": 25,
+        "IngredientId": 38
+    },
+    {
+        "RecipeId": 25,
+        "IngredientId": 33
+    },
+    {
+        "RecipeId": 25,
+        "IngredientId": 32
+    },
+    {
+        "RecipeId": 26,
+        "IngredientId": 34
+    },
+    {
+        "RecipeId": 26,
+        "IngredientId": 35
+    },
+    {
+        "RecipeId": 27,
+        "IngredientId": 31
+    },
+    {
+        "RecipeId": 27,
+        "IngredientId": 32
+    },
+    {
+        "RecipeId": 27,
+        "IngredientId": 37
+    }
+]
