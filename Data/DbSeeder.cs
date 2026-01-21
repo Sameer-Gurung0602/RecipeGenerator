@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RecipeGenerator.Models;
 
@@ -6,114 +7,163 @@ namespace RecipeGenerator.Data
 {
     public static class DbSeeder
     {
-        public static async Task SeedAsync(RecipeGeneratorDbContext context, IWebHostEnvironment env)
+        public static async Task SeedAsync(RecipeGeneratorDbContext context)
         {
-            //applies existing migrations
-            await context.Database.MigrateAsync();
-
-            // Seed Ingredients (no dependencies)
-            if (!context.Ingredients.Any())
-            {
-                var ingredientsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Ingredients.json"));
-                var ingredients = JsonSerializer.Deserialize<List<Ingredient>>(ingredientsJson);
-                if (ingredients != null)
-                {
-                    context.Ingredients.AddRange(ingredients);
-                    await context.SaveChangesAsync();
-                }
-            }
-
-            // Seed DietaryRestrictions (no dependencies)
-            if (!context.DietaryRestrictions.Any())
-            {
-                var dietaryJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "DietaryRestrictions.json"));
-                var dietaryRestrictions = JsonSerializer.Deserialize<List<DietaryRestrictions>>(dietaryJson);
-                if (dietaryRestrictions != null)
-                {
-                    context.DietaryRestrictions.AddRange(dietaryRestrictions);
-                    await context.SaveChangesAsync();
-                }
-            }
-
-            // Seed Users (no dependencies)
             if (!context.Users.Any())
             {
-                var usersJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Users.json"));
-                var users = JsonSerializer.Deserialize<List<User>>(usersJson);
-                if (users != null)
+                await SeedWithIdentityInsert(context, "Users", async () =>
                 {
+                    var users = await ReadFile<User>("SeedData/users.json");
                     context.Users.AddRange(users);
-                    await context.SaveChangesAsync();
-                }
+                });
             }
 
-            // Seed Recipes (depends on Users)
             if (!context.Recipes.Any())
             {
-                var recipesJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Recipes.json"));
-                var recipes = JsonSerializer.Deserialize<List<Recipe>>(recipesJson);
-                if (recipes != null)
+                await SeedWithIdentityInsert(context, "Recipes", async () =>
                 {
+                    var recipes = await ReadFile<Recipe>("SeedData/Recipes.json");
                     context.Recipes.AddRange(recipes);
-                    await context.SaveChangesAsync();
-                }
+                });
+            }
+            
+            if(!context.Ingredients.Any())
+            {
+                await SeedWithIdentityInsert(context, "Ingredients", async () =>
+                {
+                    var ingredients = await ReadFile<Ingredient>("SeedData/Ingredients.json");
+                    context.Ingredients.AddRange(ingredients);
+                });
             }
 
-            // Seed Instructions (depends on Recipes - one-to-one relationship)
             if (!context.Instructions.Any())
             {
-                var instructionsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Instructions.json"));
-                var instructions = JsonSerializer.Deserialize<List<Instructions>>(instructionsJson);
-                if (instructions != null)
+                await SeedWithIdentityInsert(context, "Instructions", async () =>
                 {
+                    var instructions = await ReadFile<Instructions>("SeedData/Instructions.json");
                     context.Instructions.AddRange(instructions);
-                    await context.SaveChangesAsync();
-                }
+                });
+            }
+            
+            if(!context.DietaryRestrictions.Any())
+            {
+                await SeedWithIdentityInsert(context, "DietaryRestrictions", async () =>
+                {
+                    var dietaryRestrictions = await ReadFile<DietaryRestrictions>("SeedData/DietaryRestrictions.json");
+                    context.DietaryRestrictions.AddRange(dietaryRestrictions);
+                });
             }
 
-            // Seed RecipeIngredients (many-to-many: Recipe + Ingredient)
-            if (!context.RecipeIngredients.Any())
-            {
-                var recipeIngredientsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "RecipeIngredients.json"));
-                var recipeIngredients = JsonSerializer.Deserialize<List<RecipeIngredients>>(recipeIngredientsJson);
-                if (recipeIngredients != null)
-                {
-                    context.RecipeIngredients.AddRange(recipeIngredients);
-                    await context.SaveChangesAsync();
-                }
-            }
+            // Seed junction tables
+            await SeedUserRecipes(context);
+            await SeedRecipeIngredients(context);
+            await SeedRecipeDietaryRestrictions(context);
+        }
 
-            // Seed RecipeDietaryRestrictions (many-to-many: Recipe + DietaryRestrictions)
-            if (!context.RecipeDietaryRestrictions.Any())
+        private static async Task SeedWithIdentityInsert(RecipeGeneratorDbContext context, string tableName, Func<Task> seedAction)
+        {
+            var strategy = context.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
             {
-                var recipeDietaryJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "RecipeDietaryRestrictions.json"));
-                var recipeDietary = JsonSerializer.Deserialize<List<RecipeDietaryRestrictions>>(recipeDietaryJson);
-                if (recipeDietary != null)
+                using var transaction = await context.Database.BeginTransactionAsync();
+                try
                 {
-                    context.RecipeDietaryRestrictions.AddRange(recipeDietary);
+                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {tableName} ON");
+                    await seedAction();
                     await context.SaveChangesAsync();
+                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {tableName} OFF");
+                    await transaction.CommitAsync();
                 }
-            }
-
-            // Seed UserSavedRecipes (many-to-many: User + Recipe)
-            if (!context.UserSavedRecipes.Any())
-            {
-                var userSavedJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "UserSavedRecipes.json"));
-                var userSavedRecipes = JsonSerializer.Deserialize<List<UserSavedRecipes>>(userSavedJson);
-                if (userSavedRecipes != null)
+                catch
                 {
-                    context.UserSavedRecipes.AddRange(userSavedRecipes);
-                    await context.SaveChangesAsync();
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            });
+        }
+
+        private static async Task SeedUserRecipes(RecipeGeneratorDbContext context)
+        {
+            var tableName = "UserRecipes";
+            var hasData = await context.Database
+                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
+                .FirstOrDefaultAsync();
+            
+            if (hasData == 0)
+            {
+                var userRecipes = await ReadFile<UserRecipeDto>("SeedData/UserSavedRecipes.json");
+                
+                foreach (var ur in userRecipes)
+                {
+                    await context.Database.ExecuteSqlRawAsync(
+                        $"INSERT INTO {tableName} (UserId, RecipeId) VALUES ({ur.UserId}, {ur.RecipeId})");
                 }
             }
         }
+
+        private static async Task SeedRecipeIngredients(RecipeGeneratorDbContext context)
+        {
+            var tableName = "RecipeIngredients";
+            var hasData = await context.Database
+                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
+                .FirstOrDefaultAsync();
+            
+            if (hasData == 0)
+            {
+                var recipeIngredients = await ReadFile<RecipeIngredientDto>("SeedData/RecipeIngredients.json");
+                
+                foreach (var ri in recipeIngredients)
+                {
+                    await context.Database.ExecuteSqlRawAsync(
+                        $"INSERT INTO {tableName} (RecipeId, IngredientId) VALUES ({ri.RecipeId}, {ri.IngredientId})");
+                }
+            }
+        }
+
+        private static async Task SeedRecipeDietaryRestrictions(RecipeGeneratorDbContext context)
+        {
+            var tableName = "RecipeDietaryRestrictions";
+            var hasData = await context.Database
+                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
+                .FirstOrDefaultAsync();
+            
+            if (hasData == 0)
+            {
+                var recipeDietary = await ReadFile<RecipeDietaryRestrictionDto>("SeedData/RecipeDietaryRestrictions.json");
+                
+                foreach (var rd in recipeDietary)
+                {
+                    await context.Database.ExecuteSqlRawAsync(
+                        $"INSERT INTO {tableName} (RecipeId, DietaryRestrictionsId) VALUES ({rd.RecipeId}, {rd.DietaryRestrictionsId})");
+                }
+            }
+        }
+
+        public static async Task<List<T>> ReadFile<T>(string path)
+        {
+            var data = await File.ReadAllTextAsync(path);
+            var list = JsonSerializer.Deserialize<List<T>>(data);
+            return list ?? new List<T>();
+        }
+    }
+
+    // DTOs for junction table seeding
+    public class UserRecipeDto
+    {
+        public int UserId { get; set; }
+        public int RecipeId { get; set; }
+        public DateTime? SavedAt { get; set; }
+    }
+
+    public class RecipeIngredientDto
+    {
+        public int RecipeId { get; set; }
+        public int IngredientId { get; set; }
+    }
+
+    public class RecipeDietaryRestrictionDto
+    {
+        public int RecipeId { get; set; }
+        public int DietaryRestrictionsId { get; set; }
     }
 }

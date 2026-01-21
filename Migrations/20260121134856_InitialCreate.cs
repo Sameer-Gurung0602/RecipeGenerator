@@ -47,7 +47,8 @@ namespace RecipeGenerator.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CookTime = table.Column<int>(type: "int", nullable: false),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    InstructionsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,12 +92,12 @@ namespace RecipeGenerator.Migrations
                 name: "RecipeDietaryRestrictions",
                 columns: table => new
                 {
-                    RecipeId = table.Column<int>(type: "int", nullable: false),
-                    DietaryRestrictionsId = table.Column<int>(type: "int", nullable: false)
+                    DietaryRestrictionsId = table.Column<int>(type: "int", nullable: false),
+                    RecipeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeDietaryRestrictions", x => new { x.RecipeId, x.DietaryRestrictionsId });
+                    table.PrimaryKey("PK_RecipeDietaryRestrictions", x => new { x.DietaryRestrictionsId, x.RecipeId });
                     table.ForeignKey(
                         name: "FK_RecipeDietaryRestrictions_DietaryRestrictions_DietaryRestrictionsId",
                         column: x => x.DietaryRestrictionsId,
@@ -115,12 +116,12 @@ namespace RecipeGenerator.Migrations
                 name: "RecipeIngredients",
                 columns: table => new
                 {
-                    RecipeId = table.Column<int>(type: "int", nullable: false),
-                    IngredientId = table.Column<int>(type: "int", nullable: false)
+                    IngredientId = table.Column<int>(type: "int", nullable: false),
+                    RecipeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.RecipeId, x.IngredientId });
+                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.IngredientId, x.RecipeId });
                     table.ForeignKey(
                         name: "FK_RecipeIngredients_Ingredients_IngredientId",
                         column: x => x.IngredientId,
@@ -136,24 +137,23 @@ namespace RecipeGenerator.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserSavedRecipes",
+                name: "UserRecipes",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     RecipeId = table.Column<int>(type: "int", nullable: false),
-                    SavedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserSavedRecipes", x => new { x.UserId, x.RecipeId });
+                    table.PrimaryKey("PK_UserRecipes", x => new { x.RecipeId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_UserSavedRecipes_Recipes_RecipeId",
+                        name: "FK_UserRecipes_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "RecipeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserSavedRecipes_Users_UserId",
+                        name: "FK_UserRecipes_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -167,19 +167,19 @@ namespace RecipeGenerator.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeDietaryRestrictions_DietaryRestrictionsId",
+                name: "IX_RecipeDietaryRestrictions_RecipeId",
                 table: "RecipeDietaryRestrictions",
-                column: "DietaryRestrictionsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_IngredientId",
-                table: "RecipeIngredients",
-                column: "IngredientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserSavedRecipes_RecipeId",
-                table: "UserSavedRecipes",
                 column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredients_RecipeId",
+                table: "RecipeIngredients",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRecipes_UserId",
+                table: "UserRecipes",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -195,7 +195,7 @@ namespace RecipeGenerator.Migrations
                 name: "RecipeIngredients");
 
             migrationBuilder.DropTable(
-                name: "UserSavedRecipes");
+                name: "UserRecipes");
 
             migrationBuilder.DropTable(
                 name: "DietaryRestrictions");
