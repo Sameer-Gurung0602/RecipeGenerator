@@ -11,11 +11,15 @@ namespace RecipeGenerator.Data
             //applies existing migrations
             await context.Database.MigrateAsync();
 
+            // choose environment for seed data (test/development)
+            var environmentName = env.EnvironmentName.ToLower();
+            var seedDataPath = Path.Combine(env.ContentRootPath, "SeedData", environmentName);
+
             // Seed Ingredients (no dependencies)
             if (!context.Ingredients.Any())
             {
                 var ingredientsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Ingredients.json"));
+                    Path.Combine(seedDataPath, "Ingredients.json"));
                 var ingredients = JsonSerializer.Deserialize<List<Ingredient>>(ingredientsJson);
                 if (ingredients != null)
                 {
@@ -28,7 +32,7 @@ namespace RecipeGenerator.Data
             if (!context.DietaryRestrictions.Any())
             {
                 var dietaryJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "DietaryRestrictions.json"));
+                    Path.Combine(seedDataPath, "DietaryRestrictions.json"));
                 var dietaryRestrictions = JsonSerializer.Deserialize<List<DietaryRestrictions>>(dietaryJson);
                 if (dietaryRestrictions != null)
                 {
@@ -41,7 +45,7 @@ namespace RecipeGenerator.Data
             if (!context.Users.Any())
             {
                 var usersJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Users.json"));
+                    Path.Combine(seedDataPath, "Users.json"));
                 var users = JsonSerializer.Deserialize<List<User>>(usersJson);
                 if (users != null)
                 {
@@ -54,7 +58,7 @@ namespace RecipeGenerator.Data
             if (!context.Recipes.Any())
             {
                 var recipesJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Recipes.json"));
+                    Path.Combine(seedDataPath, "Recipes.json"));
                 var recipes = JsonSerializer.Deserialize<List<Recipe>>(recipesJson);
                 if (recipes != null)
                 {
@@ -67,7 +71,7 @@ namespace RecipeGenerator.Data
             if (!context.Instructions.Any())
             {
                 var instructionsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "Instructions.json"));
+                    Path.Combine(seedDataPath, "Instructions.json"));
                 var instructions = JsonSerializer.Deserialize<List<Instructions>>(instructionsJson);
                 if (instructions != null)
                 {
@@ -80,7 +84,7 @@ namespace RecipeGenerator.Data
             if (!context.RecipeIngredients.Any())
             {
                 var recipeIngredientsJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "RecipeIngredients.json"));
+                    Path.Combine(seedDataPath, "RecipeIngredients.json"));
                 var recipeIngredients = JsonSerializer.Deserialize<List<RecipeIngredients>>(recipeIngredientsJson);
                 if (recipeIngredients != null)
                 {
@@ -93,7 +97,7 @@ namespace RecipeGenerator.Data
             if (!context.RecipeDietaryRestrictions.Any())
             {
                 var recipeDietaryJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "RecipeDietaryRestrictions.json"));
+                    Path.Combine(seedDataPath, "RecipeDietaryRestrictions.json"));
                 var recipeDietary = JsonSerializer.Deserialize<List<RecipeDietaryRestrictions>>(recipeDietaryJson);
                 if (recipeDietary != null)
                 {
@@ -106,7 +110,7 @@ namespace RecipeGenerator.Data
             if (!context.UserSavedRecipes.Any())
             {
                 var userSavedJson = await File.ReadAllTextAsync(
-                    Path.Combine(env.ContentRootPath, "SeedData", "UserSavedRecipes.json"));
+                    Path.Combine(seedDataPath, "UserSavedRecipes.json"));
                 var userSavedRecipes = JsonSerializer.Deserialize<List<UserSavedRecipes>>(userSavedJson);
                 if (userSavedRecipes != null)
                 {
