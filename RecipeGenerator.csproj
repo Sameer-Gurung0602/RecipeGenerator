@@ -24,4 +24,8 @@
     <Folder Include="SeedData\development\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="RecipeGenerator.test\RecipeGenerator.test.csproj" />
+  </ItemGroup>
+
 </Project>
