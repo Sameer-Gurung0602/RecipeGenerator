@@ -1,0 +1,26 @@
+[
+    {
+        "UserId": 9,
+        "RecipeId": 23
+    },
+    {
+        "UserId": 9,
+        "RecipeId": 25
+    },
+    {
+        "UserId": 10,
+        "RecipeId": 24
+    },
+    {
+        "UserId": 11,
+        "RecipeId": 26
+    },
+    {
+        "UserId": 11,
+        "RecipeId": 27
+    },
+    {
+        "UserId": 12,
+        "RecipeId": 23
+    }
+]
