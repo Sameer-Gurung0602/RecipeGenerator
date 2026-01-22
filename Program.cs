@@ -15,18 +15,8 @@ var app = builder.Build();
 // Seed the database
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<RecipeGeneratorDbContext>();
-        var env = services.GetRequiredService<IWebHostEnvironment>();
-        await DbSeeder.SeedAsync(context, env);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred seeding the database.");
-    }
+    var context = scope.ServiceProvider.GetRequiredService<RecipeGeneratorDbContext>();
+    await DbSeeder.SeedAsync(context);
 }
 
 // Configure the HTTP request pipeline

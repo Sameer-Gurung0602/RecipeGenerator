@@ -1,8 +1,11 @@
-﻿using System;
+﻿using RecipeGenerator.Models;
 
-public class Ingredient
+namespace RecipeGenerator.Models
 {
-    public int IngredientId { get; set; }
-    public string IngredientName { get; set; }
-    public ICollection <RecipeIngredients> RecipeIngredients { get; set; }
+    public class Ingredient
+    {
+        public int IngredientId { get; set; }
+        public string IngredientName { get; set; }
+        public ICollection<Recipe> Recipes { get; set; }
+    }
 }
