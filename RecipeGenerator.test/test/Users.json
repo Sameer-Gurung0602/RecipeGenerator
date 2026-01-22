@@ -1,0 +1,18 @@
+[
+    {
+        "UserId": 9,
+        "Username": "test_user1"
+    },
+    {
+        "UserId": 10,
+        "Username": "test_baker"
+    },
+    {
+        "UserId": 11,
+        "Username": "gluten_free_gal"
+    },
+    {
+        "UserId": 12,
+        "Username": "test_chef"
+    }
+]

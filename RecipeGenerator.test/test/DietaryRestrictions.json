@@ -1,0 +1,14 @@
+[
+    {
+        "DietaryRestrictionsId": 7,
+        "Name": "Nut-Free"
+    },
+    {
+        "DietaryRestrictionsId": 8,
+        "Name": "Low-Carb"
+    },
+    {
+        "DietaryRestrictionsId": 9,
+        "Name": "Pescatarian"
+    }
+]
