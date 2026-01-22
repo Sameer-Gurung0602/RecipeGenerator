@@ -4,7 +4,11 @@ using RecipeGenerator.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddRazorPages();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+      }); // For API
 
 // Register DbContext with SQL Server
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
@@ -12,11 +16,14 @@ builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
 
 var app = builder.Build();
 
-// Seed the database
-using (var scope = app.Services.CreateScope())
+// Seed the database (skip during testing)
+if (!app.Environment.IsEnvironment("Testing"))
 {
-    var context = scope.ServiceProvider.GetRequiredService<RecipeGeneratorDbContext>();
-    await DbSeeder.SeedAsync(context);
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<RecipeGeneratorDbContext>();
+        await DbSeeder.SeedAsync(context);
+    }
 }
 
 // Configure the HTTP request pipeline
@@ -30,6 +37,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
+
+// Make Program accessible to tests
+public partial class Program { }
