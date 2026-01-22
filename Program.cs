@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using RecipeGenerator.Data;
+using RecipeGenerator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container
-builder.Services.AddRazorPages();
 
 // Register DbContext with SQL Server
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// register RecipeService
+builder.Services.AddScoped<RecipeService>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -30,6 +33,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
