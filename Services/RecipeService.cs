@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecipeGenerator.Data;
-using RecipeGenerator.Models;
+using RecipeGenerator.DTOs;
 
 
 namespace RecipeGenerator.Services
@@ -17,10 +17,31 @@ namespace RecipeGenerator.Services
         }
 
         // method to query database for all recipes
-        public async Task<IEnumerable<Recipe>> GetAllRecipes()
+        public async Task<IEnumerable<RecipeDto>> GetAllRecipes()
         {
-            return await _context.Recipes.ToListAsync();
-        }
+            var recipes = await _context.Recipes
+                .Include(r => r.Instructions)
+                .Include(r => r.Ingredients)
+                .Include(r => r.DietaryRestrictions)
+                .Select(r => new RecipeDto
+                {
+                    RecipeId = r.RecipeId,
+                    Name = r.Name,
+                    Description = r.Description,
+                    CookTime = r.CookTime,
+                    Difficulty = r.Difficulty,
+                    CreatedAt = r.CreatedAt,
+                    Instructions = r.Instructions != null ? new InstructionsDto
+                    {
+                        InstructionsId = r.Instructions.InstructionsId,
+                        Instruction = r.Instructions.Instruction
+                    } : null,
+                    DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
+                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList()
+                })
+                .ToListAsync();
 
+            return recipes;
+        }
     }
 }

@@ -7,11 +7,11 @@ namespace RecipeGenerator.Controllers
     [ApiController]
     [Route("api/[controller]")]
     
-    public class RecipeController : ControllerBase
+    public class RecipesController : ControllerBase
     {
         private readonly RecipeService _recipeService;
 
-        public RecipeController(RecipeService recipeService)
+        public RecipesController(RecipeService recipeService)
         {
             _recipeService = recipeService;
         }
