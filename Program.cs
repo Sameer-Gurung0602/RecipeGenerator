@@ -4,24 +4,19 @@ using RecipeGenerator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-<<<<<<< HEAD
-=======
 // Add services to the container
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-      }); // For API
+    }); // For API
 
->>>>>>> 365be23d219f1d5e590b421f6163a486e826d047
 // Register DbContext with SQL Server
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // register RecipeService
 builder.Services.AddScoped<RecipeService>();
-
-builder.Services.AddControllers();
 
 var app = builder.Build();
 

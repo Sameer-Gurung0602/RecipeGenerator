@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RecipeGenerator.test\**" />
+    <Content Remove="RecipeGenerator.test\**" />
+    <EmbeddedResource Remove="RecipeGenerator.test\**" />
+    <None Remove="RecipeGenerator.test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.*">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,10 +29,6 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="SeedData\development\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="RecipeGenerator.test\RecipeGenerator.test.csproj" />
   </ItemGroup>
 
 </Project>

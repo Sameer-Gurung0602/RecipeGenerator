@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeGenerator", "RecipeGenerator.csproj", "{3F9076D6-13FE-4545-9180-B5A46F64036A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeGenerator.test", "..\RecipeGenerator.test\RecipeGenerator.test.csproj", "{AEAC367D-5F30-493A-B4AB-4DE76AB06FC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeGenerator.test", "RecipeGenerator.test\RecipeGenerator.test.csproj", "{77AA0BC1-5DBE-CDB5-357D-4C533F4C4D0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3F9076D6-13FE-4545-9180-B5A46F64036A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F9076D6-13FE-4545-9180-B5A46F64036A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F9076D6-13FE-4545-9180-B5A46F64036A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEAC367D-5F30-493A-B4AB-4DE76AB06FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEAC367D-5F30-493A-B4AB-4DE76AB06FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEAC367D-5F30-493A-B4AB-4DE76AB06FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEAC367D-5F30-493A-B4AB-4DE76AB06FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AA0BC1-5DBE-CDB5-357D-4C533F4C4D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AA0BC1-5DBE-CDB5-357D-4C533F4C4D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AA0BC1-5DBE-CDB5-357D-4C533F4C4D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AA0BC1-5DBE-CDB5-357D-4C533F4C4D0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
