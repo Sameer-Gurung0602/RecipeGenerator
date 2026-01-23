@@ -23,7 +23,7 @@ namespace RecipeGenerator.Services
                 .Include(r => r.Instructions)
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
-                .Select(r => new RecipeDto
+                .Select(r => new RecipeDto      // transform each recipe into recipe DTO
                 {
                     RecipeId = r.RecipeId,
                     Name = r.Name,
@@ -31,11 +31,11 @@ namespace RecipeGenerator.Services
                     CookTime = r.CookTime,
                     Difficulty = r.Difficulty,
                     CreatedAt = r.CreatedAt,
-                    Instructions = r.Instructions != null ? new InstructionsDto
+                    Instructions = new InstructionsDto
                     {
                         InstructionsId = r.Instructions.InstructionsId,
                         Instruction = r.Instructions.Instruction
-                    } : null,
+                    },
                     DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
                     Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList()
                 })
