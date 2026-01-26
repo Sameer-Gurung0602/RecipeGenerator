@@ -22,6 +22,18 @@ namespace RecipeGenerator.Controllers
             var recipes = await _recipeService.GetAllRecipes();
             return Ok(recipes);
         }
-
+    
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRecipeById(int id)
+        {
+            var recipe = await _recipeService.GetRecipeById(id);
+            
+            if (recipe == null)
+            {
+                return NotFound(new { message = $"Recipe with ID {id} not found." });
+            }
+            
+            return Ok(recipe);
+        }
     }
 }

@@ -40,17 +40,23 @@ namespace RecipeGenerator.Test
 
                     Console.WriteLine("🔧 Setting up test database...");
                     
-                    // Clean slate for each test run
-                    if (db.Database.EnsureCreated())
+                    // Clean slate for each test run - use try-catch to avoid permission errors
+                    try
                     {
+                        Console.WriteLine("🗑️ Attempting to delete existing database...");
                         db.Database.EnsureDeleted();
+                        Console.WriteLine("✅ Database deleted");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"⚠️ Could not delete database (may not exist): {ex.Message}");
                     }
                     
-                    // Use Migrate instead of EnsureCreated to apply proper migrations
-                    db.Database.Migrate();
-                    Console.WriteLine("✅ Database migrated");
+                    // Use EnsureCreated for tests (avoids ALTER DATABASE permission issues)
+                    db.Database.EnsureCreated();
+                    Console.WriteLine("✅ Database created");
 
-                    // Seed test data - use direct await instead of Task.Run
+                    // Seed test data
                     Console.WriteLine("📦 Seeding test data...");
                     TestDataSeeder.SeedFromTestData(db).GetAwaiter().GetResult();
                     
