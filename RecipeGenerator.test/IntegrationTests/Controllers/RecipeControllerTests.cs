@@ -9,6 +9,7 @@ using System.Net.Http.Json;
 
 namespace RecipeGenerator.test.IntegrationTests.Controllers
 {
+    [Collection("Database collection")]
     public class RecipeControllerTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly CustomWebApplicationFactory _factory;

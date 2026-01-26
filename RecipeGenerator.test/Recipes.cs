@@ -8,23 +8,22 @@ using System.Threading.Tasks;
 
 namespace RecipeGenerator.test
 {
-  
-    
-        public class Recipes : IClassFixture<CustomWebApplicationFactory>
+    [Collection("Database collection")]
+    public class Recipes : IClassFixture<CustomWebApplicationFactory>
+    {
+        private readonly CustomWebApplicationFactory _factory;
+
+        public Recipes(CustomWebApplicationFactory factory)
         {
-            private readonly CustomWebApplicationFactory _factory;
-
-            public Recipes(CustomWebApplicationFactory factory)
-            {
-                _factory = factory;
-            }
-
-            [Fact]
-            public void Database_Should_Be_Created()
-            {
-
-            }
+            _factory = factory;
         }
- }
+
+        [Fact]
+        public void Database_Should_Be_Created()
+        {
+
+        }
+    }
+}
 
 
