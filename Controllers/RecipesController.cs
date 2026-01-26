@@ -35,5 +35,18 @@ namespace RecipeGenerator.Controllers
             
             return Ok(recipe);
         }
+
+        [HttpGet("{id}/dietary-restrictions")]
+        public async Task<IActionResult> GetRecipeDietaryRestrictions(int id)
+        {
+            var dietaryRestrictions = await _recipeService.GetRecipeDietaryRestrictions(id);
+            
+            if (dietaryRestrictions == null)
+            {
+                return NotFound(new { message = "Dietary restrictions not found." });
+            }
+            
+            return Ok(dietaryRestrictions);
+        }
     }
 }
