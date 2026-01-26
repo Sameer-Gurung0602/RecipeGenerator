@@ -7,8 +7,10 @@ using RecipeGenerator.Test.Helpers;
 
 namespace RecipeGenerator.Test
 {
-    public class CustomWebApplicationFactory : WebApplicationFactory<Program>
+    public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IDisposable
     {
+        private bool _disposed = false;
+
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
@@ -38,39 +40,78 @@ namespace RecipeGenerator.Test
                     var scopedServices = scope.ServiceProvider;
                     var db = scopedServices.GetRequiredService<RecipeGeneratorDbContext>();
 
-                    Console.WriteLine("🔧 Setting up test database...");
-                    
-                    // Clean slate for each test run - use try-catch to avoid permission errors
                     try
                     {
-                        Console.WriteLine("🗑️ Attempting to delete existing database...");
-                        db.Database.EnsureDeleted();
-                        Console.WriteLine("✅ Database deleted");
+                        Console.WriteLine("🔧 Setting up test database...");
+                        
+                        // Clean slate for each test run
+                        try
+                        {
+                            Console.WriteLine("🗑️ Attempting to delete existing database...");
+                            db.Database.EnsureDeleted();
+                            Console.WriteLine("✅ Database deleted");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"⚠️ Could not delete database: {ex.Message}");
+                        }
+                        
+                        // Use EnsureCreated for tests
+                        db.Database.EnsureCreated();
+                        Console.WriteLine("✅ Database created");
+
+                        // Seed test data
+                        Console.WriteLine("📦 Seeding test data...");
+                        TestDataSeeder.SeedFromTestData(db).GetAwaiter().GetResult();
+                        
+                        // Clear change tracker after seeding
+                        db.ChangeTracker.Clear();
+                        Console.WriteLine("✅ Seeding completed");
+
+                        // Verify data was inserted
+                        var userCount = db.Users.Count();
+                        Console.WriteLine($"📊 Users in database: {userCount}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"⚠️ Could not delete database (may not exist): {ex.Message}");
+                        Console.WriteLine($"❌ Error setting up database: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        throw;
                     }
-                    
-                    // Use EnsureCreated for tests (avoids ALTER DATABASE permission issues)
-                    db.Database.EnsureCreated();
-                    Console.WriteLine("✅ Database created");
-
-                    // Seed test data
-                    Console.WriteLine("📦 Seeding test data...");
-                    TestDataSeeder.SeedFromTestData(db).GetAwaiter().GetResult();
-                    
-                    // Clear change tracker after seeding
-                    db.ChangeTracker.Clear();
-                    Console.WriteLine("✅ Seeding completed");
-
-                    // Verify data was inserted
-                    var userCount = db.Users.Count();
-                    Console.WriteLine($"📊 Users in database: {userCount}");
                 }
             });
 
             builder.UseEnvironment("Testing");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // Clean up database on dispose
+                    try
+                    {
+                        using var scope = Services.CreateScope();
+                        var db = scope.ServiceProvider.GetRequiredService<RecipeGeneratorDbContext>();
+                        db.Database.EnsureDeleted();
+                        Console.WriteLine("🧹 Test database cleaned up");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"⚠️ Could not clean up database: {ex.Message}");
+                    }
+                }
+                _disposed = true;
+            }
+            base.Dispose(disposing);
+        }
+    }
+
+    // Collection definition to prevent parallel test execution
+    [CollectionDefinition("Database collection")]
+    public class DatabaseCollection : ICollectionFixture<CustomWebApplicationFactory>
+    {
     }
 }
