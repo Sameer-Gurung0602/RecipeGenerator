@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RecipeGenerator.Test
 {
+    [Collection("Database collection")]
     public class BasicTest : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly CustomWebApplicationFactory _factory;
