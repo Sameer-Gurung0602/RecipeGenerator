@@ -41,7 +41,10 @@ namespace RecipeGenerator.Test
                     Console.WriteLine("🔧 Setting up test database...");
                     
                     // Clean slate for each test run
-                    db.Database.EnsureDeleted();
+                    if (db.Database.EnsureCreated())
+                    {
+                        db.Database.EnsureDeleted();
+                    }
                     
                     // Use Migrate instead of EnsureCreated to apply proper migrations
                     db.Database.Migrate();

@@ -1,7 +1,7 @@
 using RecipeGenerator.Models;
 using Xunit;
 
-namespace RecipeGenerator.Test.UnitTests
+namespace RecipeGenerator.test.IntegrationTests
 {
     public class ModelTests
     {
