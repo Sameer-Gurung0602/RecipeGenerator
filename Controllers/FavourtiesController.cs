@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RecipeGenerator.Services;
 
 namespace RecipeGenerator.Controllers
 {
@@ -6,17 +7,19 @@ namespace RecipeGenerator.Controllers
     [Route("api/[controller]")]
     public class Favourites : Controller
     {
-    
+        private readonly FavouritesService _favouritesService;
 
-        public IActionResult Index()
+        public Favourites(FavouritesService favouritesService)
         {
-            return View();
+            _favouritesService = favouritesService;
         }
 
-        [HttpGet]
-        public IActionResult GetSavedRecipes()
+
+        [HttpGet("{id}")]
+        public async Task < IActionResult> GetSavedRecipes(int id)
         {
-            return Ok();
+            var recipes =  await _favouritesService.GetAllFavourites(id);
+            return Ok(recipes);
         }
 
         [HttpPost("{id}")]
@@ -32,5 +35,5 @@ namespace RecipeGenerator.Controllers
         {
             return Ok(); }
 
-        }
+    }
 }
