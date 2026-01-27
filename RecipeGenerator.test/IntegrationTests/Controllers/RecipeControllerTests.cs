@@ -5,6 +5,7 @@ using Xunit;
 using RecipeGenerator.DTOs;
 using RecipeGenerator.Test;
 using System.Net.Http.Json;
+using Microsoft.Identity.Client;
 
 
 namespace RecipeGenerator.test.IntegrationTests.Controllers
@@ -20,7 +21,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             _factory = factory;
             _client = _factory.CreateClient();
         }
-
+        // GET /api/recipes
         // check if ok status is returned
         [Fact]
         public async Task GetAllRecipes_ReturnsOkStatus()
@@ -56,9 +57,30 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                 recipe.Ingredients.Should().NotBeNull();
                 recipe.CookTime.Should().BeGreaterThan(0);
                 recipe.Difficulty.Should().NotBeNull();
-                
-
             }
+        }
+
+        // GET /api/recipes/dietary-restrictions
+        [Fact]
+        public async Task GetRecipeDietaryRestrictions_ReturnsOkStatus()
+        {
+            var response = await _client.GetAsync("/api/recipes/23/dietary-restrictions");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task GetRecipeDietaryRestrictions_ReturnsListOfDietaryRestrictions()
+        {
+            var response = await _client.GetAsync("/api/recipes/23/dietary-restrictions");
+            var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
+              restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+        }
+
+        [Fact]
+        public async Task GetRecipeDietaryRestrictions_ReturnsNotFoundStatus_WhenRecipeDoesNotExist()
+        {
+            var response = await _client.GetAsync("/api/recipes/9999/dietary-restrictions");
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
     }
 }
