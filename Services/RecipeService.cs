@@ -17,12 +17,30 @@ namespace RecipeGenerator.Services
         }
 
         // method to query database for all recipes
-        public async Task<IEnumerable<RecipeDto>> GetAllRecipes()
+        public async Task<IEnumerable<RecipeDto>> GetAllRecipes(string? sortBy = null, string? sortOrder = "asc")
         {
-            var recipes = await _context.Recipes
+            var query = _context.Recipes
                 .Include(r => r.Instructions)
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
+                .AsQueryable();
+
+            // Apply sorting        
+            query = sortBy?.ToLower() switch
+            {
+                "date" => sortOrder?.ToLower() == "desc" 
+                    ? query.OrderByDescending(r => r.CreatedAt)
+                    : query.OrderBy(r => r.CreatedAt),
+                "cooktime" => sortOrder?.ToLower() == "desc"
+                    ? query.OrderByDescending(r => r.CookTime)
+                    : query.OrderBy(r => r.CookTime),
+                "difficulty" => sortOrder?.ToLower() == "desc"
+                    ? query.OrderByDescending(r => r.Difficulty)
+                    : query.OrderBy(r => r.Difficulty),
+                _ => query.OrderBy(r => r.RecipeId) // Default sort by ID
+            };
+
+            var recipes = await query
                 .Select(r => new RecipeDto      // transform each recipe into recipe DTO
                 {
                     RecipeId = r.RecipeId,

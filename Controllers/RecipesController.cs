@@ -17,9 +17,9 @@ namespace RecipeGenerator.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllRecipes()
+        public async Task<IActionResult> GetAllRecipes([FromQuery] string? sortBy = null, [FromQuery] string? sortOrder = "asc")
         {
-            var recipes = await _recipeService.GetAllRecipes();
+            var recipes = await _recipeService.GetAllRecipes(sortBy, sortOrder);
             return Ok(recipes);
         }
     
