@@ -83,6 +83,24 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
+        // GET /api/recipes/dietary-restrictions
+        [Fact]
+        public async Task GetAllDietaryRestrictions_ReturnsOkStatus()
+        {
+            var response = await _client.GetAsync("/api/recipes/dietary-restrictions");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task GetAllDietaryRestrictions_ReturnsListOfDietaryRestrictions()
+        {
+            var response = await _client.GetAsync("/api/recipes/dietary-restrictions");
+            var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
+
+            restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+            restrictions.DietaryRestrictions.Should().HaveCount(3);
+        }
+
         // POST /api/recipes/match - Recipe Matching Tests
         [Fact]
         public async Task MatchRecipes_ReturnsOkStatus()
