@@ -7,7 +7,7 @@ namespace RecipeGenerator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class RecipesController : ControllerBase
     {
         private readonly RecipeService _recipeService;
@@ -23,17 +23,17 @@ namespace RecipeGenerator.Controllers
             var recipes = await _recipeService.GetAllRecipes(sortBy, sortOrder);
             return Ok(recipes);
         }
-    
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRecipeById(int id)
         {
             var recipe = await _recipeService.GetRecipeById(id);
-            
+
             if (recipe == null)
             {
                 return NotFound(new { message = $"Recipe with ID {id} not found." });
             }
-            
+
             return Ok(recipe);
         }
 
@@ -41,12 +41,12 @@ namespace RecipeGenerator.Controllers
         public async Task<IActionResult> GetRecipeDietaryRestrictions(int id)
         {
             var dietaryRestrictions = await _recipeService.GetRecipeDietaryRestrictions(id);
-            
+
             if (dietaryRestrictions == null)
             {
                 return NotFound(new { message = "Dietary restrictions not found." });
             }
-            
+
             return Ok(dietaryRestrictions);
         }
 
@@ -74,8 +74,14 @@ namespace RecipeGenerator.Controllers
                 request.DietaryRestrictionIds,
                 sortBy,
                 sortOrder);
-            
+
             return Ok(recipes);
+        }
+        [HttpGet("ingredients")]
+        public async Task<IActionResult> GetAllIngredients()
+        {
+            var ingredients = await _recipeService.GetAllIngredients();
+            return Ok(ingredients);
         }
     }
 }
