@@ -50,6 +50,13 @@ namespace RecipeGenerator.Controllers
             return Ok(dietaryRestrictions);
         }
 
+        [HttpGet("dietary-restrictions")]
+        public async Task<IActionResult> GetDietaryRestrictions()
+        {
+            var dietaryRestrictions = await _recipeService.GetDietaryRestrictions();
+            return Ok(dietaryRestrictions);
+        }
+
         [HttpPost("match")]
         public async Task<IActionResult> GetRecipesByIngredients(
             [FromBody] RecipeMatchRequestDto request,

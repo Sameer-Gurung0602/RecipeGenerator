@@ -105,6 +105,19 @@ namespace RecipeGenerator.Services
             return dietaryRestrictions;
             }
 
+        public async Task<DietaryRestrictionsDto> GetDietaryRestrictions()
+        {
+            var dietaryRestrictions = await _context.DietaryRestrictions
+                .Select(d => d.Name)
+                .ToListAsync();
+
+            return new DietaryRestrictionsDto
+            {
+                DietaryRestrictions = dietaryRestrictions
+            };
+
+        }
+
         public async Task<IEnumerable<RecipeMatchDto>> GetMatchingRecipes(
             List<int> ingredientIds, 
             List<int>? dietaryRestrictionIds = null, 
