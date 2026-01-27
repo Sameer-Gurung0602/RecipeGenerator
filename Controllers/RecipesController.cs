@@ -35,5 +35,12 @@ namespace RecipeGenerator.Controllers
             
             return Ok(recipe);
         }
+
+        [HttpPost("match")]
+        public async Task<IActionResult> GetRecipesByIngredients([FromBody] List<string> ingredients)
+        {
+            var recipes = await _recipeService.GetRecipesByIngredients(ingredients);
+            return Ok(recipes);
+        }
     }
 }
