@@ -92,9 +92,7 @@ namespace RecipeGenerator.Test.Helpers
                 try
                 {
                     Console.WriteLine($"  Setting IDENTITY_INSERT ON for {tableName}");
-#pragma warning disable EF1002
                     await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] ON");
-#pragma warning restore EF1002
 
                     await seedAction();
                     
@@ -102,9 +100,7 @@ namespace RecipeGenerator.Test.Helpers
                     await context.SaveChangesAsync();
                     
                     Console.WriteLine($"  Setting IDENTITY_INSERT OFF for {tableName}");
-#pragma warning disable EF1002
                     await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] OFF");
-#pragma warning restore EF1002
 
                     await transaction.CommitAsync();
                     
@@ -134,11 +130,9 @@ namespace RecipeGenerator.Test.Helpers
             
             Console.WriteLine($"Seeding {tableName}...");
             
-#pragma warning disable EF1002 // Risk of SQL injection - tableName is controlled internally
             var hasData = await context.Database
                 .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
                 .FirstOrDefaultAsync();
-#pragma warning restore EF1002
 
             if (hasData == 0)
             {
@@ -147,8 +141,8 @@ namespace RecipeGenerator.Test.Helpers
 
                 foreach (var ur in userRecipes)
                 {
-                    await context.Database.ExecuteSqlAsync(
-                        $"INSERT INTO [UserRecipes] (UserId, RecipeId) VALUES ({ur.UserId}, {ur.RecipeId})");
+                    await context.Database.ExecuteSqlRawAsync(
+                        "INSERT INTO [UserRecipes] (UserId, RecipeId) VALUES ({0}, {1})", ur.UserId, ur.RecipeId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }
@@ -160,11 +154,9 @@ namespace RecipeGenerator.Test.Helpers
             
             Console.WriteLine($"Seeding {tableName}...");
             
-#pragma warning disable EF1002 // Risk of SQL injection - tableName is controlled internally
             var hasData = await context.Database
                 .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
                 .FirstOrDefaultAsync();
-#pragma warning restore EF1002
 
             if (hasData == 0)
             {
@@ -173,8 +165,8 @@ namespace RecipeGenerator.Test.Helpers
 
                 foreach (var ri in recipeIngredients)
                 {
-                    await context.Database.ExecuteSqlAsync(
-                        $"INSERT INTO [RecipeIngredients] (RecipeId, IngredientId) VALUES ({ri.RecipeId}, {ri.IngredientId})");
+                    await context.Database.ExecuteSqlRawAsync(
+                        "INSERT INTO [RecipeIngredients] (RecipeId, IngredientId) VALUES ({0}, {1})", ri.RecipeId, ri.IngredientId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }
@@ -186,11 +178,9 @@ namespace RecipeGenerator.Test.Helpers
             
             Console.WriteLine($"Seeding {tableName}...");
             
-#pragma warning disable EF1002 // Risk of SQL injection - tableName is controlled internally
             var hasData = await context.Database
                 .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
                 .FirstOrDefaultAsync();
-#pragma warning restore EF1002
 
             if (hasData == 0)
             {
@@ -199,8 +189,8 @@ namespace RecipeGenerator.Test.Helpers
 
                 foreach (var rd in recipeDietary)
                 {
-                    await context.Database.ExecuteSqlAsync(
-                        $"INSERT INTO [RecipeDietaryRestrictions] (RecipeId, DietaryRestrictionsId) VALUES ({rd.RecipeId}, {rd.DietaryRestrictionsId})");
+                    await context.Database.ExecuteSqlRawAsync(
+                        "INSERT INTO [RecipeDietaryRestrictions] (RecipeId, DietaryRestrictionsId) VALUES ({0}, {1})", rd.RecipeId, rd.DietaryRestrictionsId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }

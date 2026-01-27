@@ -23,8 +23,7 @@ namespace RecipeGenerator.test
             _client = _factory.CreateClient();
         }
 
-        #region Sort by Date Tests
-
+ 
         [Fact]
         public async Task GetAllRecipes_SortByDate_Ascending_ReturnsRecipesOrderedByDateAscending()
         {
@@ -61,9 +60,7 @@ namespace RecipeGenerator.test
             recipes![4].Name.Should().Be("Honey Ginger Shrimp"); // 2025-01-23
         }
 
-        #endregion
-
-        #region Sort by CookTime Tests
+   
 
         [Fact]
         public async Task GetAllRecipes_SortByCookTime_Ascending_ReturnsRecipesOrderedByCookTimeAscending()
@@ -100,10 +97,7 @@ namespace RecipeGenerator.test
             recipes![0].CookTime.Should().Be(30); // Cilantro Lime Tacos
             recipes![0].Name.Should().Be("Cilantro Lime Tacos");
         }
-
-        #endregion
-
-        #region Sort by Difficulty Tests
+ 
 
         [Fact]
         public async Task GetAllRecipes_SortByDifficulty_Ascending_ReturnsRecipesOrderedByDifficultyAscending()
@@ -149,9 +143,7 @@ namespace RecipeGenerator.test
             recipes!.Skip(2).Should().AllSatisfy(r => r.Difficulty.Should().Be("Easy"));
         }
 
-        #endregion
-
-        #region Default and Invalid Sort Tests
+ 
 
         [Fact]
         public async Task GetAllRecipes_NoSortParameters_ReturnsRecipesInDefaultOrder()
@@ -201,9 +193,7 @@ namespace RecipeGenerator.test
             recipes.Should().BeInAscendingOrder(r => r.CookTime);
         }
 
-        #endregion
-
-        #region Case Insensitivity Tests
+ 
 
         [Fact]
         public async Task GetAllRecipes_SortByUpperCase_WorksCorrectly()
@@ -231,6 +221,6 @@ namespace RecipeGenerator.test
             recipes.Should().BeInDescendingOrder(r => r.CookTime);
         }
 
-        #endregion
+        
     }
 }
