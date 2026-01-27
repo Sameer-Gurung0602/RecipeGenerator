@@ -33,6 +33,7 @@ builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
 
 // register RecipeService
 builder.Services.AddScoped<RecipeService>();
+builder.Services.AddScoped<FavouritesService>();
 
 var app = builder.Build();
 

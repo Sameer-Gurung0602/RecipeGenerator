@@ -28,7 +28,7 @@ namespace RecipeGenerator.Services
             // Apply sorting        
             query = sortBy?.ToLower() switch
             {
-                "date" => sortOrder?.ToLower() == "desc" 
+                "date" => sortOrder?.ToLower() == "desc"
                     ? query.OrderByDescending(r => r.CreatedAt)
                     : query.OrderBy(r => r.CreatedAt),
                 "cooktime" => sortOrder?.ToLower() == "desc"
@@ -103,7 +103,7 @@ namespace RecipeGenerator.Services
                 .FirstOrDefaultAsync();
 
             return dietaryRestrictions;
-            }
+        }
 
         public async Task<DietaryRestrictionsDto> GetDietaryRestrictions()
         {
@@ -119,9 +119,9 @@ namespace RecipeGenerator.Services
         }
 
         public async Task<IEnumerable<RecipeMatchDto>> GetMatchingRecipes(
-            List<int> ingredientIds, 
-            List<int>? dietaryRestrictionIds = null, 
-            string? sortBy = null, 
+            List<int> ingredientIds,
+            List<int>? dietaryRestrictionIds = null,
+            string? sortBy = null,
             string? sortOrder = "asc")
         {
             // Start with base query - get all recipes with their related data
@@ -133,8 +133,8 @@ namespace RecipeGenerator.Services
             // Filter by dietary restrictions if provided
             if (dietaryRestrictionIds != null && dietaryRestrictionIds.Any())
             {
-                query = query.Where(r => 
-                    dietaryRestrictionIds.All(drId => 
+                query = query.Where(r =>
+                    dietaryRestrictionIds.All(drId =>
                         r.DietaryRestrictions.Any(dr => dr.DietaryRestrictionsId == drId)
                     )
                 );
@@ -154,8 +154,8 @@ namespace RecipeGenerator.Services
                 var missingIngredientIds = recipeIngredientIds.Except(ingredientIds).ToList();
 
                 var ingredientsMatched = matchedIngredientIds.Count;
-                var matchPercentage = totalIngredientsRequired > 0 
-                    ? (int)Math.Round((double)ingredientsMatched / totalIngredientsRequired * 100) 
+                var matchPercentage = totalIngredientsRequired > 0
+                    ? (int)Math.Round((double)ingredientsMatched / totalIngredientsRequired * 100)
                     : 0;
 
                 return new RecipeMatchDto
@@ -200,6 +200,16 @@ namespace RecipeGenerator.Services
             };
 
             return matchedRecipes;
+        }
+
+           
+    public async Task<IEnumerable<string>> GetAllIngredients()
+        {
+            var ingredients = await _context.Ingredients
+                .Select(i => i.IngredientName)
+                .Distinct()
+                .ToListAsync();
+            return ingredients;
         }
     }
 }
