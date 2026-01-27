@@ -5,6 +5,21 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins(
+            "http://localhost:5173",  // Vite dev server
+            "enter hosted front end URL here"  // Update when you deploy React app
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
+
 // Add services to the container
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -12,7 +27,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     }); // For API
 
-// Register DbContext with SQL Server
+// Register DbContext with SQL Server for testing
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,6 +53,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
