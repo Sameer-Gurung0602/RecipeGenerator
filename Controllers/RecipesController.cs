@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RecipeGenerator.Models;
 using RecipeGenerator.Services;
+using RecipeGenerator.DTOs;
 
 namespace RecipeGenerator.Controllers
 {
@@ -17,9 +18,9 @@ namespace RecipeGenerator.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllRecipes()
+        public async Task<IActionResult> GetAllRecipes([FromQuery] string? sortBy = null, [FromQuery] string? sortOrder = "asc")
         {
-            var recipes = await _recipeService.GetAllRecipes();
+            var recipes = await _recipeService.GetAllRecipes(sortBy, sortOrder);
             return Ok(recipes);
         }
     
@@ -49,11 +50,25 @@ namespace RecipeGenerator.Controllers
             return Ok(dietaryRestrictions);
         }
 
-        [HttpGet("dietary-restrictions")]
-        public async Task<IActionResult> GetDietaryRestrictions()
+        [HttpPost("match")]
+        public async Task<IActionResult> GetRecipesByIngredients(
+            [FromBody] RecipeMatchRequestDto request,
+            [FromQuery] string? sortBy = null,
+            [FromQuery] string? sortOrder = "asc")
         {
-            var dietaryRestrictions = await _recipeService.GetDietaryRestrictions();
-            return Ok(dietaryRestrictions);
+            // Validate input
+            if (request.IngredientIds == null || !request.IngredientIds.Any())
+            {
+                return BadRequest("At least one ingredient is required.");
+            }
+
+            var recipes = await _recipeService.GetMatchingRecipes(
+                request.IngredientIds,
+                request.DietaryRestrictionIds,
+                sortBy,
+                sortOrder);
+            
+            return Ok(recipes);
         }
     }
 }
