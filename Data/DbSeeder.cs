@@ -7,6 +7,16 @@ namespace RecipeGenerator.Data
 {
     public static class DbSeeder
     {
+        // Whitelist of allowed tables for IDENTITY_INSERT operations
+        private static readonly HashSet<string> AllowedTables = new()
+        {
+            "Users",
+            "Recipes",
+            "Ingredients",
+            "Instructions",
+            "DietaryRestrictions"
+        };
+
         public static async Task SeedAsync(RecipeGeneratorDbContext context)
         {
             if (!context.Users.Any())
@@ -73,8 +83,11 @@ namespace RecipeGenerator.Data
                     
                     if (isSqlServer)
                     {
+                        // Validate table name to prevent SQL injection
+                        var validTableName = ValidateTableName(tableName);
+                        
                         // Enable IDENTITY_INSERT for SQL Server
-                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] ON");
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] ON");
                     }
                     
                     await seedAction();
@@ -82,8 +95,10 @@ namespace RecipeGenerator.Data
                     
                     if (isSqlServer)
                     {
+                        var validTableName = ValidateTableName(tableName);
+                        
                         // Disable IDENTITY_INSERT for SQL Server
-                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] OFF");
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] OFF");
                     }
                     
                     await transaction.CommitAsync();
@@ -94,6 +109,25 @@ namespace RecipeGenerator.Data
                     throw;
                 }
             });
+        }
+
+        /// <summary>
+        /// Validates table name against whitelist to prevent SQL injection
+        /// </summary>
+        /// <param name="tableName">The table name to validate</param>
+        /// <returns>The validated table name</returns>
+        /// <exception cref="ArgumentException">Thrown when table name is not in the whitelist</exception>
+        private static string ValidateTableName(string tableName)
+        {
+            if (!AllowedTables.Contains(tableName))
+            {
+                throw new ArgumentException(
+                    $"Table '{tableName}' is not allowed for identity insert operations. " +
+                    $"Allowed tables: {string.Join(", ", AllowedTables)}", 
+                    nameof(tableName));
+            }
+            
+            return tableName;
         }
 
         private static async Task SeedUserRecipes(RecipeGeneratorDbContext context)
