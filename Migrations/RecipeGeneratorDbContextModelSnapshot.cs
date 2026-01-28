@@ -108,7 +108,7 @@ namespace RecipeGenerator.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasDefaultValueSql("GETDATE()"); // ✅ SQL Server function
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -116,6 +116,9 @@ namespace RecipeGenerator.Migrations
 
                     b.Property<string>("Difficulty")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InstructionsId")

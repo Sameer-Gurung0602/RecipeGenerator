@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using RecipeGenerator.DTOs;
@@ -104,6 +104,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                 recipe.CookTime.Should().BeGreaterThan(0);
                 recipe.Difficulty.Should().NotBeNullOrEmpty();
                 recipe.CreatedAt.Should().NotBe(default(DateTime));
+                recipe.Img.Should().NotBeNullOrEmpty(); // ✅ Add this
                 recipe.Instructions.Should().NotBeNull();
                 recipe.Ingredients.Should().NotBeNull();
                 recipe.DietaryRestrictions.Should().NotBeNull();
@@ -221,6 +222,22 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             {
                 recipe.DietaryRestrictions.Should().NotBeNull(
                     "DietaryRestrictions should be loaded via .Include(r => r.DietaryRestrictions)");
+            });
+        }
+
+        [Fact]
+        public async Task GetAllFavourites_ReturnsRecipesWithImageUrls()
+        {
+            // Act
+            var response = await _client.GetAsync($"/api/favourites/{SingleUserId}");
+            var favourites = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
+
+            // Assert
+            favourites.Should().NotBeEmpty();
+            favourites.Should().AllSatisfy(recipe =>
+            {
+                recipe.Img.Should().NotBeNullOrEmpty("all recipes should have an image URL");
+                recipe.Img.Should().StartWith("https://", "image URLs should be valid HTTPS URLs");
             });
         }
     }
