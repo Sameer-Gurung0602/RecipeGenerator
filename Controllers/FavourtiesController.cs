@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RecipeGenerator.DTOs;
 using RecipeGenerator.Services;
 
 namespace RecipeGenerator.Controllers
@@ -23,17 +24,20 @@ namespace RecipeGenerator.Controllers
         }
 
         [HttpPost("{id}/recipes")]
-        public async Task<IActionResult> SaveRecipe(int userId, [FromBody] int recipeId)
+        public async Task<IActionResult> SaveRecipe(int userId, [FromBody] SaveRecipeDTO request
+            )
         {
-             var recipe = await _favouritesService.SaveRecipe(userId, recipeId);
+             if(request == null || request.RecipeId <= 0)
+            { return BadRequest("Invalid request data.");
+             }
 
-            return Ok();
+             var success = await _favouritesService.SaveRecipe(userId, request.RecipeId);
+             if(!success)
+            { return NotFound("Recipe or User Not Found or recipe is already favourited");
+              };
+              return Ok("Recipe saved to favourites successfully.");
 
 
         }
-
-        
-
-    }
 }
    

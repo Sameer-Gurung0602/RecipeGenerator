@@ -19,14 +19,25 @@ namespace RecipeGenerator.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<RecipeDto>> SaveRecipe(int userId, int recipeId)
+        public async Task<bool> SaveRecipe(int userId, int recipeId)
         {
-            var recipe = await _context.Recipes
-                .Include(r => r.Ingredients)
-                .Include(r => r.Instructions)
-                .Include(r => r.DietaryRestrictions)
-                .FirstOrDefaultAsync(r => r.RecipeId == recipeId);
-
+            var recipe = await _context.Recipes.FindAsync(recipeId);
+            if (recipe == null)
+            {
+                return false;
+            }
+            var user = await _context.Users
+                .Include(u => u.Recipes)
+                .FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null)
+                return false;
+            if (user.Recipes.Any(r => r.RecipeId == recipeId))
+            {
+                return false;
+            }
+            user.Recipes.Add(recipe);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
 
