@@ -19,9 +19,18 @@ namespace RecipeGenerator.Services
             _context = context;
         }
 
+        public async Task<IEnumerable<RecipeDto>> SaveRecipe(int userId, int recipeId)
+        {
+            var recipe = await _context.Recipes
+                .Include(r => r.Ingredients)
+                .Include(r => r.Instructions)
+                .Include(r => r.DietaryRestrictions)
+                .FirstOrDefaultAsync(r => r.RecipeId == recipeId);
+
+        }
 
 
-            
+
         public async Task<IEnumerable<RecipeDto>> GetAllFavourites(int id)
         {
             var recipes = await _context.Recipes
