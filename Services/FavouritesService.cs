@@ -19,25 +19,37 @@ namespace RecipeGenerator.Services
             _context = context;
         }
 
-        public async Task<bool> SaveRecipe(int userId, int recipeId)
+        public async Task<bool> SaveRecipe(int id, int recipeId)
         {
-            var recipe = await _context.Recipes.FindAsync(recipeId);
-            if (recipe == null)
+            try
             {
+                var recipe = await _context.Recipes.FindAsync(recipeId);
+                if (recipe == null)
+                {
+                    return false;
+                }
+                
+                var user = await _context.Users
+                    .Include(u => u.Recipes)
+                    .FirstOrDefaultAsync(u => u.UserId == id);
+                
+                if (user == null)
+                    return false;
+                
+                if (user.Recipes.Any(r => r.RecipeId == recipeId))
+                {
+                    return false;
+                }
+                
+                user.Recipes.Add(recipe);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                // Handle concurrent insert attempts - recipe was already added
                 return false;
             }
-            var user = await _context.Users
-                .Include(u => u.Recipes)
-                .FirstOrDefaultAsync(u => u.UserId == userId);
-            if (user == null)
-                return false;
-            if (user.Recipes.Any(r => r.RecipeId == recipeId))
-            {
-                return false;
-            }
-            user.Recipes.Add(recipe);
-            await _context.SaveChangesAsync();
-            return true;
         }
 
 

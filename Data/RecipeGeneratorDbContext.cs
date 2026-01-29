@@ -27,7 +27,8 @@ namespace RecipeGenerator.Data
                 .UsingEntity<Dictionary<string, object>>(
                     "UserRecipes",
                     j => j.HasOne<Recipe>().WithMany().HasForeignKey("RecipeId"),
-                    j => j.HasOne<User>().WithMany().HasForeignKey("UserId"));
+                    j => j.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                    j => j.HasKey("UserId", "RecipeId")); // DbContext - CORRECT ORDER
 
             modelBuilder.Entity<Recipe>()
                 .HasMany(r => r.Ingredients)

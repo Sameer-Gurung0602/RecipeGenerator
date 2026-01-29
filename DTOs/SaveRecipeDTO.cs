@@ -2,5 +2,5 @@
 {
     public class SaveRecipeDTO
     {     public int RecipeId { get; set; }
-    }
+     }
 }
