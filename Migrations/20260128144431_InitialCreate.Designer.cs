@@ -12,7 +12,7 @@ using RecipeGenerator.Data;
 namespace RecipeGenerator.Migrations
 {
     [DbContext(typeof(RecipeGeneratorDbContext))]
-    [Migration("20260121134856_InitialCreate")]
+    [Migration("20260128144431_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -111,7 +111,7 @@ namespace RecipeGenerator.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -119,6 +119,9 @@ namespace RecipeGenerator.Migrations
 
                     b.Property<string>("Difficulty")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InstructionsId")

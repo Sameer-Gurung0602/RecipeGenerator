@@ -8,6 +8,7 @@
         public int CookTime { get; set; }
         public string Difficulty { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? Img { get; set; }  // Added
         public InstructionsDto? Instructions { get; set; }
         public List<string> DietaryRestrictions { get; set; } = new();
         public List<string> Ingredients { get; set; } = new();

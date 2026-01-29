@@ -11,7 +11,7 @@ namespace RecipeGenerator.Test
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureServices(services =>
+            builder.ConfigureServices(services =>  // ✅ REMOVED 'async' keyword
             {
                 // Remove the existing DbContext registration
                 var descriptor = services.SingleOrDefault(
@@ -40,26 +40,40 @@ namespace RecipeGenerator.Test
 
                     Console.WriteLine("🔧 Setting up test database...");
                     
-                    // Clean slate for each test run - use try-catch to avoid permission errors
+                    // Clean slate for each test run
                     try
                     {
                         Console.WriteLine("🗑️ Attempting to delete existing database...");
-                        db.Database.EnsureDeleted();
-                        Console.WriteLine("✅ Database deleted");
+                        
+                        // Use synchronous methods (no await)
+                        db.Database.CloseConnection();
+                        
+                        // EnsureDeleted will handle closing connections automatically
+                        var deleted = db.Database.EnsureDeleted();
+                        
+                        if (deleted)
+                        {
+                            Console.WriteLine("✅ Database deleted");
+                        }
+                        else
+                        {
+                            Console.WriteLine("ℹ️ Database did not exist");
+                        }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"⚠️ Could not delete database (may not exist): {ex.Message}");
+                        Console.WriteLine($"⚠️ Warning during database cleanup: {ex.Message}");
+                        // Continue anyway - EnsureCreated will handle it
                     }
                     
-                    // Use EnsureCreated for tests (avoids ALTER DATABASE permission issues)
+                    // Create fresh database with updated schema (synchronous)
                     db.Database.EnsureCreated();
-                    Console.WriteLine("✅ Database created");
+                    Console.WriteLine("✅ Test database created");
 
                     // Seed test data
                     Console.WriteLine("📦 Seeding test data...");
                     TestDataSeeder.SeedFromTestData(db).GetAwaiter().GetResult();
-                    
+
                     // Clear change tracker after seeding
                     db.ChangeTracker.Clear();
                     Console.WriteLine("✅ Seeding completed");

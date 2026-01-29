@@ -7,6 +7,16 @@ namespace RecipeGenerator.Data
 {
     public static class DbSeeder
     {
+        // Whitelist of allowed tables for IDENTITY_INSERT operations
+        private static readonly HashSet<string> AllowedTables = new()
+        {
+            "Users",
+            "Recipes",
+            "Ingredients",
+            "Instructions",
+            "DietaryRestrictions"
+        };
+
         public static async Task SeedAsync(RecipeGeneratorDbContext context)
         {
             if (!context.Users.Any())
@@ -68,10 +78,29 @@ namespace RecipeGenerator.Data
                 using var transaction = await context.Database.BeginTransactionAsync();
                 try
                 {
-                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {tableName} ON");
+                    // Check if we're using SQL Server
+                    var isSqlServer = context.Database.IsSqlServer();
+                    
+                    if (isSqlServer)
+                    {
+                        // Validate table name to prevent SQL injection
+                        var validTableName = ValidateTableName(tableName);
+                        
+                        // Enable IDENTITY_INSERT for SQL Server
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] ON");
+                    }
+                    
                     await seedAction();
                     await context.SaveChangesAsync();
-                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {tableName} OFF");
+                    
+                    if (isSqlServer)
+                    {
+                        var validTableName = ValidateTableName(tableName);
+                        
+                        // Disable IDENTITY_INSERT for SQL Server
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] OFF");
+                    }
+                    
                     await transaction.CommitAsync();
                 }
                 catch
@@ -82,60 +111,107 @@ namespace RecipeGenerator.Data
             });
         }
 
+        /// <summary>
+        /// Validates table name against whitelist to prevent SQL injection
+        /// </summary>
+        /// <param name="tableName">The table name to validate</param>
+        /// <returns>The validated table name</returns>
+        /// <exception cref="ArgumentException">Thrown when table name is not in the whitelist</exception>
+        private static string ValidateTableName(string tableName)
+        {
+            if (!AllowedTables.Contains(tableName))
+            {
+                throw new ArgumentException(
+                    $"Table '{tableName}' is not allowed for identity insert operations. " +
+                    $"Allowed tables: {string.Join(", ", AllowedTables)}", 
+                    nameof(tableName));
+            }
+            
+            return tableName;
+        }
+
         private static async Task SeedUserRecipes(RecipeGeneratorDbContext context)
         {
-            var tableName = "UserRecipes";
-            var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
-                .FirstOrDefaultAsync();
+            // Use SQL Server syntax for checking table existence
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? "SELECT CASE WHEN EXISTS(SELECT 1 FROM [UserRecipes]) THEN 1 ELSE 0 END AS [Value]"
+                : "SELECT CASE WHEN EXISTS(SELECT 1 FROM \"UserRecipes\") THEN 1 ELSE 0 END AS \"Value\"";
             
-            if (hasData == 0)
+            if (await context.Database.SqlQueryRaw<int>(checkQuery).FirstOrDefaultAsync() == 0)
             {
                 var userRecipes = await ReadFile<UserRecipeDto>("SeedData/UserSavedRecipes.json");
                 
+                // Use EF Core instead of raw SQL
                 foreach (var ur in userRecipes)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        $"INSERT INTO {tableName} (UserId, RecipeId) VALUES ({ur.UserId}, {ur.RecipeId})");
+                    var user = await context.Users.FindAsync(ur.UserId);
+                    var recipe = await context.Recipes.FindAsync(ur.RecipeId);
+                    
+                    if (user != null && recipe != null)
+                    {
+                        user.Recipes ??= new List<Recipe>();
+                        user.Recipes.Add(recipe);
+                    }
                 }
+                
+                await context.SaveChangesAsync();
             }
         }
 
         private static async Task SeedRecipeIngredients(RecipeGeneratorDbContext context)
         {
-            var tableName = "RecipeIngredients";
-            var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
-                .FirstOrDefaultAsync();
+            // Use SQL Server syntax for checking table existence
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? "SELECT CASE WHEN EXISTS(SELECT 1 FROM [RecipeIngredients]) THEN 1 ELSE 0 END AS [Value]"
+                : "SELECT CASE WHEN EXISTS(SELECT 1 FROM \"RecipeIngredients\") THEN 1 ELSE 0 END AS \"Value\"";
             
-            if (hasData == 0)
+            if (await context.Database.SqlQueryRaw<int>(checkQuery).FirstOrDefaultAsync() == 0)
             {
                 var recipeIngredients = await ReadFile<RecipeIngredientDto>("SeedData/RecipeIngredients.json");
                 
                 foreach (var ri in recipeIngredients)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        $"INSERT INTO {tableName} (RecipeId, IngredientId) VALUES ({ri.RecipeId}, {ri.IngredientId})");
+                    var recipe = await context.Recipes.FindAsync(ri.RecipeId);
+                    var ingredient = await context.Ingredients.FindAsync(ri.IngredientId);
+                    
+                    if (recipe != null && ingredient != null)
+                    {
+                        recipe.Ingredients ??= new List<Ingredient>();
+                        recipe.Ingredients.Add(ingredient);
+                    }
                 }
+                
+                await context.SaveChangesAsync();
             }
         }
 
         private static async Task SeedRecipeDietaryRestrictions(RecipeGeneratorDbContext context)
         {
-            var tableName = "RecipeDietaryRestrictions";
-            var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM {tableName}) THEN 1 ELSE 0 END AS int) AS Value")
-                .FirstOrDefaultAsync();
+            // Use SQL Server syntax for checking table existence
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? "SELECT CASE WHEN EXISTS(SELECT 1 FROM [RecipeDietaryRestrictions]) THEN 1 ELSE 0 END AS [Value]"
+                : "SELECT CASE WHEN EXISTS(SELECT 1 FROM \"RecipeDietaryRestrictions\") THEN 1 ELSE 0 END AS \"Value\"";
             
-            if (hasData == 0)
+            if (await context.Database.SqlQueryRaw<int>(checkQuery).FirstOrDefaultAsync() == 0)
             {
                 var recipeDietary = await ReadFile<RecipeDietaryRestrictionDto>("SeedData/RecipeDietaryRestrictions.json");
                 
                 foreach (var rd in recipeDietary)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        $"INSERT INTO {tableName} (RecipeId, DietaryRestrictionsId) VALUES ({rd.RecipeId}, {rd.DietaryRestrictionsId})");
+                    var recipe = await context.Recipes.FindAsync(rd.RecipeId);
+                    var dietary = await context.DietaryRestrictions.FindAsync(rd.DietaryRestrictionsId);
+                    
+                    if (recipe != null && dietary != null)
+                    {
+                        recipe.DietaryRestrictions ??= new List<DietaryRestrictions>();
+                        recipe.DietaryRestrictions.Add(dietary);
+                    }
                 }
+                
+                await context.SaveChangesAsync();
             }
         }
 

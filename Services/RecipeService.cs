@@ -49,6 +49,7 @@ namespace RecipeGenerator.Services
                     CookTime = r.CookTime,
                     Difficulty = r.Difficulty,
                     CreatedAt = r.CreatedAt,
+                    Img = r.Img,  // Added
                     Instructions = new InstructionsDto
                     {
                         InstructionsId = r.Instructions.InstructionsId,
@@ -78,6 +79,7 @@ namespace RecipeGenerator.Services
                     CookTime = r.CookTime,
                     Difficulty = r.Difficulty,
                     CreatedAt = r.CreatedAt,
+                    Img = r.Img,  // Added
                     Instructions = r.Instructions != null ? new InstructionsDto
                     {
                         InstructionsId = r.Instructions.InstructionsId,
@@ -166,6 +168,7 @@ namespace RecipeGenerator.Services
                     CookTime = recipe.CookTime,
                     Difficulty = recipe.Difficulty,
                     CreatedAt = recipe.CreatedAt,
+                    Img = recipe.Img,  // Added
                     MatchPercentage = matchPercentage,
                     TotalIngredientsRequired = totalIngredientsRequired,
                     IngredientsMatched = ingredientsMatched,

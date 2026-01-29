@@ -57,6 +57,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                 recipe.Ingredients.Should().NotBeNull();
                 recipe.CookTime.Should().BeGreaterThan(0);
                 recipe.Difficulty.Should().NotBeNull();
+                recipe.Img.Should().NotBeNullOrEmpty(); // ✅ Add this assertion
             }
         }
 
@@ -494,6 +495,58 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             // Note: If you want alphabetical sorting, update the service method
             // For now, this test documents the current behavior
             ingredients.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public async Task GetAllRecipes_ReturnsRecipesWithImageUrls()
+        {
+            // Act
+            var response = await _client.GetAsync("/api/recipes");
+            var recipes = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
+
+            // Assert
+            recipes.Should().NotBeEmpty();
+            recipes.Should().AllSatisfy(recipe =>
+            {
+                recipe.Img.Should().NotBeNullOrEmpty("all recipes should have an image URL");
+            });
+        }
+
+        [Fact]
+        public async Task GetRecipeById_ReturnsRecipeWithImageUrl()
+        {
+            // Arrange
+            int validRecipeId = 23; // "Honey Ginger Shrimp"
+
+            // Act
+            var response = await _client.GetAsync($"/api/recipes/{validRecipeId}");
+            var recipe = await response.Content.ReadFromJsonAsync<RecipeDto>();
+
+            // Assert
+            recipe.Should().NotBeNull();
+            recipe!.Img.Should().NotBeNullOrEmpty();
+            recipe.Img.Should().Be("https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400");
+        }
+
+        [Fact]
+        public async Task MatchRecipes_ReturnsRecipesWithImageUrls()
+        {
+            // Arrange
+            var request = new RecipeMatchRequestDto
+            {
+                IngredientIds = new List<int> { 51, 56, 57 } // Shrimp, Ginger, Honey
+            };
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/api/recipes/match", request);
+            var matchedRecipes = await response.Content.ReadFromJsonAsync<List<RecipeMatchDto>>();
+
+            // Assert
+            matchedRecipes.Should().NotBeEmpty();
+            matchedRecipes.Should().AllSatisfy(recipe =>
+            {
+                recipe.Img.Should().NotBeNullOrEmpty("matched recipes should include image URLs");
+            });
         }
     }
 }
