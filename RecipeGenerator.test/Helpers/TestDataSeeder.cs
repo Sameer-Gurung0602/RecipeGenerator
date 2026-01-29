@@ -7,6 +7,16 @@ namespace RecipeGenerator.Test.Helpers
 {
     public static class TestDataSeeder
     {
+        // Whitelist of allowed tables for IDENTITY_INSERT operations
+        private static readonly HashSet<string> AllowedTables = new()
+        {
+            "Users",
+            "Recipes",
+            "Ingredients",
+            "Instructions",
+            "DietaryRestrictions"
+        };
+
         public static async Task SeedFromTestData(RecipeGeneratorDbContext context)
         {
             // Seed Users with IDENTITY_INSERT
@@ -18,7 +28,6 @@ namespace RecipeGenerator.Test.Helpers
                     var users = await ReadFile<User>("test/Users.json");
                     context.Users.AddRange(users);
                 });
-                // Don't count here - it can cause tracking issues
                 Console.WriteLine($"✅ Users seeded");
             }
 
@@ -91,21 +100,35 @@ namespace RecipeGenerator.Test.Helpers
                 using var transaction = await context.Database.BeginTransactionAsync();
                 try
                 {
-                    Console.WriteLine($"  Setting IDENTITY_INSERT ON for {tableName}");
-                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] ON");
+                    // Check if we're using SQL Server
+                    var isSqlServer = context.Database.IsSqlServer();
+                    
+                    if (isSqlServer)
+                    {
+                        // Validate table name to prevent SQL injection
+                        var validTableName = ValidateTableName(tableName);
+                        
+                        Console.WriteLine($"  Setting IDENTITY_INSERT ON for {validTableName}");
+                        // Note: IDENTITY_INSERT requires literal table names, cannot be parameterized
+                        // Security is ensured through whitelist validation
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] ON");
+                    }
 
                     await seedAction();
                     
                     Console.WriteLine($"  Saving changes for {tableName}");
                     await context.SaveChangesAsync();
                     
-                    Console.WriteLine($"  Setting IDENTITY_INSERT OFF for {tableName}");
-                    await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{tableName}] OFF");
+                    if (isSqlServer)
+                    {
+                        var validTableName = ValidateTableName(tableName);
+                        
+                        Console.WriteLine($"  Setting IDENTITY_INSERT OFF for {validTableName}");
+                        await context.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT [{validTableName}] OFF");
+                    }
 
                     await transaction.CommitAsync();
                     
-                    // Clear change tracker after commit to prevent tracking conflicts
-                     
                     Console.WriteLine($"  Transaction committed for {tableName}");
                 }
                 catch (Exception ex)
@@ -124,14 +147,39 @@ namespace RecipeGenerator.Test.Helpers
             }
         }
 
+        /// <summary>
+        /// Validates table name against whitelist to prevent SQL injection
+        /// </summary>
+        /// <param name="tableName">The table name to validate</param>
+        /// <returns>The validated table name</returns>
+        /// <exception cref="ArgumentException">Thrown when table name is not in the whitelist</exception>
+        private static string ValidateTableName(string tableName)
+        {
+            if (!AllowedTables.Contains(tableName))
+            {
+                throw new ArgumentException(
+                    $"Table '{tableName}' is not allowed for identity insert operations. " +
+                    $"Allowed tables: {string.Join(", ", AllowedTables)}", 
+                    nameof(tableName));
+            }
+            
+            return tableName;
+        }
+
         private static async Task SeedUserRecipes(RecipeGeneratorDbContext context)
         {
             var tableName = "UserRecipes";
             
             Console.WriteLine($"Seeding {tableName}...");
             
+            // Use database-specific syntax
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? $"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value"
+                : $"SELECT CASE WHEN EXISTS(SELECT 1 FROM \"{tableName}\") THEN 1 ELSE 0 END AS Value";
+
             var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
+                .SqlQueryRaw<int>(checkQuery)
                 .FirstOrDefaultAsync();
 
             if (hasData == 0)
@@ -139,10 +187,14 @@ namespace RecipeGenerator.Test.Helpers
                 var userRecipes = await ReadFile<UserRecipeDto>("test/UserSavedRecipes.json");
                 Console.WriteLine($"  Inserting {userRecipes.Count} user-recipe relationships");
 
+                // Use parameterized query - safe from SQL injection
+                var insertQuery = isSqlServer
+                    ? "INSERT INTO [UserRecipes] (UserId, RecipeId) VALUES ({0}, {1})"
+                    : "INSERT INTO \"UserRecipes\" (UserId, RecipeId) VALUES ({0}, {1})";
+
                 foreach (var ur in userRecipes)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        "INSERT INTO [UserRecipes] (UserId, RecipeId) VALUES ({0}, {1})", ur.UserId, ur.RecipeId);
+                    await context.Database.ExecuteSqlRawAsync(insertQuery, ur.UserId, ur.RecipeId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }
@@ -154,8 +206,14 @@ namespace RecipeGenerator.Test.Helpers
             
             Console.WriteLine($"Seeding {tableName}...");
             
+            // Use database-specific syntax
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? $"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value"
+                : $"SELECT CASE WHEN EXISTS(SELECT 1 FROM \"{tableName}\") THEN 1 ELSE 0 END AS Value";
+
             var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
+                .SqlQueryRaw<int>(checkQuery)
                 .FirstOrDefaultAsync();
 
             if (hasData == 0)
@@ -163,10 +221,14 @@ namespace RecipeGenerator.Test.Helpers
                 var recipeIngredients = await ReadFile<RecipeIngredientDto>("test/RecipeIngredients.json");
                 Console.WriteLine($"  Inserting {recipeIngredients.Count} recipe-ingredient relationships");
 
+                // Use parameterized query - safe from SQL injection
+                var insertQuery = isSqlServer
+                    ? "INSERT INTO [RecipeIngredients] (RecipeId, IngredientId) VALUES ({0}, {1})"
+                    : "INSERT INTO \"RecipeIngredients\" (RecipeId, IngredientId) VALUES ({0}, {1})";
+
                 foreach (var ri in recipeIngredients)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        "INSERT INTO [RecipeIngredients] (RecipeId, IngredientId) VALUES ({0}, {1})", ri.RecipeId, ri.IngredientId);
+                    await context.Database.ExecuteSqlRawAsync(insertQuery, ri.RecipeId, ri.IngredientId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }
@@ -178,8 +240,14 @@ namespace RecipeGenerator.Test.Helpers
             
             Console.WriteLine($"Seeding {tableName}...");
             
+            // Use database-specific syntax
+            var isSqlServer = context.Database.IsSqlServer();
+            var checkQuery = isSqlServer
+                ? $"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value"
+                : $"SELECT CASE WHEN EXISTS(SELECT 1 FROM \"{tableName}\") THEN 1 ELSE 0 END AS Value";
+
             var hasData = await context.Database
-                .SqlQueryRaw<int>($"SELECT CAST(CASE WHEN EXISTS(SELECT 1 FROM [{tableName}]) THEN 1 ELSE 0 END AS int) AS Value")
+                .SqlQueryRaw<int>(checkQuery)
                 .FirstOrDefaultAsync();
 
             if (hasData == 0)
@@ -187,10 +255,14 @@ namespace RecipeGenerator.Test.Helpers
                 var recipeDietary = await ReadFile<RecipeDietaryRestrictionDto>("test/RecipeDietaryRestrictions.json");
                 Console.WriteLine($"  Inserting {recipeDietary.Count} recipe-dietary relationships");
 
+                // Use parameterized query - safe from SQL injection
+                var insertQuery = isSqlServer
+                    ? "INSERT INTO [RecipeDietaryRestrictions] (RecipeId, DietaryRestrictionsId) VALUES ({0}, {1})"
+                    : "INSERT INTO \"RecipeDietaryRestrictions\" (RecipeId, DietaryRestrictionsId) VALUES ({0}, {1})";
+
                 foreach (var rd in recipeDietary)
                 {
-                    await context.Database.ExecuteSqlRawAsync(
-                        "INSERT INTO [RecipeDietaryRestrictions] (RecipeId, DietaryRestrictionsId) VALUES ({0}, {1})", rd.RecipeId, rd.DietaryRestrictionsId);
+                    await context.Database.ExecuteSqlRawAsync(insertQuery, rd.RecipeId, rd.DietaryRestrictionsId);
                 }
                 Console.WriteLine($"✅ {tableName} seeded");
             }

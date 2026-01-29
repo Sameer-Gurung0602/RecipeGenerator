@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeGenerator.Data;
 
@@ -11,9 +12,11 @@ using RecipeGenerator.Data;
 namespace RecipeGenerator.Migrations
 {
     [DbContext(typeof(RecipeGeneratorDbContext))]
-    partial class RecipeGeneratorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260129135722_AddUserRecipesCompositeKey")]
+    partial class AddUserRecipesCompositeKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,7 +111,7 @@ namespace RecipeGenerator.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()"); // ✅ SQL Server function
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -116,9 +119,6 @@ namespace RecipeGenerator.Migrations
 
                     b.Property<string>("Difficulty")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InstructionsId")

@@ -47,7 +47,8 @@ namespace RecipeGenerator.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CookTime = table.Column<int>(type: "int", nullable: false),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InstructionsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

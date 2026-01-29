@@ -11,8 +11,6 @@ namespace RecipeGenerator.Data
 
         }
 
-
-
         public DbSet<User> Users { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
@@ -27,7 +25,8 @@ namespace RecipeGenerator.Data
                 .UsingEntity<Dictionary<string, object>>(
                     "UserRecipes",
                     j => j.HasOne<Recipe>().WithMany().HasForeignKey("RecipeId"),
-                    j => j.HasOne<User>().WithMany().HasForeignKey("UserId"));
+                    j => j.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                    j => j.HasKey("UserId", "RecipeId")); // DbContext - CORRECT ORDER
 
             modelBuilder.Entity<Recipe>()
                 .HasMany(r => r.Ingredients)
@@ -50,12 +49,10 @@ namespace RecipeGenerator.Data
                     j => j.HasOne<DietaryRestrictions>().WithMany().HasForeignKey("DietaryRestrictionsId"),
                     j => j.HasOne<Recipe>().WithMany().HasForeignKey("RecipeId"));  
 
+            // SQL Server timestamp default
             modelBuilder.Entity<Recipe>()
                 .Property(r => r.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
-           
-
+                .HasDefaultValueSql("GETDATE()");  // Changed from NOW() to GETDATE() for SQL Server
         }
-
     }
 }
