@@ -16,6 +16,7 @@ builder.Services.AddControllers()
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 // register RecipeService
 builder.Services.AddScoped<RecipeService>();
 builder.Services.AddScoped<FavouritesService>();

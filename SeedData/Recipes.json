@@ -6,7 +6,8 @@
             "CookTime": 30,
             "InstructionsId": 1,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-01T00:00:00"
+            "CreatedAt": "2025-01-01T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400"
         },
         {
             "RecipeId": 2,
@@ -15,7 +16,8 @@
             "CookTime": 25,
             "InstructionsId": 2,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-02T00:00:00"
+            "CreatedAt": "2025-01-02T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400"
         },
         {
             "RecipeId": 3,
@@ -24,7 +26,8 @@
             "CookTime": 20,
             "InstructionsId": 3,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-03T00:00:00"
+            "CreatedAt": "2025-01-03T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400"
         },
         {
             "RecipeId": 4,
@@ -33,7 +36,8 @@
             "CookTime": 35,
             "InstructionsId": 4,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-04T00:00:00"
+            "CreatedAt": "2025-01-04T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400"
         },
         {
             "RecipeId": 5,
@@ -42,7 +46,8 @@
             "CookTime": 40,
             "InstructionsId": 5,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-05T00:00:00"
+            "CreatedAt": "2025-01-05T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"
         },
         {
             "RecipeId": 6,
@@ -51,7 +56,8 @@
             "CookTime": 30,
             "InstructionsId": 6,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-06T00:00:00"
+            "CreatedAt": "2025-01-06T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400"
         },
         {
             "RecipeId": 7,
@@ -60,7 +66,8 @@
             "CookTime": 15,
             "InstructionsId": 7,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-07T00:00:00"
+            "CreatedAt": "2025-01-07T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400"
         },
         {
             "RecipeId": 8,
@@ -69,7 +76,8 @@
             "CookTime": 20,
             "InstructionsId": 8,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-08T00:00:00"
+            "CreatedAt": "2025-01-08T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400"
         },
         {
             "RecipeId": 9,
@@ -78,7 +86,8 @@
             "CookTime": 10,
             "InstructionsId": 9,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-09T00:00:00"
+            "CreatedAt": "2025-01-09T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400"
         },
         {
             "RecipeId": 10,
@@ -87,7 +96,8 @@
             "CookTime": 45,
             "InstructionsId": 10,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-10T00:00:00"
+            "CreatedAt": "2025-01-10T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1593000557232-acb4c6a60b5a?w=400"
         },
         {
             "RecipeId": 11,
@@ -96,7 +106,8 @@
             "CookTime": 15,
             "InstructionsId": 11,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-11T00:00:00"
+            "CreatedAt": "2025-01-11T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=400"
         },
         {
             "RecipeId": 12,
@@ -105,7 +116,8 @@
             "CookTime": 25,
             "InstructionsId": 12,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-12T00:00:00"
+            "CreatedAt": "2025-01-12T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400"
         },
         {
             "RecipeId": 13,
@@ -114,7 +126,8 @@
             "CookTime": 30,
             "InstructionsId": 13,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-13T00:00:00"
+            "CreatedAt": "2025-01-13T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400"
         },
         {
             "RecipeId": 14,
@@ -123,7 +136,8 @@
             "CookTime": 40,
             "InstructionsId": 14,
             "Difficulty": "Hard",
-            "CreatedAt": "2025-01-14T00:00:00"
+            "CreatedAt": "2025-01-14T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1476124369491-f23fdf5d34a7?w=400"
         },
         {
             "RecipeId": 15,
@@ -132,7 +146,8 @@
             "CookTime": 5,
             "InstructionsId": 15,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-15T00:00:00"
+            "CreatedAt": "2025-01-15T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400"
         },
         {
             "RecipeId": 16,
@@ -141,7 +156,8 @@
             "CookTime": 20,
             "InstructionsId": 16,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-16T00:00:00"
+            "CreatedAt": "2025-01-16T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400"
         },
         {
             "RecipeId": 17,
@@ -150,7 +166,8 @@
             "CookTime": 25,
             "InstructionsId": 17,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-17T00:00:00"
+            "CreatedAt": "2025-01-17T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400"
         },
         {
             "RecipeId": 18,
@@ -159,7 +176,8 @@
             "CookTime": 35,
             "InstructionsId": 18,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-18T00:00:00"
+            "CreatedAt": "2025-01-18T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400"
         },
         {
             "RecipeId": 19,
@@ -168,7 +186,8 @@
             "CookTime": 10,
             "InstructionsId": 19,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-19T00:00:00"
+            "CreatedAt": "2025-01-19T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400"
         },
         {
             "RecipeId": 20,
@@ -177,7 +196,8 @@
             "CookTime": 25,
             "InstructionsId": 20,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-20T00:00:00"
+            "CreatedAt": "2025-01-20T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400"
         },
         {
             "RecipeId": 21,
@@ -186,7 +206,8 @@
             "CookTime": 30,
             "InstructionsId": 21,
             "Difficulty": "Easy",
-            "CreatedAt": "2025-01-21T00:00:00"
+            "CreatedAt": "2025-01-21T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400"
         },
         {
             "RecipeId": 22,
@@ -195,6 +216,7 @@
             "CookTime": 30,
             "InstructionsId": 22,
             "Difficulty": "Medium",
-            "CreatedAt": "2025-01-22T00:00:00"
+            "CreatedAt": "2025-01-22T00:00:00",
+            "Img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400"
         }
     ]

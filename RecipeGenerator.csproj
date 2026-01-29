@@ -31,4 +31,10 @@
     <Folder Include="SeedData\development\" />
   </ItemGroup>
 
+  <Target Name="ConnectionString" BeforeTargets="Build">
+    <PropertyGroup>
+      <DefaultConnection>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RecipeGeneratorDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;</DefaultConnection>
+    </PropertyGroup>
+  </Target>
+
 </Project>

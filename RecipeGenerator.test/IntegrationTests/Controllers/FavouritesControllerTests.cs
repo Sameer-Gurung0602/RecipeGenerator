@@ -1,8 +1,8 @@
-using System.Net;
-using System.Net.Http.Json;
 using FluentAssertions;
 using RecipeGenerator.DTOs;
 using RecipeGenerator.Test;
+using System.Net;
+using System.Net.Http.Json;
 using Xunit;
 
 namespace RecipeGenerator.test.IntegrationTests.Controllers
@@ -63,7 +63,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         public async Task GetAllFavourites_ReturnsCorrectRecipeIds()
         {
             // Arrange
-            var expectedRecipeIds = new[] { 23, 24, 25, 26, 27 }; // From UserSavedRecipes.json
+            var expectedRecipeIds = new[] { 23, 24, 25, 26, 27 };
 
             // Act
             var response = await _client.GetAsync($"/api/favourites/{SingleUserId}");
@@ -106,6 +106,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                 recipe.CookTime.Should().BeGreaterThan(0);
                 recipe.Difficulty.Should().NotBeNullOrEmpty();
                 recipe.CreatedAt.Should().NotBe(default(DateTime));
+                recipe.Img.Should().NotBeNullOrEmpty();
                 recipe.Instructions.Should().NotBeNull();
                 recipe.Ingredients.Should().NotBeNull();
                 recipe.DietaryRestrictions.Should().NotBeNull();
@@ -173,11 +174,10 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.GetAsync($"/api/favourites/{SingleUserId}");
             var favourites = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
 
-            // Assert - Should complete without errors
+            // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             favourites.Should().NotBeNull();
             
-            // Verify fix for NullReferenceException by accessing all navigation properties
             var exception = Record.Exception(() =>
             {
                 foreach (var recipe in favourites!)
@@ -210,15 +210,13 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                     "Instructions should be loaded via .Include(r => r.Instructions)");
                 recipe.Instructions!.InstructionsId.Should().BeGreaterThan(0);
             });
-            
-            // Verify Ingredients navigation property
+
             favourites.Should().AllSatisfy(recipe =>
             {
                 recipe.Ingredients.Should().NotBeNull(
                     "Ingredients should be loaded via .Include(r => r.Ingredients)");
             });
-            
-            // Verify DietaryRestrictions navigation property
+
             favourites.Should().AllSatisfy(recipe =>
             {
                 recipe.DietaryRestrictions.Should().NotBeNull(
@@ -495,6 +493,108 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var recipeCount = favourites?.Count(f => f.RecipeId == recipeId) ?? 0;
             
             recipeCount.Should().Be(1, "recipe should only appear once in favourites despite concurrent requests");
+        }
+
+        [Fact]
+        public async Task GetAllFavourites_ReturnsRecipesWithImageUrls()
+        {
+            // Act
+            var response = await _client.GetAsync($"/api/favourites/{SingleUserId}");
+            var favourites = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
+
+            // Assert
+            favourites.Should().NotBeEmpty();
+            favourites.Should().AllSatisfy(recipe =>
+            {
+                recipe.Img.Should().NotBeNullOrEmpty("all recipes should have an image URL");
+                recipe.Img.Should().StartWith("https://", "image URLs should be valid HTTPS URLs");
+            });
+        }
+
+        // POST /api/favourites/{recipeId} - Add to Favourites Tests
+
+
+
+        // DELETE /api/favourites/{recipeId} - Remove from Favourites Tests
+        [Fact]
+        public async Task RemoveFavouriteRecipe_ReturnsOkStatus_WhenRemovedSuccessfully()
+        {
+            // Arrange
+            int existingFavouriteId = 23;
+
+            // Act
+            var response = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task RemoveFavouriteRecipe_RemovesRecipeFromFavourites()
+        {
+            // Arrange
+            int existingFavouriteId = 24;
+
+            // Get current count
+            var beforeResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
+            var beforeFavourites = await beforeResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
+            int countBefore = beforeFavourites.Count;
+
+            // Act
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+
+            // Assert
+            deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var afterResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");             //Verify count decrease
+            var afterFavourites = await afterResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
+            afterFavourites.Should().HaveCount(countBefore - 1, "one recipe should be removed");
+            afterFavourites.Should().NotContain(r => r.RecipeId == existingFavouriteId,
+                "the removed recipe should not be in favourites");
+        }
+
+        [Fact]
+        public async Task RemoveFavouriteRecipe_ReturnsNotFound_WhenRecipeNotInFavourites()
+        {
+            // Arrange
+            int notFavouritedRecipeId = 28;  //Valid recipe that is not favourited
+
+            // Act
+            var response = await _client.DeleteAsync($"/api/favourites/{notFavouritedRecipeId}");
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Fact]
+        public async Task RemoveFavouriteRecipe_ReturnsNotFound_WhenRecipeDoesNotExist()
+        {
+            // Arrange
+            int nonExistentRecipeId = 99999;
+
+            // Act
+            var response = await _client.DeleteAsync($"/api/favourites/{nonExistentRecipeId}");
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Fact]
+        public async Task RemoveFavouriteRecipe_PersistsInDatabase()
+        {
+            // Arrange
+            int existingFavouriteId = 25;
+
+            // Act
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            // Assert
+            var getResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}"); //check by refetching favourites
+            var favourites = await getResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
+
+            favourites.Should().NotContain(r => r.RecipeId == existingFavouriteId,
+                "the removed recipe should not persist in DB");
         }
     }
 }
