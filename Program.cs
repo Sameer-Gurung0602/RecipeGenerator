@@ -13,7 +13,6 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "http://localhost:5173",  // Vite dev server
             "http://localhost:3000"   // Create React App dev server
-            // Add your deployed React app URL here when ready
         )
         .AllowAnyMethod()
         .AllowAnyHeader();
@@ -27,11 +26,11 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     }); // For API
 
-// Register DbContext with SQL Server for testing
+// Register DbContext with SQL Server
 builder.Services.AddDbContext<RecipeGeneratorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnector")));
 
-// register RecipeService
+// Register services
 builder.Services.AddScoped<RecipeService>();
 builder.Services.AddScoped<FavouritesService>();
 
@@ -49,22 +48,17 @@ using (var scope = app.Services.CreateScope())
         await context.Database.MigrateAsync();
         logger.LogInformation("Database migration completed successfully.");
 
-        // Only seed in Development environment (not in Production/Azure)
+        // Only seed in Development environment
         if (app.Environment.IsDevelopment() && !app.Environment.IsEnvironment("Testing"))
         {
             logger.LogInformation("Starting database seeding...");
             await DbSeeder.SeedAsync(context);
             logger.LogInformation("Database seeding completed successfully.");
         }
-        else
-        {
-            logger.LogInformation("Skipping seeding (Environment: {Environment})", app.Environment.EnvironmentName);
-        }
     }
     catch (Exception ex)
     {
         logger.LogError(ex, "An error occurred during database migration or seeding: {Message}", ex.Message);
-        // Don't crash - let the app start anyway
     }
 }
 
@@ -88,5 +82,4 @@ app.MapControllers();
 
 app.Run();
 
-// Make Program accessible to tests
 public partial class Program { }
