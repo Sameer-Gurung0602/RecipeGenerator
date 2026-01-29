@@ -71,7 +71,7 @@ namespace RecipeGenerator.Services
                 CookTime = r.CookTime,
                 Difficulty = r.Difficulty,
                 CreatedAt = r.CreatedAt,
-                Img = r.Img,  // Added
+                Img = r.Img,
                 Instructions = new InstructionsDto
                 {
                     InstructionsId = r.Instructions.InstructionsId,
