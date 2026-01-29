@@ -1,19 +1,22 @@
 using FluentAssertions;
 using RecipeGenerator.DTOs;
 using RecipeGenerator.Test;
+using RecipeGenerator.Test.Helpers;
+using RecipeGenerator.Data;
 using System.Net;
 using System.Net.Http.Json;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeGenerator.test.IntegrationTests.Controllers
 {
     [Collection("Database collection")]
-    public class FavouritesControllerTests : IClassFixture<CustomWebApplicationFactory>
+    public class FavouritesControllerTests : IClassFixture<CustomWebApplicationFactory>, IAsyncLifetime
     {
         private readonly CustomWebApplicationFactory _factory;
         private readonly HttpClient _client;
 
-        // Single user application - userId is 9 based on test data
         private const int SingleUserId = 9;
 
         public FavouritesControllerTests(CustomWebApplicationFactory factory)
@@ -21,6 +24,31 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             _factory = factory;
             _client = _factory.CreateClient();
         }
+
+        public async Task InitializeAsync()
+        {
+            using var scope = _factory.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<RecipeGeneratorDbContext>();
+
+            Console.WriteLine("?? Resetting UserRecipes for test isolation...");
+
+            await db.Database.ExecuteSqlRawAsync("DELETE FROM UserRecipes WHERE UserId = {0}", SingleUserId);
+
+            await db.Database.ExecuteSqlRawAsync(
+                "INSERT INTO UserRecipes (UserId, RecipeId) VALUES ({0}, {1})", SingleUserId, 23);
+            await db.Database.ExecuteSqlRawAsync(
+                "INSERT INTO UserRecipes (UserId, RecipeId) VALUES ({0}, {1})", SingleUserId, 24);
+            await db.Database.ExecuteSqlRawAsync(
+                "INSERT INTO UserRecipes (UserId, RecipeId) VALUES ({0}, {1})", SingleUserId, 25);
+            await db.Database.ExecuteSqlRawAsync(
+                "INSERT INTO UserRecipes (UserId, RecipeId) VALUES ({0}, {1})", SingleUserId, 26);
+            await db.Database.ExecuteSqlRawAsync(
+                "INSERT INTO UserRecipes (UserId, RecipeId) VALUES ({0}, {1})", SingleUserId, 27);
+
+            Console.WriteLine("? UserRecipes reset complete - 5 favourites restored");
+        }
+
+        public Task DisposeAsync() => Task.CompletedTask;
 
         // GET /api/favourites/{userId}
         [Fact]
@@ -54,7 +82,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var favourites = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
 
             // Assert
-            favourites.Should().HaveCount(5, 
+            favourites.Should().HaveCount(5,
                 "UserSavedRecipes.json contains 5 recipes for userId 9: RecipeIds 23, 24, 25, 26, 27");
         }
 
@@ -175,7 +203,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             favourites.Should().NotBeNull();
-            
+
             var exception = Record.Exception(() =>
             {
                 foreach (var recipe in favourites)
@@ -186,7 +214,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
                     _ = recipe.Ingredients.Count;
                 }
             });
-            
+
             exception.Should().BeNull(
                 "all navigation properties should be loaded via .Include() statements");
         }
