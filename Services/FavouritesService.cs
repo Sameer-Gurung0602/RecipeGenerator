@@ -47,57 +47,27 @@ namespace RecipeGenerator.Services
             });
         }
 
-        //public async Task<ServiceResult> AddFavourite(int id)
-
-
-
-        public async Task<ServiceResult> RemoveFavourite(int id)
+        public async Task<bool> RemoveFavourite(int recipeId)
         {
             var recipe = await _context.Recipes
-                .Include(r => r.Ingredients)
-                .Include(r => r.Instructions)
-                .Include(r => r.DietaryRestrictions)
                 .Include(r => r.Users)
-                .FirstOrDefaultAsync(r => r.RecipeId == id);
+                .FirstOrDefaultAsync(r => r.RecipeId == recipeId);
 
             if (recipe == null)
             {
-                return ServiceResult.NotFound($"Recipe with ID {id} not found.");
+                return false;
             }
 
             var user = recipe.Users.FirstOrDefault(u => u.UserId == 9);
             if (user == null)
             {
-                return ServiceResult.NotFound($"Recipe with ID {id} is not in favourites.");
+                return false;
             }
 
             recipe.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return ServiceResult.Success();
+            return true;
         }
-    }
-
-    public class ServiceResult
-    {
-        public bool IsSuccess { get; set; }
-        public string ErrorMessage { get; set; }
-        public string ErrorType { get; set; }
-
-        public static ServiceResult Success() => new ServiceResult { IsSuccess = true };
-
-        public static ServiceResult NotFound(string message) => new ServiceResult
-        {
-            IsSuccess = false,
-            ErrorMessage = message,
-            ErrorType = "NotFound"
-        };
-
-        public static ServiceResult Conflict(string message) => new ServiceResult
-        {
-            IsSuccess = false,
-            ErrorMessage = message,
-            ErrorType = "Conflict"
-        };
     }
 }
