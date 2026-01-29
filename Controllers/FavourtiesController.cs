@@ -16,24 +16,31 @@ namespace RecipeGenerator.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task < IActionResult> GetSavedRecipes(int id)
+        public async Task<IActionResult> GetSavedRecipes(int id)
         {
-            var recipes =  await _favouritesService.GetAllFavourites(id);
+            var recipes = await _favouritesService.GetAllFavourites(id);
             return Ok(recipes);
         }
 
-        [HttpPost("{id}")]
-        public IActionResult SaveRecipe(int  id)
-        {
+        //[HttpPost("{id}")]
 
 
-            return Ok();
-        }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveRecipe(int id)
+        public async Task<IActionResult> RemoveRecipe(int id)
         {
-            return Ok(); }
+            var result = await _favouritesService.RemoveFavourite(id);
 
+            if (!result.IsSuccess)
+            {
+                return result.ErrorType switch
+                {
+                    "NotFound" => NotFound(new { message = result.ErrorMessage }),
+                    _ => StatusCode(500, new { message = result.ErrorMessage })
+                };
+            }
+
+            return Ok(new { message = "Recipe removed from favourites successfully" });
+        }
     }
 }
