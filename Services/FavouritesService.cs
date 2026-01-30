@@ -18,7 +18,7 @@ namespace RecipeGenerator.Services
             _context = context;
         }
 
-        public async Task<bool> SaveRecipe(int id, int recipeId)
+        public async Task<bool> SaveRecipe(int userId, int recipeId)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace RecipeGenerator.Services
                 
                 var user = await _context.Users
                     .Include(u => u.Recipes)
-                    .FirstOrDefaultAsync(u => u.UserId == id);
+                    .FirstOrDefaultAsync(u => u.UserId == userId);
                 
                 if (user == null)
                     return false;
@@ -50,8 +50,6 @@ namespace RecipeGenerator.Services
                 return false;
             }
         }
-
-
 
         public async Task<IEnumerable<RecipeDto>> GetAllFavourites(int id)
         {
@@ -82,7 +80,7 @@ namespace RecipeGenerator.Services
             });
         }
 
-        public async Task<bool> RemoveFavourite(int recipeId)
+        public async Task<bool> RemoveFavourite(int userId, int recipeId)
         {
             var recipe = await _context.Recipes
                 .Include(r => r.Users)
@@ -93,7 +91,7 @@ namespace RecipeGenerator.Services
                 return false;
             }
 
-            var user = recipe.Users.FirstOrDefault(u => u.UserId == 9);
+            var user = recipe.Users.FirstOrDefault(u => u.UserId == userId);
             if (user == null)
             {
                 return false;
