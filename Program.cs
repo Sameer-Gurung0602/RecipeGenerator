@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:5173",  // Vite dev server
-            "http://localhost:3000"   // Create React App dev server
+            "https://recipegendsouza.netlify.app/"   // Create React App dev server
         )
         .AllowAnyMethod()
         .AllowAnyHeader();
@@ -48,17 +48,23 @@ using (var scope = app.Services.CreateScope())
         await context.Database.MigrateAsync();
         logger.LogInformation("Database migration completed successfully.");
 
-        // Only seed in Development environment
-        if (app.Environment.IsDevelopment() && !app.Environment.IsEnvironment("Testing"))
+        // Seed if database is empty (works in all environments)
+        if (!context.Recipes.Any())
         {
-            logger.LogInformation("Starting database seeding...");
+            logger.LogInformation("Database is empty. Starting database seeding...");
             await DbSeeder.SeedAsync(context);
             logger.LogInformation("Database seeding completed successfully.");
+        }
+        else
+        {
+            logger.LogInformation("Database already contains data. Skipping seeding.");
         }
     }
     catch (Exception ex)
     {
         logger.LogError(ex, "An error occurred during database migration or seeding: {Message}", ex.Message);
+        // In production, you might want to rethrow to prevent the app from starting with a broken database
+        // throw;
     }
 }
 
