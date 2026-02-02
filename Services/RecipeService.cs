@@ -134,7 +134,7 @@ namespace RecipeGenerator.Services
             // Start with base query - get all recipes with their related data
             var query = _context.Recipes
                 .Include(r => r.Ingredients)
-                .Include(r => r.DietaryRestrictions)
+                .Include(r => r.DietaryRestrictions)  // ✅ Already included
                 .Include(r => r.Users)
                 .AsQueryable();
 
@@ -174,7 +174,7 @@ namespace RecipeGenerator.Services
                     CookTime = recipe.CookTime,
                     Difficulty = recipe.Difficulty,
                     CreatedAt = recipe.CreatedAt,
-                    Img = recipe.Img,  // Added
+                    Img = recipe.Img,
                     MatchPercentage = matchPercentage,
                     TotalIngredientsRequired = totalIngredientsRequired,
                     IngredientsMatched = ingredientsMatched,
@@ -186,7 +186,8 @@ namespace RecipeGenerator.Services
                     MissingIngredients = recipe.Ingredients
                         .Where(i => missingIngredientIds.Contains(i.IngredientId))
                         .Select(i => i.IngredientName)
-                        .ToList()
+                        .ToList(),
+                    DietaryRestrictions = recipe.DietaryRestrictions.Select(d => d.Name).ToList()  // ✅ ADDED
                 };
             })
             .ToList();

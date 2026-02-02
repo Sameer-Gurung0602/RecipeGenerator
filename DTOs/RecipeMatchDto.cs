@@ -15,5 +15,6 @@
         public bool IsFavourite { get; set; }
         public List<string> MatchedIngredients { get; set; } = new();
         public List<string> MissingIngredients { get; set; } = new();
+        public List<string> DietaryRestrictions { get; set; } = new();  // ✅ ADDED
     }
 }
