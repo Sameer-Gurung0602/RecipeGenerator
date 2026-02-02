@@ -82,7 +82,7 @@ namespace RecipeGenerator.Controllers
         public async Task<IActionResult> GetAllIngredients()
         {
             var ingredients = await _recipeService.GetAllIngredients();
-            return Ok(ingredients);
+            return Ok(ingredients);  // Will now return { ingredientId, ingredientName }
         }
     }
 }

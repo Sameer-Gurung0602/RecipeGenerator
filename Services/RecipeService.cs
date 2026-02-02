@@ -213,11 +213,15 @@ namespace RecipeGenerator.Services
         }
 
 
-        public async Task<IEnumerable<string>> GetAllIngredients()
+        public async Task<IEnumerable<IngredientDto>> GetAllIngredients()
         {
             var ingredients = await _context.Ingredients
-                .Select(i => i.IngredientName)
-                .Distinct()
+                .Select(i => new IngredientDto
+                {
+                    IngredientId = i.IngredientId,
+                    IngredientName = i.IngredientName
+                })
+                .OrderBy(i => i.IngredientName)
                 .ToListAsync();
             return ingredients;
         }
