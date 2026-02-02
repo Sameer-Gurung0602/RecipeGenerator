@@ -18,17 +18,16 @@ namespace RecipeGenerator.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllRecipes([FromQuery] string? sortBy = null, [FromQuery] string? sortOrder = "asc")
+        public async Task<IActionResult> GetAllRecipes([FromQuery] int userId = 1, [FromQuery] string? sortBy = null, [FromQuery] string? sortOrder = "asc")
         {
-            var recipes = await _recipeService.GetAllRecipes(sortBy, sortOrder);
+          var recipes = await _recipeService.GetAllRecipes(userId, sortBy, sortOrder);
             return Ok(recipes);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRecipeById(int id)
+        public async Task<IActionResult> GetRecipeById(int id, [FromQuery] int userId = 1)
         {
-            var recipe = await _recipeService.GetRecipeById(id);
-
+            var recipe = await _recipeService.GetRecipeById(id, userId);
             if (recipe == null)
             {
                 return NotFound(new { message = $"Recipe with ID {id} not found." });
@@ -60,6 +59,7 @@ namespace RecipeGenerator.Controllers
         [HttpPost("match")]
         public async Task<IActionResult> GetRecipesByIngredients(
             [FromBody] RecipeMatchRequestDto request,
+            [FromQuery] int userId = 1,
             [FromQuery] string? sortBy = null,
             [FromQuery] string? sortOrder = "asc")
         {
@@ -70,6 +70,7 @@ namespace RecipeGenerator.Controllers
             }
 
             var recipes = await _recipeService.GetMatchingRecipes(
+                userId,
                 request.IngredientIds,
                 request.DietaryRestrictionIds,
                 sortBy,

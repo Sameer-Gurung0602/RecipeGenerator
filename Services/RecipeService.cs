@@ -17,13 +17,14 @@ namespace RecipeGenerator.Services
         }
 
         // method to query database for all recipes
-        public async Task<IEnumerable<RecipeDto>> GetAllRecipes(string? sortBy = null, string? sortOrder = "asc")
+        public async Task<IEnumerable<RecipeDto>> GetAllRecipes(int userId, string? sortBy = null, string? sortOrder = "asc")
         {
             var query = _context.Recipes
                 .Include(r => r.Instructions)
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
-                .AsQueryable();//allows further query composition before execution
+                .Include(r => r.Users)
+                .AsQueryable();
 
             // Apply sorting        
             query = sortBy?.ToLower() switch
@@ -56,7 +57,8 @@ namespace RecipeGenerator.Services
                         Instruction = r.Instructions.Instruction
                     },
                     DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
-                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList()
+                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
+                    IsFavourite = r.Users.Any(u => u.UserId == userId)
                 })
                 .ToListAsync();
 
@@ -64,12 +66,13 @@ namespace RecipeGenerator.Services
         }
 
         // method to query database for a single recipe by ID
-        public async Task<RecipeDto?> GetRecipeById(int id)
+        public async Task<RecipeDto?> GetRecipeById(int id, int userId)
         {
             var recipe = await _context.Recipes
                 .Include(r => r.Instructions)
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
+                .Include(r => r.Users)
                 .Where(r => r.RecipeId == id)
                 .Select(r => new RecipeDto
                 {
@@ -86,7 +89,8 @@ namespace RecipeGenerator.Services
                         Instruction = r.Instructions.Instruction
                     } : null,
                     DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
-                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList()
+                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
+                    IsFavourite = r.Users.Any(u => u.UserId == userId)
                 })
                 .FirstOrDefaultAsync();
 
@@ -121,6 +125,7 @@ namespace RecipeGenerator.Services
         }
 
         public async Task<IEnumerable<RecipeMatchDto>> GetMatchingRecipes(
+            int userId,
             List<int> ingredientIds,
             List<int>? dietaryRestrictionIds = null,
             string? sortBy = null,
@@ -130,6 +135,7 @@ namespace RecipeGenerator.Services
             var query = _context.Recipes
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
+                .Include(r => r.Users)
                 .AsQueryable();
 
             // Filter by dietary restrictions if provided
@@ -172,6 +178,7 @@ namespace RecipeGenerator.Services
                     MatchPercentage = matchPercentage,
                     TotalIngredientsRequired = totalIngredientsRequired,
                     IngredientsMatched = ingredientsMatched,
+                    IsFavourite = recipe.Users.Any(u => u.UserId == userId),
                     MatchedIngredients = recipe.Ingredients
                         .Where(i => matchedIngredientIds.Contains(i.IngredientId))
                         .Select(i => i.IngredientName)
@@ -205,8 +212,8 @@ namespace RecipeGenerator.Services
             return matchedRecipes;
         }
 
-           
-    public async Task<IEnumerable<string>> GetAllIngredients()
+
+        public async Task<IEnumerable<string>> GetAllIngredients()
         {
             var ingredients = await _context.Ingredients
                 .Select(i => i.IngredientName)
