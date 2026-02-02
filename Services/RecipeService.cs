@@ -126,7 +126,7 @@ namespace RecipeGenerator.Services
 
         public async Task<IEnumerable<RecipeMatchDto>> GetMatchingRecipes(
             int userId,
-            List<int> ingredientIds,
+            List<int>? ingredientIds = null,  // ✅ Make nullable with default
             List<int>? dietaryRestrictionIds = null,
             string? sortBy = null,
             string? sortOrder = "asc")
@@ -134,7 +134,7 @@ namespace RecipeGenerator.Services
             // Start with base query - get all recipes with their related data
             var query = _context.Recipes
                 .Include(r => r.Ingredients)
-                .Include(r => r.DietaryRestrictions)  // ✅ Already included
+                .Include(r => r.DietaryRestrictions)
                 .Include(r => r.Users)
                 .AsQueryable();
 
@@ -157,14 +157,26 @@ namespace RecipeGenerator.Services
                 var recipeIngredientIds = recipe.Ingredients.Select(i => i.IngredientId).ToList();
                 var totalIngredientsRequired = recipeIngredientIds.Count;
 
-                // Find matched and missing ingredients
-                var matchedIngredientIds = recipeIngredientIds.Intersect(ingredientIds).ToList();
-                var missingIngredientIds = recipeIngredientIds.Except(ingredientIds).ToList();
+                int ingredientsMatched = 0;
+                int matchPercentage = 0;
+                List<int> matchedIngredientIds = new();
+                List<int> missingIngredientIds = new();
 
-                var ingredientsMatched = matchedIngredientIds.Count;
-                var matchPercentage = totalIngredientsRequired > 0
-                    ? (int)Math.Round((double)ingredientsMatched / totalIngredientsRequired * 100)
-                    : 0;
+                // ✅ Only calculate ingredient matching if ingredients were provided
+                if (ingredientIds != null && ingredientIds.Any())
+                {
+                    matchedIngredientIds = recipeIngredientIds.Intersect(ingredientIds).ToList();
+                    missingIngredientIds = recipeIngredientIds.Except(ingredientIds).ToList();
+                    ingredientsMatched = matchedIngredientIds.Count;
+                    matchPercentage = totalIngredientsRequired > 0
+                        ? (int)Math.Round((double)ingredientsMatched / totalIngredientsRequired * 100)
+                        : 0;
+                }
+                else
+                {
+                    // ✅ When searching by dietary only, show all ingredients as "missing"
+                    missingIngredientIds = recipeIngredientIds;
+                }
 
                 return new RecipeMatchDto
                 {
@@ -187,7 +199,7 @@ namespace RecipeGenerator.Services
                         .Where(i => missingIngredientIds.Contains(i.IngredientId))
                         .Select(i => i.IngredientName)
                         .ToList(),
-                    DietaryRestrictions = recipe.DietaryRestrictions.Select(d => d.Name).ToList()  // ✅ ADDED
+                    DietaryRestrictions = recipe.DietaryRestrictions.Select(d => d.Name).ToList()
                 };
             })
             .ToList();
@@ -207,7 +219,7 @@ namespace RecipeGenerator.Services
                 "difficulty" => sortOrder?.ToLower() == "desc"
                     ? matchedRecipes.OrderByDescending(r => r.Difficulty).ToList()
                     : matchedRecipes.OrderBy(r => r.Difficulty).ToList(),
-                _ => matchedRecipes.OrderByDescending(r => r.MatchPercentage).ToList() // Default: best matches first
+                _ => matchedRecipes.OrderByDescending(r => r.MatchPercentage).ToList()
             };
 
             return matchedRecipes;

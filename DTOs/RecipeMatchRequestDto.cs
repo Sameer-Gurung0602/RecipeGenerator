@@ -2,7 +2,7 @@
 {
     public class RecipeMatchRequestDto
     {
-        public List<int> IngredientIds { get; set; } = new();
+        public List<int>? IngredientIds { get; set; }  // ✅ Make nullable
         public List<int>? DietaryRestrictionIds { get; set; }
     }
 }
