@@ -12,6 +12,7 @@
         public int MatchPercentage { get; set; }
         public int TotalIngredientsRequired { get; set; }
         public int IngredientsMatched { get; set; }
+        public bool IsFavourite { get; set; }
         public List<string> MatchedIngredients { get; set; } = new();
         public List<string> MissingIngredients { get; set; } = new();
     }
