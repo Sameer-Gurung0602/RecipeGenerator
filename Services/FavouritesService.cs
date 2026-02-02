@@ -76,7 +76,8 @@ namespace RecipeGenerator.Services
                     Instruction = r.Instructions.Instruction
                 },
                 DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
-                Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList()
+                Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
+                IsFavourite = true
             });
         }
 
