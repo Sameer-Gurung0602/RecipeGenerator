@@ -1,222 +1,502 @@
- [
-        {
-            "RecipeId": 1,
-            "Name": "Garlic Chicken",
-            "Description": "Pan-seared chicken with garlic sauce",
-            "CookTime": 30,
-            "InstructionsId": 1,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-01T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400"
-        },
-        {
-            "RecipeId": 2,
-            "Name": "Spaghetti Marinara",
-            "Description": "Classic tomato pasta",
-            "CookTime": 25,
-            "InstructionsId": 2,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-02T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400"
-        },
-        {
-            "RecipeId": 3,
-            "Name": "Vegetable Stir Fry",
-            "Description": "Mixed veggies in garlic sauce",
-            "CookTime": 20,
-            "InstructionsId": 3,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-03T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400"
-        },
-        {
-            "RecipeId": 4,
-            "Name": "Salmon Lemon Bake",
-            "Description": "Baked salmon with lemon",
-            "CookTime": 35,
-            "InstructionsId": 4,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-04T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400"
-        },
-        {
-            "RecipeId": 5,
-            "Name": "Beef Rice Bowl",
-            "Description": "Beef over seasoned rice",
-            "CookTime": 40,
-            "InstructionsId": 5,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-05T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"
-        },
-        {
-            "RecipeId": 6,
-            "Name": "Chickpea Curry",
-            "Description": "Creamy coconut chickpea curry",
-            "CookTime": 30,
-            "InstructionsId": 6,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-06T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400"
-        },
-        {
-            "RecipeId": 7,
-            "Name": "Veggie Omelette",
-            "Description": "Egg omelette with veggies",
-            "CookTime": 15,
-            "InstructionsId": 7,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-07T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400"
-        },
-        {
-            "RecipeId": 8,
-            "Name": "Quinoa Salad",
-            "Description": "Fresh quinoa veggie salad",
-            "CookTime": 20,
-            "InstructionsId": 8,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-08T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400"
-        },
-        {
-            "RecipeId": 9,
-            "Name": "Avocado Toast",
-            "Description": "Toasted bread with avocado",
-            "CookTime": 10,
-            "InstructionsId": 9,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-09T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400"
-        },
-        {
-            "RecipeId": 10,
-            "Name": "Stuffed Peppers",
-            "Description": "Bell peppers stuffed with rice",
-            "CookTime": 45,
-            "InstructionsId": 10,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-10T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1593000557232-acb4c6a60b5a?w=400"
-        },
-        {
-            "RecipeId": 11,
-            "Name": "Zucchini Noodles",
-            "Description": "Low-carb zucchini pasta",
-            "CookTime": 15,
-            "InstructionsId": 11,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-11T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=400"
-        },
-        {
-            "RecipeId": 12,
-            "Name": "Keto Beef Skillet",
-            "Description": "Beef and veggie keto skillet",
-            "CookTime": 25,
-            "InstructionsId": 12,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-12T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400"
-        },
-        {
-            "RecipeId": 13,
-            "Name": "Sweet Potato Bowl",
-            "Description": "Roasted sweet potato bowl",
-            "CookTime": 30,
-            "InstructionsId": 13,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-13T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400"
-        },
-        {
-            "RecipeId": 14,
-            "Name": "Mushroom Risotto",
-            "Description": "Creamy mushroom rice",
-            "CookTime": 40,
-            "InstructionsId": 14,
-            "Difficulty": "Hard",
-            "CreatedAt": "2025-01-14T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1476124369491-f23fdf5d34a7?w=400"
-        },
-        {
-            "RecipeId": 15,
-            "Name": "Greek Yogurt Parfait",
-            "Description": "Yogurt with fruit",
-            "CookTime": 5,
-            "InstructionsId": 15,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-15T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400"
-        },
-        {
-            "RecipeId": 16,
-            "Name": "Chicken Salad",
-            "Description": "Fresh chicken salad",
-            "CookTime": 20,
-            "InstructionsId": 16,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-16T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400"
-        },
-        {
-            "RecipeId": 17,
-            "Name": "Black Bean Tacos",
-            "Description": "Veggie black bean tacos",
-            "CookTime": 25,
-            "InstructionsId": 17,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-17T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400"
-        },
-        {
-            "RecipeId": 18,
-            "Name": "Paleo Steak Plate",
-            "Description": "Steak with veggies",
-            "CookTime": 35,
-            "InstructionsId": 18,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-18T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400"
-        },
-        {
-            "RecipeId": 19,
-            "Name": "Spinach Scramble",
-            "Description": "Eggs scrambled with spinach",
-            "CookTime": 10,
-            "InstructionsId": 19,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-19T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400"
-        },
-        {
-            "RecipeId": 20,
-            "Name": "Coconut Rice",
-            "Description": "Creamy coconut rice",
-            "CookTime": 25,
-            "InstructionsId": 20,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-20T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400"
-        },
-        {
-            "RecipeId": 21,
-            "Name": "Tomato Basil Soup",
-            "Description": "Creamy tomato basil soup",
-            "CookTime": 30,
-            "InstructionsId": 21,
-            "Difficulty": "Easy",
-            "CreatedAt": "2025-01-21T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400"
-        },
-        {
-            "RecipeId": 22,
-            "Name": "Grilled Salmon Bowl",
-            "Description": "Salmon with quinoa",
-            "CookTime": 30,
-            "InstructionsId": 22,
-            "Difficulty": "Medium",
-            "CreatedAt": "2025-01-22T00:00:00",
-            "Img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400"
-        }
-    ]
+[
+  {
+    "RecipeId": 1,
+    "Name": "Garlic Chicken",
+    "Description": "Pan-seared chicken with garlic sauce",
+    "CookTime": 30,
+    "InstructionsId": 1,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800"
+  },
+  {
+    "RecipeId": 2,
+    "Name": "Spaghetti Marinara",
+    "Description": "Classic tomato pasta",
+    "CookTime": 25,
+    "InstructionsId": 2,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-02T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800"
+  },
+  {
+    "RecipeId": 3,
+    "Name": "Vegetable Stir Fry",
+    "Description": "Mixed veggies in garlic sauce",
+    "CookTime": 20,
+    "InstructionsId": 3,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-03T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800"
+  },
+  {
+    "RecipeId": 4,
+    "Name": "Salmon Lemon Bake",
+    "Description": "Baked salmon with lemon and herbs",
+    "CookTime": 35,
+    "InstructionsId": 4,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-04T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800"
+  },
+  {
+    "RecipeId": 5,
+    "Name": "Beef Rice Bowl",
+    "Description": "Beef over seasoned rice",
+    "CookTime": 40,
+    "InstructionsId": 5,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-05T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"
+  },
+  {
+    "RecipeId": 6,
+    "Name": "Chickpea Curry",
+    "Description": "Creamy coconut chickpea curry",
+    "CookTime": 30,
+    "InstructionsId": 6,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-06T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800"
+  },
+  {
+    "RecipeId": 7,
+    "Name": "Veggie Omelette",
+    "Description": "Egg omelette with veggies",
+    "CookTime": 15,
+    "InstructionsId": 7,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-07T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800"
+  },
+  {
+    "RecipeId": 8,
+    "Name": "Quinoa Salad",
+    "Description": "Fresh quinoa veggie salad",
+    "CookTime": 20,
+    "InstructionsId": 8,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-08T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800"
+  },
+  {
+    "RecipeId": 9,
+    "Name": "Avocado Toast",
+    "Description": "Toasted bread with smashed avocado",
+    "CookTime": 10,
+    "InstructionsId": 9,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-09T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=800"
+  },
+  {
+    "RecipeId": 10,
+    "Name": "Stuffed Peppers",
+    "Description": "Bell peppers stuffed with rice and vegetables",
+    "CookTime": 45,
+    "InstructionsId": 10,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-10T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1593000557232-acb4c6a60b5a?w=800"
+  },
+  {
+    "RecipeId": 11,
+    "Name": "Zucchini Noodles",
+    "Description": "Low-carb zucchini pasta",
+    "CookTime": 15,
+    "InstructionsId": 11,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-11T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800"
+  },
+  {
+    "RecipeId": 12,
+    "Name": "Keto Beef Skillet",
+    "Description": "Beef and veggie keto skillet",
+    "CookTime": 25,
+    "InstructionsId": 12,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-12T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800"
+  },
+  {
+    "RecipeId": 13,
+    "Name": "Sweet Potato Bowl",
+    "Description": "Roasted sweet potato bowl with quinoa",
+    "CookTime": 30,
+    "InstructionsId": 13,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-13T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800"
+  },
+  {
+    "RecipeId": 14,
+    "Name": "Mushroom Risotto",
+    "Description": "Creamy mushroom rice",
+    "CookTime": 40,
+    "InstructionsId": 14,
+    "Difficulty": "Hard",
+    "CreatedAt": "2025-01-14T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1476124369491-f23fdf5d34a7?w=800"
+  },
+  {
+    "RecipeId": 15,
+    "Name": "Greek Yogurt Parfait",
+    "Description": "Yogurt with fresh fruit and granola",
+    "CookTime": 5,
+    "InstructionsId": 15,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-15T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"
+  },
+  {
+    "RecipeId": 16,
+    "Name": "Chicken Salad",
+    "Description": "Fresh chicken salad with greens",
+    "CookTime": 20,
+    "InstructionsId": 16,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-16T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800"
+  },
+  {
+    "RecipeId": 17,
+    "Name": "Black Bean Tacos",
+    "Description": "Veggie black bean tacos",
+    "CookTime": 25,
+    "InstructionsId": 17,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-17T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=800"
+  },
+  {
+    "RecipeId": 18,
+    "Name": "Paleo Steak Plate",
+    "Description": "Grilled steak with roasted vegetables",
+    "CookTime": 35,
+    "InstructionsId": 18,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-18T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800"
+  },
+  {
+    "RecipeId": 19,
+    "Name": "Spinach Scramble",
+    "Description": "Eggs scrambled with fresh spinach",
+    "CookTime": 10,
+    "InstructionsId": 19,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-19T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800"
+  },
+  {
+    "RecipeId": 20,
+    "Name": "Coconut Rice",
+    "Description": "Creamy coconut rice",
+    "CookTime": 25,
+    "InstructionsId": 20,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-20T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800"
+  },
+  {
+    "RecipeId": 21,
+    "Name": "Tomato Basil Soup",
+    "Description": "Creamy tomato basil soup",
+    "CookTime": 30,
+    "InstructionsId": 21,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-21T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800"
+  },
+  {
+    "RecipeId": 22,
+    "Name": "Grilled Salmon Bowl",
+    "Description": "Grilled salmon with quinoa and vegetables",
+    "CookTime": 30,
+    "InstructionsId": 22,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-22T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800"
+  },
+  {
+    "RecipeId": 23,
+    "Name": "Thai Peanut Noodles",
+    "Description": "Rice noodles with spicy peanut sauce",
+    "CookTime": 25,
+    "InstructionsId": 23,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-23T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+  },
+  {
+    "RecipeId": 24,
+    "Name": "Mediterranean Quinoa Bowl",
+    "Description": "Quinoa with feta, olives and cucumber",
+    "CookTime": 25,
+    "InstructionsId": 24,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-24T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800"
+  },
+  {
+    "RecipeId": 25,
+    "Name": "Beef Stew",
+    "Description": "Hearty beef stew with vegetables",
+    "CookTime": 120,
+    "InstructionsId": 25,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-25T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800"
+  },
+  {
+    "RecipeId": 26,
+    "Name": "Shrimp Scampi",
+    "Description": "Garlic butter shrimp with pasta",
+    "CookTime": 20,
+    "InstructionsId": 26,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-26T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1633504581786-316c8002b1b9?w=800"
+  },
+  {
+    "RecipeId": 27,
+    "Name": "Cauliflower Pizza",
+    "Description": "Low-carb cauliflower crust pizza",
+    "CookTime": 45,
+    "InstructionsId": 27,
+    "Difficulty": "Hard",
+    "CreatedAt": "2025-01-27T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800"
+  },
+  {
+    "RecipeId": 28,
+    "Name": "Honey Glazed Pork",
+    "Description": "Tender pork tenderloin with honey glaze",
+    "CookTime": 50,
+    "InstructionsId": 28,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-01-28T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800"
+  },
+  {
+    "RecipeId": 29,
+    "Name": "Eggplant Parmesan",
+    "Description": "Breaded eggplant with marinara and cheese",
+    "CookTime": 60,
+    "InstructionsId": 29,
+    "Difficulty": "Hard",
+    "CreatedAt": "2025-01-29T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1600002415506-dd06090d1b16?w=800"
+  },
+  {
+    "RecipeId": 30,
+    "Name": "Asian Lettuce Wraps",
+    "Description": "Chicken lettuce wraps with ginger sauce",
+    "CookTime": 25,
+    "InstructionsId": 30,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-30T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=800"
+  },
+  {
+    "RecipeId": 31,
+    "Name": "Kale Caesar Salad",
+    "Description": "Crispy kale with Caesar dressing",
+    "CookTime": 15,
+    "InstructionsId": 31,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-01-31T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=800"
+  },
+  {
+    "RecipeId": 32,
+    "Name": "Coconut Curry Shrimp",
+    "Description": "Shrimp in creamy coconut curry sauce",
+    "CookTime": 30,
+    "InstructionsId": 32,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-01T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800"
+  },
+  {
+    "RecipeId": 33,
+    "Name": "Baked Cod with Herbs",
+    "Description": "Flaky cod with lemon and fresh herbs",
+    "CookTime": 25,
+    "InstructionsId": 33,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-02T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800"
+  },
+  {
+    "RecipeId": 34,
+    "Name": "Breakfast Burrito",
+    "Description": "Scrambled eggs with cheese and veggies",
+    "CookTime": 20,
+    "InstructionsId": 34,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-03T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800"
+  },
+  {
+    "RecipeId": 35,
+    "Name": "Teriyaki Chicken Bowl",
+    "Description": "Chicken with teriyaki sauce over rice",
+    "CookTime": 35,
+    "InstructionsId": 35,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-04T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546069901-eacef0df6022?w=800"
+  },
+  {
+    "RecipeId": 36,
+    "Name": "Caprese Salad",
+    "Description": "Fresh mozzarella, tomatoes and basil",
+    "CookTime": 10,
+    "InstructionsId": 36,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-05T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=800"
+  },
+  {
+    "RecipeId": 37,
+    "Name": "Lentil Soup",
+    "Description": "Hearty lentil soup with vegetables",
+    "CookTime": 45,
+    "InstructionsId": 37,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-06T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800"
+  },
+  {
+    "RecipeId": 38,
+    "Name": "Pesto Pasta",
+    "Description": "Pasta with homemade basil pesto",
+    "CookTime": 20,
+    "InstructionsId": 38,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-07T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800"
+  },
+  {
+    "RecipeId": 39,
+    "Name": "Buffalo Chicken Wrap",
+    "Description": "Spicy buffalo chicken in tortilla wrap",
+    "CookTime": 25,
+    "InstructionsId": 39,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-08T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800"
+  },
+  {
+    "RecipeId": 40,
+    "Name": "Roasted Vegetable Medley",
+    "Description": "Seasonal roasted vegetables with herbs",
+    "CookTime": 40,
+    "InstructionsId": 40,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-09T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800"
+  },
+  {
+    "RecipeId": 41,
+    "Name": "Tuna Poke Bowl",
+    "Description": "Fresh tuna with rice and avocado",
+    "CookTime": 20,
+    "InstructionsId": 41,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-10T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800"
+  },
+  {
+    "RecipeId": 42,
+    "Name": "Chicken Fajitas",
+    "Description": "Sizzling chicken fajitas with peppers",
+    "CookTime": 30,
+    "InstructionsId": 42,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-11T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1599974031693-c1f47a95fc96?w=800"
+  },
+  {
+    "RecipeId": 43,
+    "Name": "Balsamic Glazed Vegetables",
+    "Description": "Roasted vegetables with balsamic reduction",
+    "CookTime": 35,
+    "InstructionsId": 43,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-12T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800"
+  },
+  {
+    "RecipeId": 44,
+    "Name": "Almond Crusted Salmon",
+    "Description": "Salmon with crunchy almond crust",
+    "CookTime": 30,
+    "InstructionsId": 44,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-13T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800"
+  },
+  {
+    "RecipeId": 45,
+    "Name": "Vegetarian Chili",
+    "Description": "Hearty bean and vegetable chili",
+    "CookTime": 50,
+    "InstructionsId": 45,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-14T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=800"
+  },
+  {
+    "RecipeId": 46,
+    "Name": "Sesame Ginger Tofu",
+    "Description": "Crispy tofu with sesame ginger glaze",
+    "CookTime": 30,
+    "InstructionsId": 46,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-15T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1546069901-eacef0df6022?w=800"
+  },
+  {
+    "RecipeId": 47,
+    "Name": "Greek Chicken Souvlaki",
+    "Description": "Marinated chicken skewers with tzatziki",
+    "CookTime": 40,
+    "InstructionsId": 47,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-16T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800"
+  },
+  {
+    "RecipeId": 48,
+    "Name": "Butternut Squash Soup",
+    "Description": "Creamy roasted butternut squash soup",
+    "CookTime": 55,
+    "InstructionsId": 48,
+    "Difficulty": "Medium",
+    "CreatedAt": "2025-02-17T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=800"
+  },
+  {
+    "RecipeId": 49,
+    "Name": "Chia Seed Pudding",
+    "Description": "Overnight chia pudding with berries",
+    "CookTime": 5,
+    "InstructionsId": 49,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-18T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"
+  },
+  {
+    "RecipeId": 50,
+    "Name": "BBQ Pulled Chicken",
+    "Description": "Slow-cooked BBQ chicken",
+    "CookTime": 180,
+    "InstructionsId": 50,
+    "Difficulty": "Easy",
+    "CreatedAt": "2025-02-19T00:00:00",
+    "Img": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800"
+  }
+]

@@ -1,112 +1,252 @@
-  [
-        {
-            "InstructionsId": 1,
-            "RecipeId": 1,
-            "Instruction": "Step 1: Season the chicken breasts with salt and pepper.\nStep 2: Heat olive oil in a pan over medium heat.\nStep 3: Add minced garlic and sauté until fragrant.\nStep 4: Add chicken to the pan and cook for 6–7 minutes per side until golden brown.\nStep 5: Remove chicken and serve hot."
-        },
-    {
-      "InstructionsId": 2,
-      "RecipeId": 2,
-      "Instruction": "Step 1: Bring a pot of salted water to a boil and cook pasta according to package instructions.\nStep 2: Heat olive oil in a saucepan and sauté garlic.\nStep 3: Add crushed tomatoes and simmer for 10 minutes.\nStep 4: Season with salt and basil.\nStep 5: Toss pasta with sauce and serve."
-    },
-    {
-      "InstructionsId": 3,
-      "RecipeId": 3,
-      "Instruction": "Step 1: Chop all vegetables into bite-sized pieces.\nStep 2: Heat oil in a wok over high heat.\nStep 3: Add garlic and stir for 30 seconds.\nStep 4: Add vegetables and stir-fry for 5–7 minutes.\nStep 5: Season and serve immediately."
-    },
-    {
-      "InstructionsId": 4,
-      "RecipeId": 4,
-      "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Place salmon on a baking tray.\nStep 3: Drizzle with olive oil and lemon juice.\nStep 4: Season with salt and pepper.\nStep 5: Bake for 25–30 minutes and serve."
-    },
-    {
-      "InstructionsId": 5,
-      "RecipeId": 5,
-      "Instruction": "Step 1: Cook rice according to package instructions.\nStep 2: Heat oil in a pan and brown the beef.\nStep 3: Season beef with salt and pepper.\nStep 4: Assemble bowl with rice and beef.\nStep 5: Serve warm."
-    },
-    {
-      "InstructionsId": 6,
-      "RecipeId": 6,
-      "Instruction": "Step 1: Heat oil in a pot over medium heat.\nStep 2: Add curry powder and toast for 30 seconds.\nStep 3: Add chickpeas and coconut milk.\nStep 4: Simmer for 15 minutes.\nStep 5: Serve with rice or bread."
-    },
-    {
-      "InstructionsId": 7,
-      "RecipeId": 7,
-      "Instruction": "Step 1: Whisk eggs in a bowl.\nStep 2: Chop vegetables.\nStep 3: Heat butter in a pan.\nStep 4: Add vegetables and sauté for 2 minutes.\nStep 5: Pour eggs over veggies and cook until set."
-    },
-    {
-      "InstructionsId": 8,
-      "RecipeId": 8,
-      "Instruction": "Step 1: Rinse quinoa under cold water.\nStep 2: Cook quinoa according to package directions.\nStep 3: Chop tomatoes and lettuce.\nStep 4: Mix quinoa with vegetables.\nStep 5: Drizzle with olive oil and serve."
-    },
-    {
-      "InstructionsId": 9,
-      "RecipeId": 9,
-      "Instruction": "Step 1: Toast bread slices until golden.\nStep 2: Mash avocado in a bowl.\nStep 3: Season avocado with salt and lemon juice.\nStep 4: Spread avocado on toast.\nStep 5: Serve immediately."
-    },
-    {
-      "InstructionsId": 10,
-      "RecipeId": 10,
-      "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Cook rice until tender.\nStep 3: Cut tops off bell peppers and remove seeds.\nStep 4: Stuff peppers with rice.\nStep 5: Bake for 40 minutes."
-    },
-    {
-      "InstructionsId": 11,
-      "RecipeId": 11,
-      "Instruction": "Step 1: Spiralize zucchini into noodles.\nStep 2: Heat olive oil in a pan.\nStep 3: Add garlic and sauté.\nStep 4: Add zucchini noodles and cook for 2–3 minutes.\nStep 5: Serve immediately."
-    },
-    {
-      "InstructionsId": 12,
-      "RecipeId": 12,
-      "Instruction": "Step 1: Heat oil in a skillet.\nStep 2: Add beef and cook until browned.\nStep 3: Add chopped vegetables.\nStep 4: Season with salt and pepper.\nStep 5: Cook until vegetables are tender."
-    },
-    {
-      "InstructionsId": 13,
-      "RecipeId": 13,
-      "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Peel and cube sweet potatoes.\nStep 3: Toss with olive oil and salt.\nStep 4: Roast for 25 minutes.\nStep 5: Serve in a bowl."
-    },
-    {
-      "InstructionsId": 14,
-      "RecipeId": 14,
-      "Instruction": "Step 1: Heat butter in a pan.\nStep 2: Add mushrooms and sauté.\nStep 3: Add rice and stir.\nStep 4: Slowly add broth while stirring.\nStep 5: Cook until creamy."
-    },
-    {
-      "InstructionsId": 15,
-      "RecipeId": 15,
-      "Instruction": "Step 1: Spoon yogurt into a bowl.\nStep 2: Add sliced fruit on top.\nStep 3: Drizzle with honey if desired.\nStep 4: Add granola.\nStep 5: Serve chilled."
-    },
-    {
-      "InstructionsId": 16,
-      "RecipeId": 16,
-      "Instruction": "Step 1: Cook and dice chicken.\nStep 2: Chop lettuce.\nStep 3: Add chicken to salad bowl.\nStep 4: Toss with dressing.\nStep 5: Serve cold."
-    },
-    {
-      "InstructionsId": 17,
-      "RecipeId": 17,
-      "Instruction": "Step 1: Heat black beans in a pan.\nStep 2: Warm taco shells.\nStep 3: Fill shells with beans.\nStep 4: Add toppings.\nStep 5: Serve immediately."
-    },
-    {
-      "InstructionsId": 18,
-      "RecipeId": 18,
-      "Instruction": "Step 1: Season steak with salt and pepper.\nStep 2: Heat grill or pan.\nStep 3: Cook steak to desired doneness.\nStep 4: Roast vegetables.\nStep 5: Serve together."
-    },
-    {
-      "InstructionsId": 19,
-      "RecipeId": 19,
-      "Instruction": "Step 1: Crack eggs into a bowl.\nStep 2: Whisk with salt and pepper.\nStep 3: Heat butter in pan.\nStep 4: Add spinach and cook briefly.\nStep 5: Add eggs and scramble."
-    },
-    {
-      "InstructionsId": 20,
-      "RecipeId": 20,
-      "Instruction": "Step 1: Rinse rice.\nStep 2: Add rice and coconut milk to pot.\nStep 3: Bring to boil.\nStep 4: Reduce heat and simmer 15 minutes.\nStep 5: Fluff and serve."
-    },
-    {
-      "InstructionsId": 21,
-      "RecipeId": 21,
-      "Instruction": "Step 1: Chop tomatoes.\nStep 2: Sauté garlic in pot.\nStep 3: Add tomatoes and simmer.\nStep 4: Add basil.\nStep 5: Blend until smooth."
-    },
-    {
-      "InstructionsId": 22,
-      "RecipeId": 22,
-      "Instruction": "Step 1: Season salmon with salt and pepper.\nStep 2: Grill salmon for 4–5 minutes per side.\nStep 3: Cook quinoa.\nStep 4: Assemble bowl with quinoa and salmon.\nStep 5: Serve warm."
-    }
-    ]
+[
+  {
+    "InstructionsId": 1,
+    "RecipeId": 1,
+    "Instruction": "Step 1: Remove chicken breasts from refrigerator and let sit at room temperature for 15 minutes. Pat dry with paper towels and season generously with salt, pepper, and paprika on both sides.\nStep 2: Heat 2 tablespoons of olive oil in a large skillet over medium-high heat until shimmering.\nStep 3: Add 4-5 minced garlic cloves to the pan and sauté for 30-45 seconds until fragrant, being careful not to burn.\nStep 4: Add chicken breasts to the pan, laying them away from you to avoid splatter. Cook for 6-7 minutes without moving.\nStep 5: Flip chicken and cook for another 6-7 minutes until golden brown and internal temperature reaches 165°F.\nStep 6: Remove chicken from pan and let rest for 5 minutes before slicing.\nStep 7: In the same pan, add remaining garlic and a splash of chicken stock to create a pan sauce.\nStep 8: Pour sauce over sliced chicken and garnish with fresh parsley. Serve hot."
+  },
+  {
+    "InstructionsId": 2,
+    "RecipeId": 2,
+    "Instruction": "Step 1: Bring a large pot of salted water to a rolling boil (use 1 tablespoon salt per quart of water).\nStep 2: Add pasta and cook according to package instructions until al dente, stirring occasionally.\nStep 3: While pasta cooks, heat 3 tablespoons olive oil in a large saucepan over medium heat.\nStep 4: Add 4 minced garlic cloves and sauté for 1 minute until fragrant.\nStep 5: Add 28 oz crushed tomatoes, stirring to combine.\nStep 6: Season with 1 teaspoon salt, 1/2 teaspoon black pepper, and a pinch of red pepper flakes.\nStep 7: Simmer sauce for 10-15 minutes, stirring occasionally.\nStep 8: Tear fresh basil leaves and stir into sauce in the last 2 minutes of cooking.\nStep 9: Drain pasta, reserving 1 cup pasta water.\nStep 10: Toss pasta with sauce, adding pasta water as needed for consistency.\nStep 11: Serve immediately with grated Parmesan cheese."
+  },
+  {
+    "InstructionsId": 3,
+    "RecipeId": 3,
+    "Instruction": "Step 1: Wash and prepare all vegetables: slice bell peppers into strips, slice zucchini into half-moons, and quarter mushrooms.\nStep 2: Prepare sauce by mixing 2 tablespoons soy sauce, 1 tablespoon rice vinegar, 1 teaspoon sesame oil, and 1 teaspoon cornstarch.\nStep 3: Heat wok or large skillet over high heat until smoking.\nStep 4: Add 2 tablespoons oil and swirl to coat the pan.\nStep 5: Add minced garlic and ginger, stir-fry for 15-30 seconds.\nStep 6: Add bell peppers first and stir-fry for 2 minutes.\nStep 7: Add zucchini and cook for 2 minutes more.\nStep 8: Add mushrooms and cook for another 2-3 minutes until all vegetables are tender-crisp.\nStep 9: Pour sauce over vegetables and toss for 1 minute until thickened.\nStep 10: Remove from heat and serve immediately over rice if desired."
+  },
+  {
+    "InstructionsId": 4,
+    "RecipeId": 4,
+    "Instruction": "Step 1: Preheat oven to 375°F (190°C). Line a baking sheet with parchment paper.\nStep 2: Pat salmon fillets dry with paper towels and place skin-side down on prepared baking sheet.\nStep 3: Drizzle each fillet with 1 tablespoon olive oil and rub to coat evenly.\nStep 4: Squeeze fresh lemon juice over each fillet (about 1 tablespoon per fillet).\nStep 5: Season generously with salt, black pepper, and a pinch of garlic powder.\nStep 6: Top each fillet with thin lemon slices and fresh thyme sprigs.\nStep 7: Bake for 25-30 minutes until salmon flakes easily with a fork and internal temperature reaches 145°F.\nStep 8: Remove from oven and let rest for 3 minutes.\nStep 9: Garnish with fresh dill and additional lemon wedges before serving."
+  },
+  {
+    "InstructionsId": 5,
+    "RecipeId": 5,
+    "Instruction": "Step 1: Rinse 1 cup rice under cold water until water runs clear.\nStep 2: Cook rice according to package instructions, adding a pinch of salt to the water.\nStep 3: While rice cooks, slice beef into thin strips against the grain.\nStep 4: Season beef with salt, pepper, and 1 teaspoon soy sauce.\nStep 5: Heat 2 tablespoons oil in a large skillet over high heat.\nStep 6: Add beef in a single layer and sear for 2-3 minutes without stirring.\nStep 7: Flip beef and cook for another 2 minutes until browned but still slightly pink inside.\nStep 8: Remove beef from pan and set aside.\nStep 9: In the same pan, add minced garlic and sauté for 30 seconds.\nStep 10: Fluff cooked rice with a fork and divide into bowls.\nStep 11: Top rice with beef slices and drizzle with any pan juices.\nStep 12: Garnish with sliced green onions and sesame seeds. Serve warm."
+  },
+  {
+    "InstructionsId": 6,
+    "RecipeId": 6,
+    "Instruction": "Step 1: Drain and rinse 2 cans of chickpeas, patting them dry.\nStep 2: Heat 2 tablespoons coconut oil in a large pot over medium heat.\nStep 3: Add 2 tablespoons curry powder and toast for 30-45 seconds until fragrant.\nStep 4: Add 1 diced onion and cook for 4-5 minutes until softened.\nStep 5: Add 3 minced garlic cloves and 1 tablespoon grated ginger, cook for 1 minute.\nStep 6: Stir in chickpeas and coat with curry mixture.\nStep 7: Pour in 1 can (14 oz) coconut milk and 1/2 cup vegetable stock.\nStep 8: Add 1 teaspoon salt, 1/2 teaspoon cumin, and a pinch of cayenne pepper.\nStep 9: Bring to a simmer and cook for 15-20 minutes, stirring occasionally.\nStep 10: Taste and adjust seasoning as needed.\nStep 11: Stir in fresh cilantro and a squeeze of lime juice.\nStep 12: Serve hot over basmati rice or with naan bread."
+  },
+  {
+    "InstructionsId": 7,
+    "RecipeId": 7,
+    "Instruction": "Step 1: Crack 3 eggs into a bowl and whisk with 1 tablespoon milk, salt, and pepper.\nStep 2: Dice bell pepper and onion into small pieces.\nStep 3: Heat 1 tablespoon butter in a non-stick skillet over medium heat.\nStep 4: Add diced vegetables and sauté for 3-4 minutes until softened.\nStep 5: Push vegetables to one side of the pan.\nStep 6: Pour whisked eggs into the empty side of the pan.\nStep 7: Let eggs set for 30 seconds, then gently push from edges toward center with a spatula.\nStep 8: When eggs are mostly set but still slightly runny on top, fold omelette in half.\nStep 9: Cook for another 30-60 seconds.\nStep 10: Slide onto a plate and serve immediately with toast."
+  },
+  {
+    "InstructionsId": 8,
+    "RecipeId": 8,
+    "Instruction": "Step 1: Rinse 1 cup quinoa thoroughly under cold water using a fine-mesh strainer.\nStep 2: Combine quinoa with 2 cups water in a medium saucepan and add a pinch of salt.\nStep 3: Bring to a boil, then reduce heat to low and cover.\nStep 4: Simmer for 15 minutes until water is absorbed.\nStep 5: Remove from heat and let stand covered for 5 minutes.\nStep 6: Fluff quinoa with a fork and spread on a plate to cool.\nStep 7: While quinoa cools, dice tomatoes, cucumber, and red onion.\nStep 8: Chop lettuce or mixed greens.\nStep 9: Transfer cooled quinoa to a large bowl.\nStep 10: Add diced vegetables and greens to the bowl.\nStep 11: Whisk together 3 tablespoons olive oil, 2 tablespoons lemon juice, salt, and pepper for dressing.\nStep 12: Pour dressing over salad and toss well to combine.\nStep 13: Let sit for 10 minutes for flavors to meld before serving."
+  },
+  {
+    "InstructionsId": 9,
+    "RecipeId": 9,
+    "Instruction": "Step 1: Toast 2 slices of whole grain bread until golden brown and crispy.\nStep 2: While bread toasts, cut 1 ripe avocado in half and remove pit.\nStep 3: Scoop avocado flesh into a small bowl.\nStep 4: Add juice of half a lemon, a pinch of salt, and black pepper.\nStep 5: Mash avocado with a fork until desired consistency (leave some chunks for texture).\nStep 6: Optionally add red pepper flakes or everything bagel seasoning.\nStep 7: Spread mashed avocado generously on toasted bread.\nStep 8: Top with optional additions like sliced cherry tomatoes, radishes, or a fried egg.\nStep 9: Drizzle with a little olive oil.\nStep 10: Serve immediately while toast is still warm."
+  },
+  {
+    "InstructionsId": 10,
+    "RecipeId": 10,
+    "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Cook 1 cup rice according to package instructions with vegetable stock for extra flavor.\nStep 3: While rice cooks, prepare 4 large bell peppers by cutting off the tops and removing all seeds and membranes.\nStep 4: Lightly brush peppers with olive oil, inside and out.\nStep 5: Place peppers upright in a baking dish.\nStep 6: In a large bowl, combine cooked rice with sautéed onions, diced tomatoes, and seasonings.\nStep 7: Add fresh herbs like basil and oregano to the rice mixture.\nStep 8: Stuff each pepper generously with the rice mixture, packing it down gently.\nStep 9: Top each pepper with a little shredded cheese if desired.\nStep 10: Pour 1/4 cup water into the bottom of the baking dish.\nStep 11: Cover dish with foil and bake for 35 minutes.\nStep 12: Remove foil and bake for another 10 minutes until peppers are tender and tops are golden.\nStep 13: Let cool for 5 minutes before serving."
+  },
+  {
+    "InstructionsId": 11,
+    "RecipeId": 11,
+    "Instruction": "Step 1: Wash and dry 3 medium zucchini.\nStep 2: Using a spiralizer or julienne peeler, create zucchini noodles.\nStep 3: Place zucchini noodles in a colander and sprinkle lightly with salt.\nStep 4: Let sit for 10 minutes to release excess moisture, then pat dry with paper towels.\nStep 5: Heat 2 tablespoons olive oil in a large pan over medium heat.\nStep 6: Add 3-4 minced garlic cloves and sauté for 30 seconds.\nStep 7: Add zucchini noodles and toss gently for 2-3 minutes until just tender.\nStep 8: Don't overcook or noodles will become mushy.\nStep 9: Season with salt, pepper, and red pepper flakes.\nStep 10: Remove from heat and toss with fresh basil and a squeeze of lemon.\nStep 11: Serve immediately as a side dish or topped with your favorite sauce."
+  },
+  {
+    "InstructionsId": 12,
+    "RecipeId": 12,
+    "Instruction": "Step 1: Slice 1 lb beef into thin strips.\nStep 2: Season beef with salt, pepper, and garlic powder.\nStep 3: Heat 2 tablespoons oil in a large cast-iron skillet over high heat.\nStep 4: Add beef in a single layer and sear for 2-3 minutes until browned.\nStep 5: Flip beef and cook for another 2 minutes.\nStep 6: Remove beef from skillet and set aside.\nStep 7: In the same skillet, add sliced mushrooms, bell peppers, and zucchini.\nStep 8: Sauté vegetables for 5-6 minutes until tender but still crisp.\nStep 9: Season vegetables with salt and pepper.\nStep 10: Return beef to the skillet and toss everything together.\nStep 11: Add 1 tablespoon butter and let it melt over the beef and vegetables.\nStep 12: Cook for 1-2 more minutes until everything is heated through.\nStep 13: Garnish with fresh parsley and serve hot."
+  },
+  {
+    "InstructionsId": 13,
+    "RecipeId": 13,
+    "Instruction": "Step 1: Preheat oven to 400°F (200°C) and line a baking sheet with parchment paper.\nStep 2: Peel and cube 2 large sweet potatoes into 1-inch pieces.\nStep 3: Toss sweet potato cubes with 2 tablespoons olive oil in a large bowl.\nStep 4: Season with salt, pepper, paprika, and a pinch of cinnamon.\nStep 5: Spread sweet potatoes in a single layer on the baking sheet.\nStep 6: Roast for 25-30 minutes, flipping halfway through, until tender and caramelized.\nStep 7: While sweet potatoes roast, cook 1/2 cup quinoa according to package directions.\nStep 8: Prepare any additional toppings like chickpeas, avocado, or tahini dressing.\nStep 9: Divide quinoa into serving bowls.\nStep 10: Top with roasted sweet potatoes and desired toppings.\nStep 11: Drizzle with tahini dressing or olive oil.\nStep 12: Garnish with fresh cilantro or parsley and serve warm."
+  },
+  {
+    "InstructionsId": 14,
+    "RecipeId": 14,
+    "Instruction": "Step 1: Clean and slice 8 oz mushrooms (cremini or button mushrooms work well).\nStep 2: In a large saucepan, heat 2 tablespoons butter over medium heat.\nStep 3: Add mushrooms and cook for 5-7 minutes until golden and liquid has evaporated.\nStep 4: Add 1 diced onion and 2 minced garlic cloves, cook for 3 minutes.\nStep 5: Stir in 1.5 cups Arborio rice and toast for 2 minutes, stirring constantly.\nStep 6: Pour in 1/2 cup white wine and stir until absorbed.\nStep 7: Add 4 cups warm chicken or vegetable stock, one ladle at a time.\nStep 8: Stir constantly and wait for each addition to be absorbed before adding more stock.\nStep 9: This process takes about 20-25 minutes.\nStep 10: Rice should be creamy but still have a slight bite (al dente).\nStep 11: Remove from heat and stir in 2 tablespoons butter and 1/2 cup grated Parmesan.\nStep 12: Season with salt and pepper to taste.\nStep 13: Let rest for 2 minutes, then serve immediately garnished with fresh parsley."
+  },
+  {
+    "InstructionsId": 15,
+    "RecipeId": 15,
+    "Instruction": "Step 1: Start with 1 cup plain Greek yogurt in a serving bowl or glass.\nStep 2: Wash and prepare fresh fruit: slice strawberries, measure blueberries, and dice any other desired fruits.\nStep 3: Layer half the yogurt in the bottom of the bowl.\nStep 4: Add a layer of mixed berries.\nStep 5: Drizzle with 1 tablespoon honey or maple syrup.\nStep 6: Add the remaining yogurt on top.\nStep 7: Top with more fresh fruit.\nStep 8: Sprinkle with 1/4 cup granola.\nStep 9: Add a few sliced almonds or other nuts for crunch.\nStep 10: Drizzle with an additional teaspoon of honey if desired.\nStep 11: Serve immediately while granola is still crunchy."
+  },
+  {
+    "InstructionsId": 16,
+    "RecipeId": 16,
+    "Instruction": "Step 1: Season 2 chicken breasts with salt and pepper.\nStep 2: Heat 1 tablespoon olive oil in a pan over medium heat.\nStep 3: Cook chicken for 6-7 minutes per side until fully cooked (internal temp 165°F).\nStep 4: Remove from heat and let rest for 5 minutes.\nStep 5: Dice the cooked chicken into bite-sized pieces.\nStep 6: Wash and chop lettuce, romaine, or mixed greens.\nStep 7: Dice cucumber, cherry tomatoes, and red onion.\nStep 8: In a large bowl, combine greens and diced vegetables.\nStep 9: Add diced chicken on top.\nStep 10: Prepare dressing by whisking together olive oil, lemon juice, Dijon mustard, salt, and pepper.\nStep 11: Pour dressing over salad and toss well.\nStep 12: Top with optional additions like croutons, nuts, or cheese.\nStep 13: Serve immediately while chicken is still warm."
+  },
+  {
+    "InstructionsId": 17,
+    "RecipeId": 17,
+    "Instruction": "Step 1: Drain and rinse 1 can (15 oz) black beans.\nStep 2: Heat beans in a small pot over medium heat with cumin and chili powder.\nStep 3: Mash about half the beans with a fork for creamier texture.\nStep 4: Warm corn or flour tortillas in a dry skillet for 30 seconds per side.\nStep 5: Keep tortillas warm wrapped in a clean kitchen towel.\nStep 6: Dice tomatoes, lettuce, and red onion for toppings.\nStep 7: Prepare any desired toppings: guacamole, salsa, sour cream, cheese.\nStep 8: Spread warm black beans down the center of each tortilla.\nStep 9: Top with diced vegetables.\nStep 10: Add your choice of toppings.\nStep 11: Garnish with fresh cilantro and a squeeze of lime.\nStep 12: Serve immediately with lime wedges on the side."
+  },
+  {
+    "InstructionsId": 18,
+    "RecipeId": 18,
+    "Instruction": "Step 1: Remove steak from refrigerator 30 minutes before cooking to bring to room temperature.\nStep 2: Pat steak dry with paper towels.\nStep 3: Season generously on both sides with salt and black pepper.\nStep 4: Preheat grill or cast-iron skillet over high heat.\nStep 5: Brush steak lightly with olive oil.\nStep 6: Place steak on hot grill or pan and don't move it for 4-5 minutes.\nStep 7: Flip once and cook for another 4-5 minutes for medium-rare (adjust time for desired doneness).\nStep 8: Remove steak and let rest for 5-10 minutes before slicing.\nStep 9: While steak rests, prepare vegetables: cut zucchini and bell peppers into chunks.\nStep 10: Toss vegetables with olive oil, salt, and pepper.\nStep 11: Roast vegetables at 425°F for 20-25 minutes until tender and caramelized.\nStep 12: Slice steak against the grain.\nStep 13: Serve sliced steak with roasted vegetables on the side."
+  },
+  {
+    "InstructionsId": 19,
+    "RecipeId": 19,
+    "Instruction": "Step 1: Wash fresh spinach thoroughly and pat dry.\nStep 2: Crack 3 eggs into a bowl.\nStep 3: Add 1 tablespoon milk, salt, and pepper to eggs.\nStep 4: Whisk eggs vigorously until well combined and slightly frothy.\nStep 5: Heat 1 tablespoon butter in a non-stick skillet over medium heat.\nStep 6: Add spinach to the pan and cook for 1-2 minutes until wilted.\nStep 7: Season spinach lightly with salt.\nStep 8: Pour whisked eggs over the spinach.\nStep 9: Let eggs sit undisturbed for 30 seconds to start setting.\nStep 10: Using a spatula, gently push eggs from edges to center, allowing uncooked egg to flow underneath.\nStep 11: Continue this process until eggs are mostly cooked but still slightly wet.\nStep 12: Remove from heat (residual heat will finish cooking).\nStep 13: Serve immediately with whole grain toast."
+  },
+  {
+    "InstructionsId": 20,
+    "RecipeId": 20,
+    "Instruction": "Step 1: Rinse 1 cup jasmine or basmati rice under cold water until water runs clear.\nStep 2: In a medium pot, combine rice with 1 can (14 oz) coconut milk and 1/2 cup water.\nStep 3: Add 1/2 teaspoon salt and stir to combine.\nStep 4: Bring to a boil over medium-high heat, stirring occasionally.\nStep 5: Once boiling, reduce heat to low and cover with a tight-fitting lid.\nStep 6: Simmer for 15 minutes without lifting the lid.\nStep 7: After 15 minutes, remove from heat and let stand covered for 5 more minutes.\nStep 8: Fluff rice gently with a fork.\nStep 9: Taste and adjust salt if needed.\nStep 10: Garnish with toasted coconut flakes if desired.\nStep 11: Serve warm as a side dish or base for curry."
+  },
+  {
+    "InstructionsId": 21,
+    "RecipeId": 21,
+    "Instruction": "Step 1: Roughly chop 2 lbs fresh tomatoes (or use 28 oz canned whole tomatoes).\nStep 2: Heat 2 tablespoons olive oil in a large pot over medium heat.\nStep 3: Add 1 diced onion and cook for 5 minutes until softened.\nStep 4: Add 4 minced garlic cloves and sauté for 1 minute.\nStep 5: Add chopped tomatoes and stir to combine.\nStep 6: Season with salt, pepper, and a pinch of sugar to balance acidity.\nStep 7: Add 2 cups vegetable stock.\nStep 8: Bring to a simmer and cook for 20 minutes, stirring occasionally.\nStep 9: Stir in 1/4 cup fresh basil leaves.\nStep 10: Remove from heat and let cool slightly.\nStep 11: Use an immersion blender to puree soup until smooth (or transfer to a blender in batches).\nStep 12: Return to pot and stir in 1/4 cup heavy cream for richness.\nStep 13: Taste and adjust seasoning.\nStep 14: Serve hot garnished with fresh basil and a drizzle of olive oil."
+  },
+  {
+    "InstructionsId": 22,
+    "RecipeId": 22,
+    "Instruction": "Step 1: Season 2 salmon fillets with salt, pepper, and a drizzle of olive oil.\nStep 2: Preheat grill or grill pan to medium-high heat.\nStep 3: Brush grill grates with oil to prevent sticking.\nStep 4: Place salmon skin-side down on the grill.\nStep 5: Cook for 4-5 minutes without moving.\nStep 6: Carefully flip salmon and cook for another 4-5 minutes until cooked through.\nStep 7: While salmon grills, cook 1/2 cup quinoa according to package directions.\nStep 8: Prepare vegetables: dice cucumber, cherry tomatoes, and red onion.\nStep 9: Make a simple dressing with lemon juice, olive oil, salt, and pepper.\nStep 10: Fluff cooked quinoa and divide into serving bowls.\nStep 11: Top quinoa with diced vegetables.\nStep 12: Place grilled salmon on top of each bowl.\nStep 13: Drizzle with dressing and garnish with fresh dill.\nStep 14: Serve immediately with lemon wedges."
+  },
+  {
+    "InstructionsId": 23,
+    "RecipeId": 23,
+    "Instruction": "Step 1: Cook 8 oz rice noodles according to package instructions, drain and rinse with cold water.\nStep 2: In a small bowl, whisk together 1/4 cup peanut butter, 2 tablespoons soy sauce, 1 tablespoon rice vinegar, 1 tablespoon honey, and 1 teaspoon sesame oil.\nStep 3: Add 2-3 tablespoons warm water to thin sauce to desired consistency.\nStep 4: Stir in 1 teaspoon minced ginger and 1 minced garlic clove.\nStep 5: Add a pinch of red pepper flakes for heat.\nStep 6: Julienne bell peppers, carrots, and cucumber.\nStep 7: Toss cooked noodles with peanut sauce in a large bowl.\nStep 8: Add julienned vegetables and toss to combine.\nStep 9: Let sit for 5 minutes for flavors to meld.\nStep 10: Garnish with chopped peanuts, fresh cilantro, and lime wedges.\nStep 11: Serve at room temperature or chilled."
+  },
+  {
+    "InstructionsId": 24,
+    "RecipeId": 24,
+    "Instruction": "Step 1: Rinse 1 cup quinoa and cook according to package directions with vegetable broth.\nStep 2: Let cooked quinoa cool to room temperature.\nStep 3: Dice cucumber, cherry tomatoes, and red onion.\nStep 4: Crumble 1/2 cup feta cheese.\nStep 5: Slice Kalamata olives.\nStep 6: In a large bowl, combine cooled quinoa with all diced vegetables.\nStep 7: Add feta cheese and olives.\nStep 8: Make dressing: whisk together 3 tablespoons olive oil, 2 tablespoons lemon juice, 1 teaspoon Dijon mustard, and oregano.\nStep 9: Season dressing with salt and pepper.\nStep 10: Pour dressing over quinoa mixture and toss well.\nStep 11: Let salad sit for 10 minutes before serving.\nStep 12: Garnish with fresh parsley and additional feta.\nStep 13: Serve at room temperature or chilled."
+  },
+  {
+    "InstructionsId": 25,
+    "RecipeId": 25,
+    "Instruction": "Step 1: Cut 2 lbs beef chuck into 1.5-inch cubes.\nStep 2: Season beef generously with salt and pepper.\nStep 3: Heat 2 tablespoons oil in a large Dutch oven over high heat.\nStep 4: Brown beef in batches, about 3-4 minutes per side, don't overcrowd the pot.\nStep 5: Remove browned beef and set aside.\nStep 6: In the same pot, add diced onions and cook for 5 minutes.\nStep 7: Add minced garlic and cook for 1 minute.\nStep 8: Stir in 2 tablespoons tomato paste and cook for 1 minute.\nStep 9: Pour in 1 cup red wine to deglaze, scraping up browned bits from bottom.\nStep 10: Add beef back to pot along with 4 cups beef stock.\nStep 11: Add bay leaves, thyme, and rosemary.\nStep 12: Bring to a boil, then reduce heat to low and cover.\nStep 13: Simmer for 1.5 hours.\nStep 14: Add chopped carrots, celery, and potatoes.\nStep 15: Continue simmering for another 30-45 minutes until beef is tender and vegetables are cooked.\nStep 16: Remove bay leaves, adjust seasoning, and serve hot with crusty bread."
+  },
+  {
+    "InstructionsId": 26,
+    "RecipeId": 26,
+    "Instruction": "Step 1: Peel and devein 1 lb large shrimp, pat dry with paper towels.\nStep 2: Cook 8 oz pasta according to package directions, reserve 1 cup pasta water.\nStep 3: In a large skillet, melt 3 tablespoons butter over medium heat.\nStep 4: Add 5 minced garlic cloves and red pepper flakes, cook for 1 minute.\nStep 5: Add shrimp in a single layer and cook for 2 minutes per side until pink.\nStep 6: Remove shrimp and set aside.\nStep 7: Add 1/2 cup white wine to the pan and let reduce by half.\nStep 8: Add juice of 1 lemon and 1/4 cup pasta water.\nStep 9: Return shrimp to pan along with drained pasta.\nStep 10: Toss everything together for 1-2 minutes.\nStep 11: Stir in 2 tablespoons butter and season with salt and pepper.\nStep 12: Remove from heat and toss with fresh parsley.\nStep 13: Serve immediately with grated Parmesan and lemon wedges."
+  },
+  {
+    "InstructionsId": 27,
+    "RecipeId": 27,
+    "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Cut 1 large head of cauliflower into florets.\nStep 3: Pulse cauliflower in a food processor until rice-like texture.\nStep 4: Steam cauliflower rice for 5 minutes, then squeeze out excess moisture using a clean kitchen towel.\nStep 5: In a bowl, mix cauliflower rice with 1 egg, 1 cup shredded mozzarella, 1/4 cup Parmesan, and Italian seasoning.\nStep 6: Form mixture into a pizza crust shape on a parchment-lined baking sheet.\nStep 7: Bake for 20 minutes until golden.\nStep 8: Remove from oven and add pizza sauce, spreading evenly.\nStep 9: Top with mozzarella cheese and your favorite toppings.\nStep 10: Return to oven and bake for 15 more minutes until cheese is melted and bubbly.\nStep 11: Let cool for 5 minutes before slicing.\nStep 12: Garnish with fresh basil and serve."
+  },
+  {
+    "InstructionsId": 28,
+    "RecipeId": 28,
+    "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Pat 1.5 lb pork tenderloin dry and season with salt and pepper.\nStep 3: Heat 2 tablespoons oil in an oven-safe skillet over high heat.\nStep 4: Sear pork on all sides until golden brown, about 2-3 minutes per side.\nStep 5: In a small bowl, whisk together 1/4 cup honey, 2 tablespoons Dijon mustard, 2 tablespoons soy sauce, and 2 minced garlic cloves.\nStep 6: Brush half of the glaze over the seared pork.\nStep 7: Transfer skillet to oven and roast for 15-20 minutes.\nStep 8: Brush with remaining glaze halfway through cooking.\nStep 9: Cook until internal temperature reaches 145°F.\nStep 10: Remove from oven and let rest for 10 minutes before slicing.\nStep 11: Slice pork into medallions.\nStep 12: Drizzle with any remaining glaze from the pan and serve."
+  },
+  {
+    "InstructionsId": 29,
+    "RecipeId": 29,
+    "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Slice 2 large eggplants into 1/2-inch rounds.\nStep 3: Salt eggplant slices and let sit for 30 minutes to draw out moisture.\nStep 4: Pat slices dry with paper towels.\nStep 5: Set up breading station: flour in one dish, beaten eggs in another, breadcrumbs mixed with Parmesan in a third.\nStep 6: Dredge each eggplant slice in flour, then egg, then breadcrumb mixture.\nStep 7: Heat 1/4 inch oil in a large skillet over medium-high heat.\nStep 8: Fry eggplant slices for 2-3 minutes per side until golden.\nStep 9: Drain on paper towels.\nStep 10: Spread 1 cup marinara sauce in the bottom of a baking dish.\nStep 11: Layer fried eggplant slices, overlapping slightly.\nStep 12: Top with more marinara and shredded mozzarella.\nStep 13: Repeat layers ending with cheese.\nStep 14: Bake for 30-35 minutes until bubbly and golden.\nStep 15: Let rest for 10 minutes before serving.\nStep 16: Garnish with fresh basil."
+  },
+  {
+    "InstructionsId": 30,
+    "RecipeId": 30,
+    "Instruction": "Step 1: In a bowl, mix 1 lb ground chicken with 2 tablespoons soy sauce, 1 tablespoon grated ginger, and 2 minced garlic cloves.\nStep 2: Heat 1 tablespoon oil in a large skillet over medium-high heat.\nStep 3: Add chicken mixture and cook for 8-10 minutes, breaking up with a spoon, until fully cooked.\nStep 4: Add diced water chestnuts for crunch.\nStep 5: Stir in 2 tablespoons hoisin sauce and 1 tablespoon rice vinegar.\nStep 6: Add sliced green onions and cook for 1 more minute.\nStep 7: Remove from heat.\nStep 8: Separate leaves from 1 head of butter lettuce, washing and drying them carefully.\nStep 9: Arrange lettuce cups on a serving platter.\nStep 10: Spoon chicken mixture into each lettuce cup.\nStep 11: Top with shredded carrots, cilantro, and crushed peanuts.\nStep 12: Serve with lime wedges and extra hoisin sauce on the side."
+  },
+  {
+    "InstructionsId": 31,
+    "RecipeId": 31,
+    "Instruction": "Step 1: Remove stems from 1 large bunch of kale and tear leaves into bite-sized pieces.\nStep 2: Wash and thoroughly dry kale leaves.\nStep 3: Place kale in a large bowl and massage with 1 tablespoon olive oil for 2-3 minutes to soften.\nStep 4: Make Caesar dressing: blend 1/4 cup mayonnaise, 2 tablespoons lemon juice, 2 minced garlic cloves, 2 tablespoons Parmesan, 1 teaspoon Dijon mustard, and anchovies if desired.\nStep 5: Add water to thin dressing if needed.\nStep 6: Season dressing with salt and pepper.\nStep 7: Pour dressing over massaged kale and toss well.\nStep 8: Let salad sit for 10 minutes for kale to soften further.\nStep 9: Make croutons: cube bread and toss with olive oil, salt, and garlic powder.\nStep 10: Bake croutons at 375°F for 10-12 minutes until crispy.\nStep 11: Top salad with croutons and shaved Parmesan.\nStep 12: Serve immediately."
+  },
+  {
+    "InstructionsId": 32,
+    "RecipeId": 32,
+    "Instruction": "Step 1: Peel and devein 1 lb large shrimp.\nStep 2: Pat shrimp dry and season with salt and paprika.\nStep 3: In a bowl, whisk together 1 can coconut milk, 2 tablespoons curry powder, 1 tablespoon grated ginger, and 2 minced garlic cloves.\nStep 4: Heat 1 tablespoon coconut oil in a large pan over medium heat.\nStep 5: Add curry paste and toast for 30 seconds.\nStep 6: Pour in coconut milk mixture and bring to a simmer.\nStep 7: Add shrimp to the sauce.\nStep 8: Cook for 5-6 minutes until shrimp are pink and cooked through.\nStep 9: Stir in juice of 1 lime.\nStep 10: Add fresh cilantro and sliced Thai basil.\nStep 11: Adjust seasoning with salt and a pinch of sugar if needed.\nStep 12: Serve over jasmine rice with lime wedges."
+  },
+  {
+    "InstructionsId": 33,
+    "RecipeId": 33,
+    "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Line a baking sheet with parchment paper.\nStep 3: Pat 4 cod fillets dry with paper towels.\nStep 4: Place fillets on prepared baking sheet.\nStep 5: Drizzle each fillet with olive oil.\nStep 6: Season with salt, pepper, and garlic powder.\nStep 7: Top each fillet with thin lemon slices.\nStep 8: Sprinkle with fresh thyme and parsley.\nStep 9: Bake for 12-15 minutes until fish flakes easily with a fork.\nStep 10: While fish bakes, make herb butter: mix softened butter with minced garlic, lemon zest, and chopped fresh herbs.\nStep 11: Remove fish from oven.\nStep 12: Top each fillet with a pat of herb butter.\nStep 13: Serve immediately with roasted vegetables or rice."
+  },
+  {
+    "InstructionsId": 34,
+    "RecipeId": 34,
+    "Instruction": "Step 1: Warm large flour tortillas in a dry skillet for 30 seconds per side.\nStep 2: Crack 4 eggs into a bowl and whisk with 2 tablespoons milk.\nStep 3: Season eggs with salt and pepper.\nStep 4: Heat 1 tablespoon butter in a non-stick pan over medium heat.\nStep 5: Pour in eggs and scramble gently until just set.\nStep 6: Dice bell peppers and onions.\nStep 7: Sauté vegetables in a separate pan for 3-4 minutes.\nStep 8: Warm refried beans in a small pot.\nStep 9: Lay out tortillas on a clean surface.\nStep 10: Spread a layer of beans down the center of each tortilla.\nStep 11: Top with scrambled eggs and sautéed vegetables.\nStep 12: Add shredded cheddar cheese.\nStep 13: Fold in sides and roll up tightly.\nStep 14: Optional: grill seam-side down for 1-2 minutes to seal.\nStep 15: Serve with salsa, sour cream, and avocado."
+  },
+  {
+    "InstructionsId": 35,
+    "RecipeId": 35,
+    "Instruction": "Step 1: Cut 1.5 lbs chicken breast into bite-sized pieces.\nStep 2: Season chicken with salt and pepper.\nStep 3: Make teriyaki sauce: whisk together 1/4 cup soy sauce, 2 tablespoons honey, 1 tablespoon rice vinegar, 1 teaspoon sesame oil, 1 minced garlic clove, and 1 teaspoon grated ginger.\nStep 4: Heat 1 tablespoon oil in a large skillet or wok over high heat.\nStep 5: Add chicken and cook for 5-6 minutes until golden and cooked through.\nStep 6: Pour teriyaki sauce over chicken.\nStep 7: Let sauce bubble and thicken for 2-3 minutes, coating chicken well.\nStep 8: While chicken cooks, prepare steamed rice according to package directions.\nStep 9: Steam broccoli florets for 4-5 minutes until tender-crisp.\nStep 10: Divide rice into serving bowls.\nStep 11: Top with teriyaki chicken and steamed broccoli.\nStep 12: Drizzle with extra sauce from the pan.\nStep 13: Garnish with sesame seeds and sliced green onions."
+  },
+  {
+    "InstructionsId": 36,
+    "RecipeId": 36,
+    "Instruction": "Step 1: Slice 1 lb fresh mozzarella into 1/4-inch thick rounds.\nStep 2: Slice 3-4 large ripe tomatoes into similar thickness.\nStep 3: Wash and dry fresh basil leaves.\nStep 4: Arrange tomato and mozzarella slices on a serving platter, alternating and overlapping.\nStep 5: Tuck fresh basil leaves between slices.\nStep 6: Drizzle generously with high-quality extra virgin olive oil.\nStep 7: Season with flaky sea salt and freshly cracked black pepper.\nStep 8: Drizzle with aged balsamic vinegar.\nStep 9: Let sit at room temperature for 10 minutes before serving.\nStep 10: Serve with crusty bread."
+  },
+  {
+    "InstructionsId": 37,
+    "RecipeId": 37,
+    "Instruction": "Step 1: Rinse 1.5 cups green or brown lentils and pick out any debris.\nStep 2: Heat 2 tablespoons olive oil in a large pot over medium heat.\nStep 3: Add 1 diced onion, 2 diced carrots, and 2 diced celery stalks.\nStep 4: Sauté vegetables for 5-6 minutes until softened.\nStep 5: Add 4 minced garlic cloves and cook for 1 minute.\nStep 6: Stir in 1 teaspoon cumin, 1/2 teaspoon paprika, and a pinch of cinnamon.\nStep 7: Add lentils and stir to coat with spices.\nStep 8: Pour in 6 cups vegetable broth.\nStep 9: Add 1 can diced tomatoes.\nStep 10: Bring to a boil, then reduce heat and simmer for 30-35 minutes until lentils are tender.\nStep 11: Add chopped kale or spinach in the last 5 minutes of cooking.\nStep 12: Season with salt, pepper, and a squeeze of lemon juice.\nStep 13: Serve hot with crusty bread."
+  },
+  {
+    "InstructionsId": 38,
+    "RecipeId": 38,
+    "Instruction": "Step 1: Cook 1 lb pasta according to package directions.\nStep 2: While pasta cooks, make pesto: combine 2 cups fresh basil leaves, 1/2 cup Parmesan, 1/3 cup pine nuts, 3 garlic cloves, and 1/2 cup olive oil in a food processor.\nStep 3: Pulse until smooth, scraping down sides as needed.\nStep 4: Season pesto with salt and pepper.\nStep 5: If pesto is too thick, add more olive oil or a splash of pasta water.\nStep 6: Reserve 1 cup pasta water before draining.\nStep 7: Drain pasta and return to pot.\nStep 8: Add pesto to pasta and toss well.\nStep 9: Add pasta water as needed to create a silky sauce that coats the pasta.\nStep 10: Taste and adjust seasoning.\nStep 11: Serve immediately topped with extra Parmesan, pine nuts, and fresh basil.\nStep 12: Drizzle with a little olive oil."
+  },
+  {
+    "InstructionsId": 39,
+    "RecipeId": 39,
+    "Instruction": "Step 1: Cook 2 chicken breasts and dice into bite-sized pieces.\nStep 2: In a bowl, toss chicken with 1/3 cup buffalo sauce.\nStep 3: Warm large tortillas in a skillet.\nStep 4: Spread ranch or blue cheese dressing down the center of each tortilla.\nStep 5: Add buffalo chicken.\nStep 6: Top with shredded lettuce, diced tomatoes, and diced celery.\nStep 7: Add shredded cheddar cheese.\nStep 8: Fold in sides and roll up tightly.\nStep 9: Optional: grill wraps seam-side down for 1-2 minutes.\nStep 10: Cut in half diagonally and serve with extra sauce for dipping."
+  },
+  {
+    "InstructionsId": 40,
+    "RecipeId": 40,
+    "Instruction": "Step 1: Preheat oven to 425°F (220°C).\nStep 2: Choose seasonal vegetables: bell peppers, zucchini, eggplant, carrots, cauliflower, broccoli.\nStep 3: Cut all vegetables into similar-sized pieces for even cooking.\nStep 4: Place vegetables in a large bowl.\nStep 5: Drizzle with 3-4 tablespoons olive oil and toss to coat.\nStep 6: Season with salt, pepper, garlic powder, and dried herbs (thyme, rosemary, or Italian seasoning).\nStep 7: Spread vegetables in a single layer on a large baking sheet.\nStep 8: Don't overcrowd or they'll steam instead of roast.\nStep 9: Roast for 25-30 minutes, stirring halfway through.\nStep 10: Vegetables should be tender and caramelized at the edges.\nStep 11: Remove from oven and drizzle with balsamic vinegar if desired.\nStep 12: Garnish with fresh herbs and serve hot."
+  },
+  {
+    "InstructionsId": 41,
+    "RecipeId": 41,
+    "Instruction": "Step 1: Cut 1 lb sushi-grade tuna into 1/2-inch cubes.\nStep 2: In a bowl, make marinade: combine 3 tablespoons soy sauce, 1 tablespoon sesame oil, 1 teaspoon rice vinegar, and 1 teaspoon honey.\nStep 3: Add diced tuna to marinade and gently toss.\nStep 4: Let marinate in refrigerator for 15-30 minutes.\nStep 5: Cook 2 cups sushi rice according to package directions.\nStep 6: Season rice with rice vinegar, salt, and sugar.\nStep 7: Let rice cool slightly.\nStep 8: Dice avocado, cucumber, and edamame.\nStep 9: Divide rice into serving bowls.\nStep 10: Arrange marinated tuna on one side of each bowl.\nStep 11: Add diced vegetables around the bowl.\nStep 12: Top with seaweed salad if desired.\nStep 13: Drizzle with spicy mayo and sprinkle with sesame seeds.\nStep 14: Garnish with sliced green onions and serve with soy sauce."
+  },
+  {
+    "InstructionsId": 42,
+    "RecipeId": 42,
+    "Instruction": "Step 1: Slice 1.5 lbs chicken breast into thin strips.\nStep 2: In a bowl, toss chicken with 2 tablespoons lime juice, 1 teaspoon cumin, 1 teaspoon chili powder, and salt.\nStep 3: Let marinate for 15-30 minutes.\nStep 4: Slice bell peppers and onions into strips.\nStep 5: Heat 2 tablespoons oil in a large cast-iron skillet over high heat.\nStep 6: Add chicken in a single layer and cook for 3-4 minutes per side.\nStep 7: Remove chicken and set aside.\nStep 8: In the same skillet, add peppers and onions.\nStep 9: Sauté for 5-6 minutes until softened and slightly charred.\nStep 10: Return chicken to skillet and toss with vegetables.\nStep 11: Squeeze fresh lime juice over everything.\nStep 12: Warm flour tortillas in a dry skillet.\nStep 13: Serve chicken and peppers with warm tortillas.\nStep 14: Provide toppings: sour cream, guacamole, salsa, cheese, and cilantro."
+  },
+  {
+    "InstructionsId": 43,
+    "RecipeId": 43,
+    "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Cut vegetables (carrots, Brussels sprouts, cauliflower, red onion) into bite-sized pieces.\nStep 3: Toss vegetables with 3 tablespoons olive oil, salt, and pepper.\nStep 4: Spread in a single layer on a baking sheet.\nStep 5: Roast for 25-30 minutes until tender and caramelized.\nStep 6: While vegetables roast, make balsamic glaze: simmer 1/2 cup balsamic vinegar in a small pot over medium heat.\nStep 7: Cook for 8-10 minutes until reduced by half and syrupy.\nStep 8: Remove vegetables from oven.\nStep 9: Drizzle with balsamic glaze.\nStep 10: Toss gently to coat.\nStep 11: Garnish with fresh thyme or parsley.\nStep 12: Serve hot as a side dish."
+  },
+  {
+    "InstructionsId": 44,
+    "RecipeId": 44,
+    "Instruction": "Step 1: Preheat oven to 375°F (190°C).\nStep 2: Pat 4 salmon fillets dry with paper towels.\nStep 3: Season with salt and pepper.\nStep 4: In a food processor, pulse 1 cup almonds until finely chopped (not powder).\nStep 5: Mix chopped almonds with 2 tablespoons melted butter, 1 tablespoon Dijon mustard, and 1 tablespoon honey.\nStep 6: Add lemon zest and fresh thyme to almond mixture.\nStep 7: Press almond mixture onto top of each salmon fillet, creating a crust.\nStep 8: Place salmon on a baking sheet lined with parchment.\nStep 9: Bake for 15-18 minutes until salmon is cooked through and crust is golden.\nStep 10: Remove from oven and let rest for 3 minutes.\nStep 11: Serve with lemon wedges and roasted vegetables."
+  },
+  {
+    "InstructionsId": 45,
+    "RecipeId": 45,
+    "Instruction": "Step 1: Dice 1 onion, 2 bell peppers, and 2 carrots.\nStep 2: Heat 2 tablespoons oil in a large pot over medium heat.\nStep 3: Add diced onion and cook for 5 minutes.\nStep 4: Add bell peppers and carrots, cook for 5 more minutes.\nStep 5: Add 4 minced garlic cloves, 2 tablespoons chili powder, 1 tablespoon cumin, and 1 teaspoon paprika.\nStep 6: Cook spices for 1 minute until fragrant.\nStep 7: Add 2 cans diced tomatoes, 2 cans black beans (drained), 1 can kidney beans (drained), and 1 can corn.\nStep 8: Pour in 2 cups vegetable broth.\nStep 9: Stir in 1 tablespoon cocoa powder for depth.\nStep 10: Bring to a boil, then reduce heat and simmer for 30 minutes.\nStep 11: Season with salt and pepper.\nStep 12: Stir in fresh cilantro.\nStep 13: Serve with toppings: sour cream, cheese, avocado, and cornbread."
+  },
+  {
+    "InstructionsId": 46,
+    "RecipeId": 46,
+    "Instruction": "Step 1: Press 14 oz extra-firm tofu between paper towels for 15 minutes to remove excess moisture.\nStep 2: Cut tofu into 1-inch cubes.\nStep 3: Toss tofu with 1 tablespoon cornstarch to help it crisp.\nStep 4: Heat 2 tablespoons oil in a large skillet over medium-high heat.\nStep 5: Add tofu in a single layer and cook for 3-4 minutes per side until golden and crispy.\nStep 6: While tofu cooks, make sauce: whisk together 3 tablespoons soy sauce, 2 tablespoons rice vinegar, 1 tablespoon honey, 1 tablespoon sesame oil, 1 tablespoon grated ginger, and 2 minced garlic cloves.\nStep 7: Once tofu is crispy, pour sauce over it.\nStep 8: Toss gently and cook for 2 minutes until sauce thickens.\nStep 9: Remove from heat.\nStep 10: Garnish with sesame seeds and sliced green onions.\nStep 11: Serve over rice with steamed broccoli."
+  },
+  {
+    "InstructionsId": 47,
+    "RecipeId": 47,
+    "Instruction": "Step 1: Cut 1.5 lbs chicken breast into 1-inch cubes.\nStep 2: Make marinade: combine 1/4 cup olive oil, juice of 2 lemons, 4 minced garlic cloves, 1 tablespoon oregano, 1 teaspoon paprika, salt, and pepper.\nStep 3: Add chicken to marinade and refrigerate for at least 2 hours or overnight.\nStep 4: Soak wooden skewers in water for 30 minutes.\nStep 5: Thread marinated chicken onto skewers.\nStep 6: Preheat grill or grill pan to medium-high heat.\nStep 7: Grill skewers for 10-12 minutes, turning every 3 minutes, until chicken is cooked through.\nStep 8: While chicken grills, make tzatziki: mix 1 cup Greek yogurt, 1/2 diced cucumber (squeezed dry), 2 minced garlic cloves, 1 tablespoon lemon juice, and fresh dill.\nStep 9: Season tzatziki with salt and pepper.\nStep 10: Remove skewers from grill and let rest for 5 minutes.\nStep 11: Serve with tzatziki sauce, warm pita bread, and Greek salad."
+  },
+  {
+    "InstructionsId": 48,
+    "RecipeId": 48,
+    "Instruction": "Step 1: Preheat oven to 400°F (200°C).\nStep 2: Cut 1 large butternut squash in half lengthwise and scoop out seeds.\nStep 3: Brush cut sides with olive oil and place face-down on a baking sheet.\nStep 4: Roast for 45-50 minutes until very tender.\nStep 5: Let cool slightly, then scoop flesh into a pot.\nStep 6: Add 1 diced onion that's been sautéed until soft.\nStep 7: Add 3-4 cups vegetable broth.\nStep 8: Season with salt, pepper, nutmeg, and a pinch of cinnamon.\nStep 9: Bring to a simmer and cook for 10 minutes.\nStep 10: Use an immersion blender to puree until completely smooth.\nStep 11: Stir in 1/4 cup heavy cream for richness.\nStep 12: Taste and adjust seasoning.\nStep 13: Serve hot garnished with roasted pumpkin seeds, a drizzle of cream, and fresh sage."
+  },
+  {
+    "InstructionsId": 49,
+    "RecipeId": 49,
+    "Instruction": "Step 1: In a jar or bowl, combine 1/4 cup chia seeds with 1 cup milk (dairy or non-dairy).\nStep 2: Add 1 tablespoon maple syrup or honey.\nStep 3: Add 1/2 teaspoon vanilla extract.\nStep 4: Stir well to combine and prevent clumping.\nStep 5: Cover and refrigerate overnight (or at least 4 hours).\nStep 6: In the morning, stir pudding again.\nStep 7: If too thick, add a splash more milk.\nStep 8: Divide into serving bowls or jars.\nStep 9: Top with fresh berries (strawberries, blueberries, raspberries).\nStep 10: Add sliced banana if desired.\nStep 11: Sprinkle with granola, nuts, or coconut flakes.\nStep 12: Drizzle with additional honey if desired.\nStep 13: Serve chilled."
+  },
+  {
+    "InstructionsId": 50,
+    "RecipeId": 50,
+    "Instruction": "Step 1: Season 2 lbs chicken breasts with salt and pepper.\nStep 2: Place chicken in slow cooker.\nStep 3: In a bowl, mix 1 cup BBQ sauce, 1/4 cup apple cider vinegar, 2 tablespoons brown sugar, 1 tablespoon Worcestershire sauce, and 1 teaspoon smoked paprika.\nStep 4: Pour sauce over chicken.\nStep 5: Add 1 sliced onion on top.\nStep 6: Cover and cook on low for 6-7 hours or high for 3-4 hours.\nStep 7: Chicken should be very tender and easily shredded.\nStep 8: Remove chicken from slow cooker and shred with two forks.\nStep 9: Return shredded chicken to slow cooker and toss with sauce.\nStep 10: Let sit for 10 minutes to absorb sauce.\nStep 11: Serve on toasted buns with coleslaw.\nStep 12: Provide extra BBQ sauce on the side."
+  }
+]
