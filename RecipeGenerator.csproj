@@ -28,7 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="SeedData\**\*.json">
+    <!-- Remove auto-included SeedData files first -->
+    <Content Remove="SeedData\**\*.json" />
+    <!-- Then explicitly add them back with correct copy settings -->
+    <Content Include="SeedData\**\*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
