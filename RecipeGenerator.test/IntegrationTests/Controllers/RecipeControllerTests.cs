@@ -49,7 +49,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.GetAsync("/api/recipes");
             var recipes = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
 
-            foreach (RecipeDto recipe in recipes)
+            recipes.Should().NotBeNull();
+            foreach (RecipeDto recipe in recipes!)  // ✅ Add null-forgiving operator
             {
                 recipe.Name.Should().NotBeNull();
                 recipe.Description.Should().NotBeNull();
@@ -74,7 +75,9 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             var response = await _client.GetAsync("/api/recipes/23/dietary-restrictions");
             var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
-              restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+            
+            restrictions.Should().NotBeNull();  // ✅ Add assertion
+            restrictions!.DietaryRestrictions.Should().BeOfType<List<string>>();
         }
 
         [Fact]
@@ -98,7 +101,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.GetAsync("/api/recipes/dietary-restrictions");
             var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
 
-            restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+            restrictions.Should().NotBeNull();  // ✅ Add assertion
+            restrictions!.DietaryRestrictions.Should().BeOfType<List<string>>();
             restrictions.DietaryRestrictions.Should().HaveCount(3);
         }
 
@@ -167,9 +171,10 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var matchedRecipes = await response.Content.ReadFromJsonAsync<List<RecipeMatchDto>>();
 
             // Assert
-            var recipe23 = matchedRecipes.FirstOrDefault(r => r.RecipeId == 23);
+            matchedRecipes.Should().NotBeNull();  // ✅ Add assertion
+            var recipe23 = matchedRecipes!.FirstOrDefault(r => r.RecipeId == 23);
             recipe23.Should().NotBeNull();
-            recipe23.MatchPercentage.Should().Be(100);
+            recipe23!.MatchPercentage.Should().Be(100);
             recipe23.IngredientsMatched.Should().Be(3);
             recipe23.TotalIngredientsRequired.Should().Be(3);
             recipe23.MissingIngredients.Should().BeEmpty();
@@ -426,10 +431,10 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             // Act
             var response = await _client.GetAsync("/api/recipes/ingredients");
-            var ingredients = await response.Content.ReadFromJsonAsync<List<string>>();
+            var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
-            ingredients.Should().BeOfType<List<string>>();
+            ingredients.Should().BeOfType<List<IngredientDto>>();
             ingredients.Should().NotBeEmpty();
             ingredients.Should().HaveCount(10); // Based on test data
         }
@@ -439,10 +444,11 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             // Act
             var response = await _client.GetAsync("/api/recipes/ingredients");
-            var ingredients = await response.Content.ReadFromJsonAsync<List<string>>();
+            var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
-            ingredients.Should().Contain(new[]
+            var ingredientNames = ingredients!.Select(i => i.IngredientName).ToList();
+            ingredientNames.Should().Contain(new[]
             {
                 "Shrimp",
                 "Lime",
@@ -462,25 +468,26 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             // Act
             var response = await _client.GetAsync("/api/recipes/ingredients");
-            var ingredients = await response.Content.ReadFromJsonAsync<List<string>>();
+            var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
-            ingredients.Should().OnlyHaveUniqueItems("ingredients should be distinct");
+            var ingredientIds = ingredients!.Select(i => i.IngredientId).ToList();
+            ingredientIds.Should().OnlyHaveUniqueItems("ingredients should be distinct");
         }
 
         [Fact]
-        public async Task GetAllIngredients_ReturnsIngredientsAsStrings()
+        public async Task GetAllIngredients_ReturnsIngredientsWithCorrectProperties()
         {
             // Act
             var response = await _client.GetAsync("/api/recipes/ingredients");
-            var ingredients = await response.Content.ReadFromJsonAsync<List<string>>();
+            var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
             ingredients.Should().NotBeNull();
-            ingredients.Should().AllBeOfType<string>();
             ingredients.Should().AllSatisfy(ingredient =>
             {
-                ingredient.Should().NotBeNullOrWhiteSpace();
+                ingredient.IngredientId.Should().BeGreaterThan(0);
+                ingredient.IngredientName.Should().NotBeNullOrWhiteSpace();
             });
         }
 
@@ -489,12 +496,12 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             // Act
             var response = await _client.GetAsync("/api/recipes/ingredients");
-            var ingredients = await response.Content.ReadFromJsonAsync<List<string>>();
+            var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
-            // Note: If you want alphabetical sorting, update the service method
-            // For now, this test documents the current behavior
             ingredients.Should().NotBeEmpty();
+            var ingredientNames = ingredients!.Select(i => i.IngredientName).ToList();
+            ingredientNames.Should().BeInAscendingOrder("ingredients should be sorted alphabetically");
         }
 
         [Fact]

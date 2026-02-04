@@ -550,7 +550,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int existingFavouriteId = 23;
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -565,16 +565,16 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             // Get current count
             var beforeResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
             var beforeFavourites = await beforeResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
-            int countBefore = beforeFavourites.Count;
+            int countBefore = beforeFavourites?.Count ?? 0;
 
             // Act
-            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
 
             // Assert
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var afterResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");             //Verify count decrease
-            var afterFavourites = await afterResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
+            var afterResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
+            var afterFavourites = await afterResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();  // ? Changed from beforeResponse to afterResponse
             afterFavourites.Should().HaveCount(countBefore - 1, "one recipe should be removed");
             afterFavourites.Should().NotContain(r => r.RecipeId == existingFavouriteId,
                 "the removed recipe should not be in favourites");
@@ -587,7 +587,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int notFavouritedRecipeId = 28;  //Valid recipe that is not favourited
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{notFavouritedRecipeId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{notFavouritedRecipeId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -600,7 +600,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int nonExistentRecipeId = 99999;
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{nonExistentRecipeId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{nonExistentRecipeId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -613,7 +613,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int existingFavouriteId = 25;
 
             // Act
-            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Assert

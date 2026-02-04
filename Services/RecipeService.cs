@@ -126,7 +126,7 @@ namespace RecipeGenerator.Services
 
         public async Task<IEnumerable<RecipeMatchDto>> GetMatchingRecipes(
             int userId,
-            List<int>? ingredientIds = null,  // ✅ Make nullable with default
+            List<int>? ingredientIds = null,
             List<int>? dietaryRestrictionIds = null,
             string? sortBy = null,
             string? sortOrder = "asc")
@@ -138,7 +138,7 @@ namespace RecipeGenerator.Services
                 .Include(r => r.Users)
                 .AsQueryable();
 
-            // Filter by dietary restrictions if provided
+            // ✅ CRITICAL: Filter by dietary restrictions FIRST (in database)
             if (dietaryRestrictionIds != null && dietaryRestrictionIds.Any())
             {
                 query = query.Where(r =>
@@ -148,10 +148,19 @@ namespace RecipeGenerator.Services
                 );
             }
 
-            // Execute query and perform matching in memory for complex calculations
-            var allRecipes = await query.ToListAsync();
+            // Execute query - at this point we have filtered by dietary restrictions
+            var allRecipes = await query.ToListAsync(); // Only vegan recipes
 
-            // Calculate match percentage for each recipe
+            // ✅ NEW: Filter to only recipes that have at least ONE searched ingredient
+            if (ingredientIds != null && ingredientIds.Any())
+            {
+                allRecipes = allRecipes
+                    .Where(r => r.Ingredients.Any(i => ingredientIds.Contains(i.IngredientId)))
+                    .ToList();
+            }
+            // Now you only have vegan recipes that contain mushrooms (not chicken)
+
+            // Then calculate match %
             var matchedRecipes = allRecipes.Select(recipe =>
             {
                 var recipeIngredientIds = recipe.Ingredients.Select(i => i.IngredientId).ToList();
@@ -162,7 +171,6 @@ namespace RecipeGenerator.Services
                 List<int> matchedIngredientIds = new();
                 List<int> missingIngredientIds = new();
 
-                // ✅ Only calculate ingredient matching if ingredients were provided
                 if (ingredientIds != null && ingredientIds.Any())
                 {
                     matchedIngredientIds = recipeIngredientIds.Intersect(ingredientIds).ToList();
@@ -174,7 +182,6 @@ namespace RecipeGenerator.Services
                 }
                 else
                 {
-                    // ✅ When searching by dietary only, show all ingredients as "missing"
                     missingIngredientIds = recipeIngredientIds;
                 }
 
