@@ -386,7 +386,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
             var content = await response.Content.ReadAsStringAsync();
-            content.Should().Contain("already favourited");
+            content.Should().Contain("already favourited", 
+                "the error message should indicate the recipe is already in favourites");
         }
 
         [Fact]
@@ -538,11 +539,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             });
         }
 
-        // POST /api/favourites/{recipeId} - Add to Favourites Tests
-
-
-
-        // DELETE /api/favourites/{recipeId} - Remove from Favourites Tests
+        // DELETE /api/favourites/{userId}/recipes/{recipeId} - Remove from Favourites Tests
         [Fact]
         public async Task RemoveFavouriteRecipe_ReturnsOkStatus_WhenRemovedSuccessfully()
         {
@@ -550,7 +547,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int existingFavouriteId = 23;
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -568,12 +565,12 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int countBefore = beforeFavourites.Count;
 
             // Act
-            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
 
             // Assert
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var afterResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");             //Verify count decrease
+            var afterResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
             var afterFavourites = await afterResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
             afterFavourites.Should().HaveCount(countBefore - 1, "one recipe should be removed");
             afterFavourites.Should().NotContain(r => r.RecipeId == existingFavouriteId,
@@ -584,10 +581,10 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         public async Task RemoveFavouriteRecipe_ReturnsNotFound_WhenRecipeNotInFavourites()
         {
             // Arrange
-            int notFavouritedRecipeId = 28;  //Valid recipe that is not favourited
+            int notFavouritedRecipeId = 28;
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{notFavouritedRecipeId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{notFavouritedRecipeId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -600,7 +597,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int nonExistentRecipeId = 99999;
 
             // Act
-            var response = await _client.DeleteAsync($"/api/favourites/{nonExistentRecipeId}");
+            var response = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{nonExistentRecipeId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -613,11 +610,11 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             int existingFavouriteId = 25;
 
             // Act
-            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{existingFavouriteId}");
+            var deleteResponse = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Assert
-            var getResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}"); //check by refetching favourites
+            var getResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
             var favourites = await getResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
 
             favourites.Should().NotContain(r => r.RecipeId == existingFavouriteId,
