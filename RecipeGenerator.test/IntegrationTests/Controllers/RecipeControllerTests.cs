@@ -409,8 +409,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.PostAsJsonAsync("/api/recipes/match", request);
             var matchedRecipes = await response.Content.ReadFromJsonAsync<List<RecipeMatchDto>>();
 
-            // Assert
-            // Based on test data, no recipe has both restrictions 7 AND 9
+            // Assert - Based on test data, no recipe has both restrictions 7 AND 9
             matchedRecipes.Should().BeEmpty();
         }
 
@@ -471,8 +470,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var ingredients = await response.Content.ReadFromJsonAsync<List<IngredientDto>>();
 
             // Assert
-            var ingredientIds = ingredients!.Select(i => i.IngredientId).ToList();
-            ingredientIds.Should().OnlyHaveUniqueItems("ingredients should be distinct");
+            ingredients!.Select(i => i.IngredientId).Should().OnlyHaveUniqueItems("ingredient IDs should be distinct");
+            ingredients.Select(i => i.IngredientName).Should().OnlyHaveUniqueItems("ingredient names should be distinct");
         }
 
         [Fact]
@@ -484,10 +483,11 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
 
             // Assert
             ingredients.Should().NotBeNull();
-            ingredients.Should().AllSatisfy(ingredient =>
+            ingredients.Should().AllBeOfType<IngredientDto>();
+            ingredients!.Should().AllSatisfy(ingredient =>
             {
-                ingredient.IngredientId.Should().BeGreaterThan(0);
-                ingredient.IngredientName.Should().NotBeNullOrWhiteSpace();
+                ingredient.IngredientId.Should().BeGreaterThan(0, "ingredient ID should be positive");
+                ingredient.IngredientName.Should().NotBeNullOrWhiteSpace("ingredient name should not be empty");
             });
         }
 
@@ -500,10 +500,9 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
 
             // Assert
             ingredients.Should().NotBeEmpty();
-            var ingredientNames = ingredients!.Select(i => i.IngredientName).ToList();
-            ingredientNames.Should().BeInAscendingOrder("ingredients should be sorted alphabetically");
+            ingredients.Should().BeInAscendingOrder(i => i.IngredientName, "ingredients should be sorted alphabetically by name");
         }
-
+        
         [Fact]
         public async Task GetAllRecipes_ReturnsRecipesWithImageUrls()
         {
@@ -554,6 +553,45 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             {
                 recipe.Img.Should().NotBeNullOrEmpty("matched recipes should include image URLs");
             });
+        }
+
+        [Fact]
+        public async Task GetTrendingRecipes_ReturnsOkStatus()
+        {
+            // Act
+            var response = await _client.GetAsync("/api/recipes/trending");
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task GetTrendingRecipes_ReturnsListOfTrendingRecipes()
+        {
+            // Act
+            var response = await _client.GetAsync("/api/recipes/trending");
+            var trendingRecipes = await response.Content.ReadFromJsonAsync<List<TrendingRecipeDto>>();
+
+            // Assert
+            trendingRecipes.Should().NotBeNull();
+            trendingRecipes.Should().BeOfType<List<TrendingRecipeDto>>();
+        }
+
+        [Fact]
+        public async Task GetTrendingRecipes_ReturnsSortedByFetchCountDescending()
+        {
+            // Arrange - Fetch recipe 23 multiple times to ensure it has views
+            await _client.GetAsync("/api/recipes/23");
+            await _client.GetAsync("/api/recipes/23");
+            await _client.GetAsync("/api/recipes/23");
+
+            // Act
+            var response = await _client.GetAsync("/api/recipes/trending");
+            var trendingRecipes = await response.Content.ReadFromJsonAsync<List<TrendingRecipeDto>>();
+
+            // Assert
+            trendingRecipes.Should().NotBeEmpty();
+            trendingRecipes.Should().BeInDescendingOrder(r => r.FetchCount, "recipes should be sorted by fetch count");
         }
     }
 }

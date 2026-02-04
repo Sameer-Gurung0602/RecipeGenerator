@@ -10,7 +10,8 @@ namespace RecipeGenerator.Models
         public int CookTime { get; set; }
         public string Difficulty { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string? Img { get; set; }  // Added image URL property
+        public string? Img { get; set; }
+        public int FetchCount { get; set; }
         
         public int InstructionsId { get; set; }
         public Instructions Instructions { get; set; }

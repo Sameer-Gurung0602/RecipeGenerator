@@ -87,5 +87,13 @@ namespace RecipeGenerator.Controllers
             var ingredients = await _recipeService.GetAllIngredients();
             return Ok(ingredients);  // Will now return { ingredientId, ingredientName }
         }
+
+        [HttpGet("trending")]
+        public async Task<IActionResult> GetTrendingRecipes( int count = 4)
+        {
+            var trendingRecipes = await _recipeService.GetTrendingRecipes(count);
+            return Ok(trendingRecipes);
+        }
+
     }
 }
