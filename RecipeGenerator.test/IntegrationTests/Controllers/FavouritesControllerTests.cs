@@ -562,7 +562,7 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             // Get current count
             var beforeResponse = await _client.GetAsync($"/api/favourites/{SingleUserId}");
             var beforeFavourites = await beforeResponse.Content.ReadFromJsonAsync<List<RecipeDto>>();
-            int countBefore = beforeFavourites.Count;
+            int countBefore = beforeFavourites?.Count ?? 0;
 
             // Act
             var deleteResponse = await _client.DeleteAsync($"/api/favourites/{SingleUserId}/recipes/{existingFavouriteId}");

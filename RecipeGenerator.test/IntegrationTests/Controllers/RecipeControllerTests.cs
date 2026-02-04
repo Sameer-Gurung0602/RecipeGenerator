@@ -49,7 +49,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.GetAsync("/api/recipes");
             var recipes = await response.Content.ReadFromJsonAsync<List<RecipeDto>>();
 
-            foreach (RecipeDto recipe in recipes)
+            recipes.Should().NotBeNull();
+            foreach (RecipeDto recipe in recipes!)  // ✅ Add null-forgiving operator
             {
                 recipe.Name.Should().NotBeNull();
                 recipe.Description.Should().NotBeNull();
@@ -74,7 +75,9 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
         {
             var response = await _client.GetAsync("/api/recipes/23/dietary-restrictions");
             var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
-              restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+            
+            restrictions.Should().NotBeNull();  // ✅ Add assertion
+            restrictions!.DietaryRestrictions.Should().BeOfType<List<string>>();
         }
 
         [Fact]
@@ -98,7 +101,8 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var response = await _client.GetAsync("/api/recipes/dietary-restrictions");
             var restrictions = await response.Content.ReadFromJsonAsync<DietaryRestrictionsDto>();
 
-            restrictions.DietaryRestrictions.Should().BeOfType<List<string>>();
+            restrictions.Should().NotBeNull();  // ✅ Add assertion
+            restrictions!.DietaryRestrictions.Should().BeOfType<List<string>>();
             restrictions.DietaryRestrictions.Should().HaveCount(3);
         }
 
@@ -167,9 +171,10 @@ namespace RecipeGenerator.test.IntegrationTests.Controllers
             var matchedRecipes = await response.Content.ReadFromJsonAsync<List<RecipeMatchDto>>();
 
             // Assert
-            var recipe23 = matchedRecipes.FirstOrDefault(r => r.RecipeId == 23);
+            matchedRecipes.Should().NotBeNull();  // ✅ Add assertion
+            var recipe23 = matchedRecipes!.FirstOrDefault(r => r.RecipeId == 23);
             recipe23.Should().NotBeNull();
-            recipe23.MatchPercentage.Should().Be(100);
+            recipe23!.MatchPercentage.Should().Be(100);
             recipe23.IngredientsMatched.Should().Be(3);
             recipe23.TotalIngredientsRequired.Should().Be(3);
             recipe23.MissingIngredients.Should().BeEmpty();
