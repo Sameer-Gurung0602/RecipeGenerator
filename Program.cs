@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:5173",  // Vite dev server
-            "https://recipegengurung.netlify.app"   // Create React App dev server
+            "https://recipegeneratorkpmg.netlify.app"   // Create React App dev server
         )
         .AllowAnyMethod()
         .AllowAnyHeader();
