@@ -7,7 +7,6 @@ namespace RecipeGenerator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class RecipesController : ControllerBase
     {
         private readonly RecipeService _recipeService;
@@ -20,7 +19,7 @@ namespace RecipeGenerator.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllRecipes([FromQuery] int userId = 1, [FromQuery] string? sortBy = null, [FromQuery] string? sortOrder = "asc")
         {
-          var recipes = await _recipeService.GetAllRecipes(userId, sortBy, sortOrder);
+            var recipes = await _recipeService.GetAllRecipes(userId, sortBy, sortOrder);
             return Ok(recipes);
         }
 
@@ -63,29 +62,43 @@ namespace RecipeGenerator.Controllers
             [FromQuery] string? sortBy = null,
             [FromQuery] string? sortOrder = "asc")
         {
-            // Validate input - require at least one search criteria
-            var hasIngredients = request.IngredientIds != null && request.IngredientIds.Any();
-            var hasDietary = request.DietaryRestrictionIds != null && request.DietaryRestrictionIds.Any();
-
-            if (!hasIngredients && !hasDietary)
+            try
             {
-                return BadRequest("At least one ingredient or dietary restriction is required.");
+                // Validate input - require at least one search criteria
+                var hasIngredients = request.IngredientIds != null && request.IngredientIds.Any();
+                var hasDietary = request.DietaryRestrictionIds != null && request.DietaryRestrictionIds.Any();
+
+                if (!hasIngredients && !hasDietary)
+                {
+                    return BadRequest("At least one ingredient or dietary restriction is required.");
+                }
+
+                var recipes = await _recipeService.GetMatchingRecipes(
+                    userId,
+                    request.IngredientIds,  // ✅ CHANGED: Pass null as-is, DON'T convert to empty list
+                    request.DietaryRestrictionIds,
+                    sortBy,
+                    sortOrder);
+
+                return Ok(recipes);
             }
-
-            var recipes = await _recipeService.GetMatchingRecipes(
-                userId,
-                request.IngredientIds ?? new List<int>(),  // ✅ Provide empty list if null
-                request.DietaryRestrictionIds,
-                sortBy,
-                sortOrder);
-
-            return Ok(recipes);
+            catch (Exception ex)
+            {
+                // Temporary error logging
+                return StatusCode(500, new
+                {
+                    error = ex.Message,
+                    stackTrace = ex.StackTrace,
+                    innerException = ex.InnerException?.Message
+                });
+            }
         }
+
         [HttpGet("ingredients")]
         public async Task<IActionResult> GetAllIngredients()
         {
             var ingredients = await _recipeService.GetAllIngredients();
-            return Ok(ingredients);  // Will now return { ingredientId, ingredientName }
+            return Ok(ingredients);
         }
     }
 }
