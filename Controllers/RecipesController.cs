@@ -102,9 +102,9 @@ namespace RecipeGenerator.Controllers
         }
 
         [HttpGet("trending")]
-        public async Task<IActionResult> GetTrendingRecipes( int count = 4)
+        public async Task<IActionResult> GetTrendingRecipes([FromQuery] int count = 4, [FromQuery] int userId = 1)
         {
-            var trendingRecipes = await _recipeService.GetTrendingRecipes(count);
+            var trendingRecipes = await _recipeService.GetTrendingRecipes(count, userId);
             return Ok(trendingRecipes);
         }
 

@@ -107,6 +107,7 @@
             <h4>Query Parameters:</h4>
             <ul>
                 <li><strong>count</strong> (optional, integer, default: 4, max: 10) - Number of trending recipes to return</li>
+                <li><strong>userId</strong> (optional, integer, default: 1) - Used to determine if each recipe is in this user's favorites</li>
             </ul>
             <h4>Response Properties:</h4>
             <ul>
@@ -120,10 +121,12 @@
                 <li><strong>fetchCount</strong> - Number of times the recipe has been viewed</li>
                 <li><strong>ingredients</strong> - Array of ingredient names</li>
                 <li><strong>dietaryRestrictions</strong> - Array of dietary restriction names</li>
+                <li><strong>isFavourite</strong> - Boolean indicating if the recipe is in the user's favorites</li>
             </ul>
             <h4>Example Request:</h4>
-            <p><code>GET /api/recipes/trending</code> (returns 4 recipes by default)</p>
-            <p><code>GET /api/recipes/trending?count=6</code> (returns up to 6 recipes)</p>
+            <p><code>GET /api/recipes/trending</code> (returns 4 recipes by default for user 1)</p>
+            <p><code>GET /api/recipes/trending?count=6</code> (returns up to 6 recipes for user 1)</p>
+            <p><code>GET /api/recipes/trending?count=6&userId=5</code> (returns up to 6 recipes with favorite status for user 5)</p>
             <h4>Example Response:</h4>
             <p><strong>Status:</strong> 200 OK</p>
             <pre>
@@ -138,7 +141,8 @@
     "img": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400",
     "fetchCount": 142,
     "ingredients": ["Shrimp", "Ginger", "Honey"],
-    "dietaryRestrictions": ["Gluten-Free", "Dairy-Free"]
+    "dietaryRestrictions": ["Gluten-Free", "Dairy-Free"],
+    "isFavourite": false
   },
   {
     "recipeId": 27,
@@ -150,7 +154,8 @@
     "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
     "fetchCount": 98,
     "ingredients": ["Shrimp", "Lime", "Honey"],
-    "dietaryRestrictions": ["Gluten-Free"]
+    "dietaryRestrictions": ["Gluten-Free"],
+    "isFavourite": true
   },
   {
     "recipeId": 25,
@@ -162,7 +167,8 @@
     "img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400",
     "fetchCount": 76,
     "ingredients": ["Broccoli", "Soy Sauce", "Ginger"],
-    "dietaryRestrictions": ["Vegan", "Dairy-Free"]
+    "dietaryRestrictions": ["Vegan", "Dairy-Free"],
+    "isFavourite": false
   },
   {
     "recipeId": 24,
@@ -174,7 +180,8 @@
     "img": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400",
     "fetchCount": 45,
     "ingredients": ["Shrimp", "Cilantro", "Lime", "Tortillas"],
-    "dietaryRestrictions": ["Gluten-Free"]
+    "dietaryRestrictions": ["Gluten-Free"],
+    "isFavourite": false
   }
 ]
         </pre>
@@ -489,13 +496,6 @@
             <h4>Query Parameters:</h4>
             <p>None</p>
             <h4>Response Properties (per recipe):</h4>
-            <ul>
-                <li><strong>recipeId</strong> - Unique identifier</li>
-                <li><strong>name</strong> - Recipe name</li>
-                <li><strong>description</strong> - Recipe description</li>
-                <li><strong>cookTime</strong> - Time in minutes</li>
-                <li><strong>difficulty</strong> - Difficulty level</li>
-                <li><strong>createdAt</strong> - ISO 8601 timestamp</li>
                 <li><strong>img</strong> - HTTPS image URL</li>
                 <li><strong>instructions</strong> - Object containing instruction details</li>
                 <li><strong>ingredients</strong> - Array of ingredient names (strings)</li>

@@ -260,11 +260,12 @@ namespace RecipeGenerator.Services
             }
         }
 
-        public async Task<IEnumerable<TrendingRecipeDto>> GetTrendingRecipes(int count = 4) //order by recipefetchcount
+        public async Task<IEnumerable<TrendingRecipeDto>> GetTrendingRecipes(int count = 4, int userId = 1)
         {
             var trendingRecipes = await _context.Recipes
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
+                .Include(r => r.Users)
                 .OrderByDescending(r => r.FetchCount)
                 .Take(count)
                 .Select(r => new TrendingRecipeDto
@@ -278,7 +279,8 @@ namespace RecipeGenerator.Services
                     Img = r.Img,
                     FetchCount = r.FetchCount,
                     Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
-                    DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList()
+                    DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList(),
+                    IsFavourite = r.Users.Any(u => u.UserId == userId)
                 })
                 .ToListAsync();
 

@@ -12,5 +12,6 @@
         public int FetchCount { get; set; }
         public List<string> Ingredients { get; set; }
         public List<string> DietaryRestrictions { get; set; }
+        public bool IsFavourite { get; set; }
     }
 }
