@@ -2,18 +2,27 @@
 using RecipeGenerator.Data;
 using RecipeGenerator.DTOs;
 
-
 namespace RecipeGenerator.Services
 {
     public class RecipeService
     {
-        // initialise database connection
         private readonly RecipeGeneratorDbContext _context;
 
-        // constructor - dependency injection
         public RecipeService(RecipeGeneratorDbContext context)
         {
             _context = context;
+        }
+
+        // ✅ ADD THIS HELPER METHOD
+        private static int GetDifficultyOrder(string difficulty)
+        {
+            return difficulty?.ToLower() switch
+            {
+                "easy" => 1,
+                "medium" => 2,
+                "hard" => 3,
+                _ => 4 // Unknown difficulties go last
+            };
         }
 
         // method to query database for all recipes
@@ -25,21 +34,6 @@ namespace RecipeGenerator.Services
                 .Include(r => r.DietaryRestrictions)
                 .Include(r => r.Users)
                 .AsQueryable();
-
-            // Apply sorting        
-            query = sortBy?.ToLower() switch
-            {
-                "date" => sortOrder?.ToLower() == "desc"
-                    ? query.OrderByDescending(r => r.CreatedAt)
-                    : query.OrderBy(r => r.CreatedAt),
-                "cooktime" => sortOrder?.ToLower() == "desc"
-                    ? query.OrderByDescending(r => r.CookTime)
-                    : query.OrderBy(r => r.CookTime),
-                "difficulty" => sortOrder?.ToLower() == "desc"
-                    ? query.OrderByDescending(r => r.Difficulty)
-                    : query.OrderBy(r => r.Difficulty),
-                _ => query.OrderBy(r => r.RecipeId) // Default sort by ID
-            };
 
             var recipes = await query
                 .Select(r => new RecipeDto      // transform each recipe into recipe DTO
@@ -62,7 +56,22 @@ namespace RecipeGenerator.Services
                 })
                 .ToListAsync();
 
-            return recipes;
+            // ✅ ADD THIS - Apply sorting in-memory with custom difficulty logic
+            var sortedRecipes = sortBy?.ToLower() switch
+            {
+                "date" => sortOrder?.ToLower() == "desc"
+                    ? recipes.OrderByDescending(r => r.CreatedAt)
+                    : recipes.OrderBy(r => r.CreatedAt),
+                "cooktime" => sortOrder?.ToLower() == "desc"
+                    ? recipes.OrderByDescending(r => r.CookTime)
+                    : recipes.OrderBy(r => r.CookTime),
+                "difficulty" => sortOrder?.ToLower() == "desc"
+                    ? recipes.OrderByDescending(r => GetDifficultyOrder(r.Difficulty))
+                    : recipes.OrderBy(r => GetDifficultyOrder(r.Difficulty)),
+                _ => recipes.OrderBy(r => r.RecipeId) // Default sort by ID
+            };
+
+            return sortedRecipes.ToList();
         }
 
         // method to query database for a single recipe by ID
@@ -134,14 +143,12 @@ namespace RecipeGenerator.Services
             string? sortBy = null,
             string? sortOrder = "asc")
         {
-            // Start with base query - get all recipes with their related data
             var query = _context.Recipes
                 .Include(r => r.Ingredients)
                 .Include(r => r.DietaryRestrictions)
                 .Include(r => r.Users)
                 .AsQueryable();
 
-            // ✅ CRITICAL: Filter by dietary restrictions FIRST (in database)
             if (dietaryRestrictionIds != null && dietaryRestrictionIds.Any())
             {
                 query = query.Where(r =>
@@ -151,19 +158,15 @@ namespace RecipeGenerator.Services
                 );
             }
 
-            // Execute query - at this point we have filtered by dietary restrictions
-            var allRecipes = await query.ToListAsync(); // Only vegan recipes
+            var allRecipes = await query.ToListAsync();
 
-            // ✅ NEW: Filter to only recipes that have at least ONE searched ingredient
             if (ingredientIds != null && ingredientIds.Any())
             {
                 allRecipes = allRecipes
                     .Where(r => r.Ingredients.Any(i => ingredientIds.Contains(i.IngredientId)))
                     .ToList();
             }
-            // Now you only have vegan recipes that contain mushrooms (not chicken)
 
-            // Then calculate match %
             var matchedRecipes = allRecipes.Select(recipe =>
             {
                 var recipeIngredientIds = recipe.Ingredients.Select(i => i.IngredientId).ToList();
@@ -214,7 +217,7 @@ namespace RecipeGenerator.Services
             })
             .ToList();
 
-            // Apply sorting
+            // ✅ UPDATE THIS - Use custom difficulty ordering
             matchedRecipes = sortBy?.ToLower() switch
             {
                 "match" or "matchpercentage" => sortOrder?.ToLower() == "desc"
@@ -227,8 +230,8 @@ namespace RecipeGenerator.Services
                     ? matchedRecipes.OrderByDescending(r => r.CookTime).ToList()
                     : matchedRecipes.OrderBy(r => r.CookTime).ToList(),
                 "difficulty" => sortOrder?.ToLower() == "desc"
-                    ? matchedRecipes.OrderByDescending(r => r.Difficulty).ToList()
-                    : matchedRecipes.OrderBy(r => r.Difficulty).ToList(),
+                    ? matchedRecipes.OrderByDescending(r => GetDifficultyOrder(r.Difficulty)).ToList()
+                    : matchedRecipes.OrderBy(r => GetDifficultyOrder(r.Difficulty)).ToList(),
                 _ => matchedRecipes.OrderByDescending(r => r.MatchPercentage).ToList()
             };
 
