@@ -68,6 +68,9 @@ namespace RecipeGenerator.Services
         // method to query database for a single recipe by ID
         public async Task<RecipeDto?> GetRecipeById(int id, int userId)
         {
+            // Increment fetch count first
+            await IncrementFetchCount(id);
+
             var recipe = await _context.Recipes
                 .Include(r => r.Instructions)
                 .Include(r => r.Ingredients)
@@ -244,6 +247,41 @@ namespace RecipeGenerator.Services
                 .OrderBy(i => i.IngredientName)
                 .ToListAsync();
             return ingredients;
+        }
+
+
+        public async Task IncrementFetchCount(int recipeId) //increase recipefetchcount for every request
+        {
+            var recipe = await _context.Recipes.FindAsync(recipeId);
+            if (recipe != null)
+            {
+                recipe.FetchCount++;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IEnumerable<TrendingRecipeDto>> GetTrendingRecipes(int count = 4) //order by recipefetchcount
+        {
+            var trendingRecipes = await _context.Recipes
+                .Include(r => r.Ingredients)
+                .Include(r => r.DietaryRestrictions)
+                .OrderByDescending(r => r.FetchCount)
+                .Take(count)
+                .Select(r => new TrendingRecipeDto
+                {
+                    RecipeId = r.RecipeId,
+                    Name = r.Name,
+                    Description = r.Description,
+                    CookTime = r.CookTime,
+                    Difficulty = r.Difficulty,
+                    Img = r.Img,
+                    FetchCount = r.FetchCount,
+                    Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
+                    DietaryRestrictions = r.DietaryRestrictions.Select(d => d.Name).ToList()
+                })
+                .ToListAsync();
+
+            return trendingRecipes;
         }
     }
 }

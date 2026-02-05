@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeGenerator.Data;
 
@@ -11,9 +12,11 @@ using RecipeGenerator.Data;
 namespace RecipeGenerator.Migrations
 {
     [DbContext(typeof(RecipeGeneratorDbContext))]
-    partial class RecipeGeneratorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260204115224_AddFetchCountToRecipe")]
+    partial class AddFetchCountToRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
