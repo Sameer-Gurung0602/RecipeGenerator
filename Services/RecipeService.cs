@@ -274,6 +274,7 @@ namespace RecipeGenerator.Services
                     Description = r.Description,
                     CookTime = r.CookTime,
                     Difficulty = r.Difficulty,
+                    CreatedAt = r.CreatedAt,
                     Img = r.Img,
                     FetchCount = r.FetchCount,
                     Ingredients = r.Ingredients.Select(i => i.IngredientName).ToList(),
